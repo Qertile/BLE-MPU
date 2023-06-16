@@ -17,6 +17,7 @@ C_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+src \
 firmware/hal/CortexM3 \
 firmware/hal/CortexM3/GNU \
 firmware/drivers_config/sys_config \
