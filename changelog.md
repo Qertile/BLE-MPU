@@ -6,6 +6,7 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ### New
 - create `Mpu6050_Init()`
 - import mpu6050.h from [MPU6050_driver](https://github.com/anasvag575/MPU6050_driver.git)
+- import mpu6050.c from [MPU6050_driver](https://github.com/anasvag575/MPU6050_driver.git)
 ### Changed
 ### Removed
 ### Deprecated
