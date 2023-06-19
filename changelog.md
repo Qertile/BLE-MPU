@@ -5,6 +5,7 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ## Unreleased v0.0.3(2023.06.##) @master
 ### New
 ### Changed
+1. rename `MPU6050_config_t mpu6050_config `related usage to `Mpu6050_Config_t Mpu6050_Config_`
 ### Removed
 ### Deprecated
 ### Fixed

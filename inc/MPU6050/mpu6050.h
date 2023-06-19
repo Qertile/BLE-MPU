@@ -215,11 +215,11 @@ typedef struct MPU6050_configuration{
   uint8_t power_mode;
   uint8_t freq;
   uint8_t irq_enable;
-} MPU6050_config_t;
+} Mpu6050_Config_t;
 
 
 /* ========== Global Variables ========== */
-MPU6050_config_t Mpu6050_config_;
+Mpu6050_Config_t Mpu6050_Config_;
 MPU6050_t Mpu6050_;
 
 /* ----- coreI2C instance ----- */

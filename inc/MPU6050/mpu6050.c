@@ -52,7 +52,7 @@ void Mpu6050_Init(void){
   *
   * ------- MAIN DATA STRUCTURES -------
   * MPU6050_t -> Holds measurements for all sensors and Kalman angle values
-  * MPU6050_configuration -> Holds the current configuration of the MPU6050
+  * Mpu6050_Config_uration -> Holds the current configuration of the MPU6050
   *
   * ------- USAGE -------
   * In order to simply use the driver, set:
@@ -172,23 +172,23 @@ static uint8_t accel_sensitiviy_config(uint8_t config)
   switch (config) {
     case MPU6050_Accelerometer_2G:
       reg_value = ACCEL_SCALE_2G;
-      mpu6050_config.accel_sensitivity = ACCEL_SENS_2G;
+      Mpu6050_Config_.accel_sensitivity = ACCEL_SENS_2G;
       break;
     case MPU6050_Accelerometer_4G:
       reg_value = ACCEL_SCALE_4G;
-      mpu6050_config.accel_sensitivity = ACCEL_SENS_4G;
+      Mpu6050_Config_.accel_sensitivity = ACCEL_SENS_4G;
       break;
     case MPU6050_Accelerometer_8G:
       reg_value = ACCEL_SCALE_8G;
-      mpu6050_config.accel_sensitivity = ACCEL_SENS_8G;
+      Mpu6050_Config_.accel_sensitivity = ACCEL_SENS_8G;
       break;
     case MPU6050_Accelerometer_16G:
       reg_value = ACCEL_SCALE_16G;
-      mpu6050_config.accel_sensitivity = ACCEL_SENS_16G;
+      Mpu6050_Config_.accel_sensitivity = ACCEL_SENS_16G;
       break;
     default:
       reg_value = ACCEL_SCALE_2G;
-      mpu6050_config.accel_sensitivity = ACCEL_SENS_2G;
+      Mpu6050_Config_.accel_sensitivity = ACCEL_SENS_2G;
       break;
   }
 
@@ -215,23 +215,23 @@ static uint8_t gyro_sensitiviy_config(uint8_t config)
   switch (config) {
     case MPU6050_Gyroscope_250_deg:
       reg_value = GYRO_SCALE_250_DEG;
-      mpu6050_config.gyro_sensitivity = GYRO_SENS_250_DEG;
+      Mpu6050_Config_.gyro_sensitivity = GYRO_SENS_250_DEG;
       break;
     case MPU6050_Gyroscope_500_deg:
       reg_value = GYRO_SCALE_500_DEG;
-      mpu6050_config.gyro_sensitivity = GYRO_SENS_500_DEG;
+      Mpu6050_Config_.gyro_sensitivity = GYRO_SENS_500_DEG;
       break;
     case MPU6050_Gyroscope_1000_deg:
       reg_value = GYRO_SCALE_1K_DEG;
-      mpu6050_config.gyro_sensitivity = GYRO_SENS_1K_DEG;
+      Mpu6050_Config_.gyro_sensitivity = GYRO_SENS_1K_DEG;
       break;
     case MPU6050_Gyroscope_2000_deg:
       reg_value = GYRO_SCALE_2K_DEG;
-      mpu6050_config.gyro_sensitivity = GYRO_SENS_2K_DEG;
+      Mpu6050_Config_.gyro_sensitivity = GYRO_SENS_2K_DEG;
       break;
     default:
       reg_value = GYRO_SCALE_250_DEG;
-      mpu6050_config.gyro_sensitivity = GYRO_SENS_250_DEG;
+      Mpu6050_Config_.gyro_sensitivity = GYRO_SENS_250_DEG;
       break;
   }
 
@@ -354,7 +354,7 @@ void MPU6050_set_power_mode(uint8_t power_mode, uint8_t freq)
   uint8_t reg_trx[3]; // Values to be written to the register //
 
   // MPU6050 is already configured to this power mode //
-  mpu6050_config.power_mode = power_mode;
+  Mpu6050_Config_.power_mode = power_mode;
 
   // Set the register address //
   reg_trx[0] = PWR_MGMT_1_REG;
@@ -414,7 +414,7 @@ void MPU6050_set_power_mode(uint8_t power_mode, uint8_t freq)
     }
 
     // Update the frequency in the configuration struct //
-    mpu6050_config.freq = freq;
+    Mpu6050_Config_.freq = freq;
   }
 
   // Write the chosen values to the register //
@@ -458,7 +458,7 @@ void MPU6050_enable_irq(uint8_t config)
   i2c_MPU6050_read_reg(INT_STATUS_REG, reg_trx, 1);
 
   // Update the status //
-  mpu6050_config.irq_enable = IRQ_ENABLE;
+  Mpu6050_Config_.irq_enable = IRQ_ENABLE;
 }
 
 /* -- MPU6050_get_irq_status() --
@@ -518,7 +518,7 @@ void MPU6050_disable_irq(void)
   i2c_MPU6050_read_reg(INT_STATUS_REG, reg_trx, 1);
 
   // Update the status //
-  mpu6050_config.irq_enable = IRQ_DISABLE;
+  Mpu6050_Config_.irq_enable = IRQ_DISABLE;
 }
 
 /* -- MPU6050_peripheral_config() --
@@ -609,7 +609,7 @@ uint8_t MPU6050_Init(uint8_t accel_config, uint8_t gyro_config, uint8_t sample_r
     i2c_MPU6050_write_reg(reg_trx, 2);
 
     // Set the power mode //
-    mpu6050_config.power_mode = MPU6050_POWER_ON;
+    Mpu6050_Config_.power_mode = MPU6050_POWER_ON;
 
     // Set Sample Rate by writing SMPLRT_DIV register //
     reg_trx[0] = SMPLRT_DIV_REG;
@@ -640,7 +640,7 @@ uint8_t MPU6050_Init(uint8_t accel_config, uint8_t gyro_config, uint8_t sample_r
     i2c_MPU6050_write_reg(reg_trx, 2);
 
     #ifdef DEBUG_MPU6050
-      printf("Config accel is %f and reg val is %x\n", mpu6050_config.accel_sensitivity, reg_trx[1]);
+      printf("Config accel is %f and reg val is %x\n", Mpu6050_Config_.accel_sensitivity, reg_trx[1]);
     #endif
 
     // Set Gyro configuration in GYRO_CONFIG Register //
@@ -649,7 +649,7 @@ uint8_t MPU6050_Init(uint8_t accel_config, uint8_t gyro_config, uint8_t sample_r
     reg_trx[1] = gyro_sensitiviy_config(gyro_config);
     i2c_MPU6050_write_reg(reg_trx, 2);
 
-    printf("Config gyro is %f and reg val is %x\n", mpu6050_config.gyro_sensitivity, reg_trx[1]);
+    printf("Config gyro is %f and reg val is %x\n", Mpu6050_Config_.gyro_sensitivity, reg_trx[1]);
 
     return MPU6050_SUCCESS;
   }
@@ -679,9 +679,9 @@ void MPU6050_Read_Accel(MPU6050_t *DataStruct)
 
   // Convert the RAW values into acceleration in 'g' , so we have //
   // to divide according to the Full scale value set in FS_SEL    //
-  DataStruct->Ax = DataStruct->Accel_X_RAW / (mpu6050_config.accel_sensitivity);
-  DataStruct->Ay = DataStruct->Accel_Y_RAW / (mpu6050_config.accel_sensitivity);
-  DataStruct->Az = DataStruct->Accel_Z_RAW / (mpu6050_config.accel_sensitivity);
+  DataStruct->Ax = DataStruct->Accel_X_RAW / (Mpu6050_Config_.accel_sensitivity);
+  DataStruct->Ay = DataStruct->Accel_Y_RAW / (Mpu6050_Config_.accel_sensitivity);
+  DataStruct->Az = DataStruct->Accel_Z_RAW / (Mpu6050_Config_.accel_sensitivity);
 }
 
 /* -- MPU6050_Read_Gyro() --
@@ -707,9 +707,9 @@ void MPU6050_Read_Gyro(MPU6050_t *DataStruct)
 
   // Convert the RAW values into into dps , so we have          //
   // to divide according to the Full scale value set in FS_SEL  //
-  DataStruct->Gx = DataStruct->Gyro_X_RAW / (mpu6050_config.gyro_sensitivity);
-  DataStruct->Gy = DataStruct->Gyro_Y_RAW / (mpu6050_config.gyro_sensitivity);
-  DataStruct->Gz = DataStruct->Gyro_Z_RAW / (mpu6050_config.gyro_sensitivity);
+  DataStruct->Gx = DataStruct->Gyro_X_RAW / (Mpu6050_Config_.gyro_sensitivity);
+  DataStruct->Gy = DataStruct->Gyro_Y_RAW / (Mpu6050_Config_.gyro_sensitivity);
+  DataStruct->Gz = DataStruct->Gyro_Z_RAW / (Mpu6050_Config_.gyro_sensitivity);
 }
 
 /* -- MPU6050_Read_Gyro() --
@@ -760,13 +760,13 @@ void MPU6050_Read_All(MPU6050_t *DataStruct)
   DataStruct->Gyro_Y_RAW = (uint16_t) (Rx_Data[10] << 8 | Rx_Data[11]);
   DataStruct->Gyro_Z_RAW = (uint16_t) (Rx_Data[12] << 8 | Rx_Data[13]);
 
-  DataStruct->Gx = DataStruct->Gyro_X_RAW / (mpu6050_config.gyro_sensitivity);
-  DataStruct->Gy = DataStruct->Gyro_Y_RAW / (mpu6050_config.gyro_sensitivity);
-  DataStruct->Gz = DataStruct->Gyro_Z_RAW / (mpu6050_config.gyro_sensitivity);
+  DataStruct->Gx = DataStruct->Gyro_X_RAW / (Mpu6050_Config_.gyro_sensitivity);
+  DataStruct->Gy = DataStruct->Gyro_Y_RAW / (Mpu6050_Config_.gyro_sensitivity);
+  DataStruct->Gz = DataStruct->Gyro_Z_RAW / (Mpu6050_Config_.gyro_sensitivity);
 
-  DataStruct->Ax = DataStruct->Accel_X_RAW / (mpu6050_config.accel_sensitivity);
-  DataStruct->Ay = DataStruct->Accel_Y_RAW / (mpu6050_config.accel_sensitivity);
-  DataStruct->Az = DataStruct->Accel_Z_RAW / (mpu6050_config.accel_sensitivity);
+  DataStruct->Ax = DataStruct->Accel_X_RAW / (Mpu6050_Config_.accel_sensitivity);
+  DataStruct->Ay = DataStruct->Accel_Y_RAW / (Mpu6050_Config_.accel_sensitivity);
+  DataStruct->Az = DataStruct->Accel_Z_RAW / (Mpu6050_Config_.accel_sensitivity);
 
   temp = (uint16_t) (Rx_Data[6] << 8 | Rx_Data[7]);
   DataStruct->Temperature = (float) ((uint16_t) temp / (float) 340.0 + (float) 36.53);
