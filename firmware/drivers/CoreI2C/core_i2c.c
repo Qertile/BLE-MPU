@@ -989,6 +989,7 @@ void I2C_isr
              *  one received so pend the master operation we were starting.
              */
             this_i2c->is_transaction_pending = 1u;
+            break;
             /* Fall through to normal ST processing as we are now in slave mode */
 
         case ST_GCA: /* General call address received, ACK returned */
@@ -1006,6 +1007,7 @@ void I2C_isr
                 this_i2c->is_transaction_pending = 1u;
             }
             this_i2c->slave_status = I2C_IN_PROGRESS;
+            break;
 #ifdef INCLUDE_SLA_IN_RX_PAYLOAD
             /* Fall through to put address as first byte in payload buffer */
 #else

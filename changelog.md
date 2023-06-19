@@ -6,12 +6,23 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ### New
 ### Changed
 1. rename `MPU6050_config_t mpu6050_config `related usage to `Mpu6050_Config_t Mpu6050_Config_`
+2. comment out unuse STM32 related functions
+3. rename all `i2c_MPU6050_write_reg` and `i2c_MPU6050_read_reg` `i2c_MPU6050_write` to `i2c_MPU6050_read` in .c file
 ### Removed
 ### Deprecated
 ### Fixed
+1. fix all errors while building project
 ### Known Issues
 ### Notes
 ### Reference
+-----------------------------------
+## BT-Gyro v0.1.0(2023.06.19) @master
+### Changed
+1. rename `MPU6050_config_t mpu6050_config `related usage to `Mpu6050_Config_t Mpu6050_Config_`
+2. comment out unuse STM32 related functions
+3. rename all `i2c_MPU6050_write_reg` and `i2c_MPU6050_read_reg` `i2c_MPU6050_write` to `i2c_MPU6050_read` in .c file
+### Fixed
+1. fix all errors while building project
 
 -----------------------------------
 ## BT-Gyro v0.0.2(2023.06.19) @master

@@ -18,6 +18,7 @@ C_DEPS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 src \
+inc/MPU6050 \
 firmware/hal/CortexM3 \
 firmware/hal/CortexM3/GNU \
 firmware/drivers_config/sys_config \

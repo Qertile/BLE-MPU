@@ -13,7 +13,12 @@
 #define MPU6050_H_
 
 #include <stdint.h>
+#include <stdio.h>
+#include <math.h>
 #include "../../firmware/drivers/CoreI2C/core_i2c.h"
+
+#define MPU6050_SELF_TEST
+#define DEBUG_MPU6050
 
 
 /* ----- I2C Related ----- */
@@ -25,7 +30,7 @@
 #define MPU6050_ADDR_HIGH   0x69    // 7-Bit address when AD0 is connect to VCC //
 // #define MPU6050_WRITE_ADDR 	0xD0    // 8-Bit Write address //
 // #define MPU6050_READ_ADDR 	0xD1    // 8-Bit Read address //
-// #define MPU6050_DEVICE_ID 	0x68
+ #define MPU6050_DEVICE_ID 	0x68
 
 /* ----- MPU6050 Return codes ----- */
 #define MPU6050_SUCCESS   0
@@ -64,6 +69,33 @@
 /* ----- Power Managlement Reg 2 Parameters ----- */
 #define GYRO_STBY         0x07    // Standby for every axis //
 #define ACCEL_STBY        0x38    // Standby for every axis //
+
+// Cycle Mode Wake-Up Frequency //
+#define LP_WAKE_FREQ_1_25HZ  0x00
+#define LP_WAKE_FREQ_5HZ     0x40
+#define LP_WAKE_FREQ_20HZ    0x80
+#define LP_WAKE_FREQ_40HZ    0xc0
+
+// Kalman calculation constants //
+#define RAD_TO_DEG 57.295779513082320876798154814105
+
+// Self_test //
+#define ACCEL_ENABLE_SELF_TEST    0xe0
+#define GYRO_ENABLE_SELF_TEST     0xe0
+// Self_test parameters //
+#define GYRO_SELF_TEST_MASK 		    0x1f
+#define GYRO_CONSTANT_MULT 		      3275
+#define GYRO_CONSTANT_BASE 		      1.046
+#define ACCEL_SELF_TEST_UPPER_MASK 	0xE0
+#define ACCEL_SELF_TEST_X_MASK 		  0x30
+#define ACCEL_SELF_TEST_X_SHIFT 	    4
+#define ACCEL_SELF_TEST_Y_MASK 		  0x0c
+#define ACCEL_SELF_TEST_Y_SHIFT 	    2
+#define ACCEL_SELF_TEST_Z_MASK 		  0x03
+#define ACCEL_SELF_TEST_Z_SHIFT 	    0
+#define ACCEL_CONSTANT_MULT 		    1392.64
+#define ACCEL_CONSTANT_BASE 		    2.7058
+#define MAX_SELF_TEST_VAL 		      14.0
 
 /* ========== Enums ========== */
 /* Enum that has the register addresses of the MPU6050 registers.
@@ -237,6 +269,19 @@ i2c_instance_t *g_i2c_inst_0;
  *      This function returns nothing
  **/
 void Mpu_Init(void);
+
+/* Functions -----------------------------------------------------------------*/
+uint8_t MPU6050_Init(uint8_t accel_config, uint8_t gyro_config, uint8_t sample_rate);
+void MPU6050_set_power_mode(uint8_t power_mode, uint8_t freq);
+// void MPU6050_enable_irq(uint8_t config);
+// void MPU6050_disable_irq(void);
+// uint8_t MPU6050_get_irq_status(void);
+// void MPU6050_peripheral_config(void);
+void MPU6050_Read_Accel(MPU6050_t *DataStruct);
+void MPU6050_Read_Gyro(MPU6050_t *DataStruct);
+void MPU6050_Read_Temp(MPU6050_t *DataStruct);
+void MPU6050_Read_All(MPU6050_t *DataStruct);
+double Kalman_getAngle(Kalman_t *Kalman, double newAngle, double newRate, double dt);
 
 
 

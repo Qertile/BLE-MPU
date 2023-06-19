@@ -25,8 +25,8 @@ void Mpu6050_Init(void){
   *
   * ------- ROUTINES -------
   * I2C Routines:
-  * - i2c_MPU6050_write_reg() -> Writes to the MPU6050 I2C bus
-  * - i2c_MPU6050_read_reg() -> Reads from the MPU6050 using the I2C bus
+  * - i2c_MPU6050_write() -> Writes to the MPU6050 I2C bus
+  * - i2c_MPU6050_read() -> Reads from the MPU6050 using the I2C bus
   *
   * Accelerometer/Gyroscope/Temp Data Routines:
   * - MPU6050_Read_Accel() -> Reads the accelerometer data
@@ -114,12 +114,12 @@ static void i2c_MPU6050_write(uint8_t *_tx_buff, uint8_t write_size)
   #endif
 
   #ifndef MPU6050_USE_HAL
-    I2C_write( &g_i2c_inst_0, 
+    I2C_write( g_i2c_inst_0,
                 MPU6050_ADDR_LOW, 
                 _tx_buff, 
                 write_size, 
                 I2C_RELEASE_BUS );
-    I2C_wait_complete( &g_i2c_inst_0, I2C_NO_TIMEOUT );
+    I2C_wait_complete( g_i2c_inst_0, I2C_NO_TIMEOUT );
   #endif
 }
 
@@ -143,12 +143,19 @@ static void i2c_MPU6050_read(uint8_t *_rx_buff, uint8_t read_size)
   #endif
 
   #ifndef MPU6050_USE_HAL
-    I2C_read( &g_i2c_inst_0, 
+    I2C_write( g_i2c_inst_0,
+                MPU6050_ADDR_LOW, 
+                _rx_buff, 
+                1, 
+                I2C_RELEASE_BUS );
+    I2C_wait_complete( g_i2c_inst_0, I2C_NO_TIMEOUT );
+
+    I2C_read( g_i2c_inst_0,
                 MPU6050_ADDR_LOW, 
                 _rx_buff, 
                 read_size, 
                 I2C_RELEASE_BUS );
-    I2C_wait_complete( &g_i2c_inst_0, I2C_NO_TIMEOUT );
+    I2C_wait_complete( g_i2c_inst_0, I2C_NO_TIMEOUT );
   #endif
 }
 
@@ -260,16 +267,17 @@ static inline uint8_t MPU6050_self_test(void)
   // XA_ST=0, YA_ST=0, ZA_ST=0, FS_SEL=0 -> � 8g //
   reg_trx[0] = ACCEL_CONFIG_REG ;
   reg_trx[1] = accel_sensitiviy_config(MPU6050_Accelerometer_8G)| ACCEL_ENABLE_SELF_TEST;
-  i2c_MPU6050_write_reg(reg_trx, 2);
+  i2c_MPU6050_write(reg_trx, 2);
 
   // Set Gyro configuration in GYRO_CONFIG Register //
   // XG_ST=0,YG_ST=0,ZG_ST=0, FS_SEL=0 -> � 250 �/s //
   reg_trx[0] = GYRO_CONFIG_REG;
   reg_trx[1] = gyro_sensitiviy_config(MPU6050_Gyroscope_250_deg) | GYRO_ENABLE_SELF_TEST;
-  i2c_MPU6050_write_reg(reg_trx, 2);
+  i2c_MPU6050_write(reg_trx, 2);
 
+  reg_trx[0] = SELF_TEST_REG;
   // Read the Self test values from the registers//
-  i2c_MPU6050_read_reg(SELF_TEST_REG, reg_trx, 4);
+  i2c_MPU6050_read(reg_trx, 4);
 
   // Set the X-axis gyro and accel parameters //
   self_test[0] = (((reg_trx [0]) & ACCEL_SELF_TEST_UPPER_MASK) >> 3) | (((reg_trx [3]) & ACCEL_SELF_TEST_X_MASK) >> 4);
@@ -418,171 +426,171 @@ void MPU6050_set_power_mode(uint8_t power_mode, uint8_t freq)
   }
 
   // Write the chosen values to the register //
-  i2c_MPU6050_write_reg(reg_trx, 2);
+  i2c_MPU6050_write(reg_trx, 2);
 
   // Write to the second register //
   // Burst write problems ? //
   reg_trx[0] = PWR_MGMT_2_REG;
   reg_trx[1] = reg_trx[2];
-  i2c_MPU6050_write_reg(reg_trx , 2);
+  i2c_MPU6050_write(reg_trx , 2);
 
   return;
 }
-
-/* -- MPU6050_enable_irq() --
- * Input: uint8_t configuration
- * Return: None
- * Description:
- *
- * Function of the MPU6050 that configures and enables interrupts and interrupt
- * pin in the MPU6050.
- *
- * Interrupts are generated when a measurement is complete.
- *
- * */
-void MPU6050_enable_irq(uint8_t config)
-{
-  uint8_t reg_trx[2];
-
-  // Configure the pin //
-  reg_trx[0] = INT_PIN_CFG_REG;
-  reg_trx[1] = config;
-  i2c_MPU6050_write_reg(reg_trx, 2);
-
-  // Configure the pin //
-  reg_trx[0] = INT_ENABLE_REG;
-  reg_trx[1] = IRQ_ENABLE;
-  i2c_MPU6050_write_reg(reg_trx, 2);
-
-  // Read the IRQ status to clear it //
-  i2c_MPU6050_read_reg(INT_STATUS_REG, reg_trx, 1);
-
-  // Update the status //
-  Mpu6050_Config_.irq_enable = IRQ_ENABLE;
-}
-
-/* -- MPU6050_get_irq_status() --
- * Input: None
- * Return: SUCCESS or FAILURE
- * Description:
- *
- * Function of the MPU6050 that reads the irq status register of the MPU6050
- * sensor.
- *
- * When an interrupt is generated the STATUS register bit for DATA_RD is set
- * until it is read back.
- *
- * Interrupts are generated when a measurement is complete. In order to clear it
- * depending on configuration one has to read to perform a read operation:
- *
- * Either read the IRQ_STATUS register of MP6050 or perform a read operation
- * on
- *
- * */
-uint8_t MPU6050_get_irq_status(void)
-{
-  uint8_t reg_rx;
-
-  // Read the register //
-  i2c_MPU6050_read_reg(INT_STATUS_REG, &reg_rx, 1);
-
-  // Check if the flag is active //
-  if(reg_rx == IRQ_DATA_RD)
-    return MPU6050_SUCCESS;
-  else
-    return 0;
-
-}
-
-/* -- MPU6050_disable_irq() --
- * Input: None
- * Return: None
- * Description:
- *
- * Function of the MPU6050 that disables the irq generation of the MPU6050
- * sensor.
- *
- * Interrupts are generated when a measurement is complete.
- *
- * */
-void MPU6050_disable_irq(void)
-{
-  uint8_t reg_trx[2];
-
-  // Configure the pin //
-  reg_trx[0] = INT_ENABLE_REG;
-  reg_trx[1] = IRQ_DISABLE;
-  i2c_MPU6050_write_reg(reg_trx, 2);
-
-  // Read the IRQ status to clear it //
-  i2c_MPU6050_read_reg(INT_STATUS_REG, reg_trx, 1);
-
-  // Update the status //
-  Mpu6050_Config_.irq_enable = IRQ_DISABLE;
-}
-
-/* -- MPU6050_peripheral_config() --
- * Input: None
- * Return: None
- * Description:
- *
- * Initializes and configures the GPIOs and the I2C peripheral
- *
- * */
-void MPU6050_peripheral_config(void)
-{
-  // Enable the GPIO Port Clock //
-  __HAL_RCC_GPIOB_CLK_ENABLE();
-
-  // Configure the GPIOs //
-  LL_GPIO_SetPinSpeed(SCL_Port, SCL_Pin, LL_GPIO_SPEED_FREQ_HIGH);
-  LL_GPIO_SetPinOutputType(SCL_Port, SCL_Pin, LL_GPIO_OUTPUT_OPENDRAIN);
-  LL_GPIO_SetPinPull(SCL_Port, SCL_Pin, LL_GPIO_PULL_UP);
-  LL_GPIO_SetPinMode(SCL_Port, SCL_Pin, LL_GPIO_MODE_ALTERNATE);
-  LL_GPIO_SetAFPin_0_7(SCL_Port, SCL_Pin, LL_GPIO_AF_4);
-
-  LL_GPIO_SetPinSpeed(SDA_Port, SDA_Pin, LL_GPIO_SPEED_FREQ_HIGH);
-  LL_GPIO_SetPinOutputType(SDA_Port, SDA_Pin, LL_GPIO_OUTPUT_OPENDRAIN);
-  LL_GPIO_SetPinPull(SDA_Port, SDA_Pin, LL_GPIO_PULL_UP);
-  LL_GPIO_SetPinMode(SDA_Port, SDA_Pin, LL_GPIO_MODE_ALTERNATE);
-  LL_GPIO_SetAFPin_0_7(SDA_Port, SDA_Pin, LL_GPIO_AF_4);
-
-  /* Peripheral clock enable */
-  __HAL_RCC_I2C1_CLK_ENABLE();
-
-  #ifdef MPU6050_USE_HAL
-    hi2c1.Instance = I2C1;
-    hi2c1.Init.ClockSpeed = 100000;
-    hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
-    hi2c1.Init.OwnAddress1 = 0;
-    hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
-    hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
-    hi2c1.Init.OwnAddress2 = 0;
-    hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
-    hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
-    if (HAL_I2C_Init(&hi2c1) != HAL_OK)
-    {
-      while(1);
-    }
-  #endif
-
-  #ifndef MPU6050_USE_HAL
-
-    // Use I2C1 peripheral //
-    i2c_handle = I2C1;
-
-    // Reset the peripheral
-    i2c_handle->CR1 |= I2C_CR1_SWRST;
-    i2c_handle->CR1 &= ~I2C_CR1_SWRST;
-
-    LL_I2C_SetMode(i2c_handle, LL_I2C_MODE_I2C);
-    LL_I2C_DisableClockStretching(i2c_handle);
-    LL_I2C_ConfigSpeed(i2c_handle,
-		       HAL_RCC_GetPCLK1Freq(),
-		       300000,
-		       LL_I2C_DUTYCYCLE_2);
-  #endif
-}
+//
+///* -- MPU6050_enable_irq() --
+// * Input: uint8_t configuration
+// * Return: None
+// * Description:
+// *
+// * Function of the MPU6050 that configures and enables interrupts and interrupt
+// * pin in the MPU6050.
+// *
+// * Interrupts are generated when a measurement is complete.
+// *
+// * */
+//void MPU6050_enable_irq(uint8_t config)
+//{
+//  uint8_t reg_trx[2];
+//
+//  // Configure the pin //
+//  reg_trx[0] = INT_PIN_CFG_REG;
+//  reg_trx[1] = config;
+//  i2c_MPU6050_write(reg_trx, 2);
+//
+//  // Configure the pin //
+//  reg_trx[0] = INT_ENABLE_REG;
+//  reg_trx[1] = IRQ_ENABLE;
+//  i2c_MPU6050_write(reg_trx, 2);
+//
+//  // Read the IRQ status to clear it //
+//  i2c_MPU6050_read(INT_STATUS_REG, reg_trx, 1);
+//
+//  // Update the status //
+//  Mpu6050_Config_.irq_enable = IRQ_ENABLE;
+//}
+//
+///* -- MPU6050_get_irq_status() --
+// * Input: None
+// * Return: SUCCESS or FAILURE
+// * Description:
+// *
+// * Function of the MPU6050 that reads the irq status register of the MPU6050
+// * sensor.
+// *
+// * When an interrupt is generated the STATUS register bit for DATA_RD is set
+// * until it is read back.
+// *
+// * Interrupts are generated when a measurement is complete. In order to clear it
+// * depending on configuration one has to read to perform a read operation:
+// *
+// * Either read the IRQ_STATUS register of MP6050 or perform a read operation
+// * on
+// *
+// * */
+//uint8_t MPU6050_get_irq_status(void)
+//{
+//  uint8_t reg_rx;
+//
+//  // Read the register //
+//  i2c_MPU6050_read(INT_STATUS_REG, &reg_rx, 1);
+//
+//  // Check if the flag is active //
+//  if(reg_rx == IRQ_DATA_RD)
+//    return MPU6050_SUCCESS;
+//  else
+//    return 0;
+//
+//}
+//
+///* -- MPU6050_disable_irq() --
+// * Input: None
+// * Return: None
+// * Description:
+// *
+// * Function of the MPU6050 that disables the irq generation of the MPU6050
+// * sensor.
+// *
+// * Interrupts are generated when a measurement is complete.
+// *
+// * */
+//void MPU6050_disable_irq(void)
+//{
+//  uint8_t reg_trx[2];
+//
+//  // Configure the pin //
+//  reg_trx[0] = INT_ENABLE_REG;
+//  reg_trx[1] = IRQ_DISABLE;
+//  i2c_MPU6050_write(reg_trx, 2);
+//
+//  // Read the IRQ status to clear it //
+//  i2c_MPU6050_read(INT_STATUS_REG, reg_trx, 1);
+//
+//  // Update the status //
+//  Mpu6050_Config_.irq_enable = IRQ_DISABLE;
+//}
+//
+///* -- MPU6050_peripheral_config() --
+// * Input: None
+// * Return: None
+// * Description:
+// *
+// * Initializes and configures the GPIOs and the I2C peripheral
+// *
+// * */
+//void MPU6050_peripheral_config(void)
+//{
+//  // Enable the GPIO Port Clock //
+//  __HAL_RCC_GPIOB_CLK_ENABLE();
+//
+//  // Configure the GPIOs //
+//  LL_GPIO_SetPinSpeed(SCL_Port, SCL_Pin, LL_GPIO_SPEED_FREQ_HIGH);
+//  LL_GPIO_SetPinOutputType(SCL_Port, SCL_Pin, LL_GPIO_OUTPUT_OPENDRAIN);
+//  LL_GPIO_SetPinPull(SCL_Port, SCL_Pin, LL_GPIO_PULL_UP);
+//  LL_GPIO_SetPinMode(SCL_Port, SCL_Pin, LL_GPIO_MODE_ALTERNATE);
+//  LL_GPIO_SetAFPin_0_7(SCL_Port, SCL_Pin, LL_GPIO_AF_4);
+//
+//  LL_GPIO_SetPinSpeed(SDA_Port, SDA_Pin, LL_GPIO_SPEED_FREQ_HIGH);
+//  LL_GPIO_SetPinOutputType(SDA_Port, SDA_Pin, LL_GPIO_OUTPUT_OPENDRAIN);
+//  LL_GPIO_SetPinPull(SDA_Port, SDA_Pin, LL_GPIO_PULL_UP);
+//  LL_GPIO_SetPinMode(SDA_Port, SDA_Pin, LL_GPIO_MODE_ALTERNATE);
+//  LL_GPIO_SetAFPin_0_7(SDA_Port, SDA_Pin, LL_GPIO_AF_4);
+//
+//  /* Peripheral clock enable */
+//  __HAL_RCC_I2C1_CLK_ENABLE();
+//
+//  #ifdef MPU6050_USE_HAL
+//    hi2c1.Instance = I2C1;
+//    hi2c1.Init.ClockSpeed = 100000;
+//    hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
+//    hi2c1.Init.OwnAddress1 = 0;
+//    hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+//    hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+//    hi2c1.Init.OwnAddress2 = 0;
+//    hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+//    hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+//    if (HAL_I2C_Init(&hi2c1) != HAL_OK)
+//    {
+//      while(1);
+//    }
+//  #endif
+//
+//  #ifndef MPU6050_USE_HAL
+//
+//    // Use I2C1 peripheral //
+//    i2c_handle = I2C1;
+//
+//    // Reset the peripheral
+//    i2c_handle->CR1 |= I2C_CR1_SWRST;
+//    i2c_handle->CR1 &= ~I2C_CR1_SWRST;
+//
+//    LL_I2C_SetMode(i2c_handle, LL_I2C_MODE_I2C);
+//    LL_I2C_DisableClockStretching(i2c_handle);
+//    LL_I2C_ConfigSpeed(i2c_handle,
+//		       HAL_RCC_GetPCLK1Freq(),
+//		       300000,
+//		       LL_I2C_DUTYCYCLE_2);
+//  #endif
+//}
 
 /* -- MPU6050_peripheral_config() --
  * Input: None
@@ -598,15 +606,16 @@ uint8_t MPU6050_Init(uint8_t accel_config, uint8_t gyro_config, uint8_t sample_r
   uint8_t check;
   uint8_t reg_trx[2];
 
+  reg_trx[0] = WHO_AM_I_REG;
   // check device ID WHO_AM_I register//
-  i2c_MPU6050_read_reg(WHO_AM_I_REG, &check, 1);
+  i2c_MPU6050_read(reg_trx, 1);
 
   if (check == MPU6050_DEVICE_ID)  // 0x68 will be returned by the sensor if everything goes well //
   {
     // power management register 0X6B we should write all 0's to wake the sensor up //
     reg_trx[0] = PWR_MGMT_1_REG;
     reg_trx[1] = PWR_WAKE_UP;
-    i2c_MPU6050_write_reg(reg_trx, 2);
+    i2c_MPU6050_write(reg_trx, 2);
 
     // Set the power mode //
     Mpu6050_Config_.power_mode = MPU6050_POWER_ON;
@@ -614,7 +623,7 @@ uint8_t MPU6050_Init(uint8_t accel_config, uint8_t gyro_config, uint8_t sample_r
     // Set Sample Rate by writing SMPLRT_DIV register //
     reg_trx[0] = SMPLRT_DIV_REG;
     reg_trx[1] = sample_rate;
-    i2c_MPU6050_write_reg(reg_trx, 2);
+    i2c_MPU6050_write(reg_trx, 2);
 
     // Perform the self-test if it is enabled //
     #ifdef MPU6050_SELF_TEST
@@ -637,7 +646,7 @@ uint8_t MPU6050_Init(uint8_t accel_config, uint8_t gyro_config, uint8_t sample_r
     // XA_ST=0, YA_ST=0, ZA_ST=0, FS_SEL=0 -> � 2g //
     reg_trx[0] = ACCEL_CONFIG_REG;
     reg_trx[1] = accel_sensitiviy_config(accel_config);
-    i2c_MPU6050_write_reg(reg_trx, 2);
+    i2c_MPU6050_write(reg_trx, 2);
 
     #ifdef DEBUG_MPU6050
       printf("Config accel is %f and reg val is %x\n", Mpu6050_Config_.accel_sensitivity, reg_trx[1]);
@@ -647,7 +656,7 @@ uint8_t MPU6050_Init(uint8_t accel_config, uint8_t gyro_config, uint8_t sample_r
     // XG_ST=0,YG_ST=0,ZG_ST=0, FS_SEL=0 -> � 250 �/s //
     reg_trx[0] = GYRO_CONFIG_REG;
     reg_trx[1] = gyro_sensitiviy_config(gyro_config);
-    i2c_MPU6050_write_reg(reg_trx, 2);
+    i2c_MPU6050_write(reg_trx, 2);
 
     printf("Config gyro is %f and reg val is %x\n", Mpu6050_Config_.gyro_sensitivity, reg_trx[1]);
 
@@ -670,8 +679,9 @@ void MPU6050_Read_Accel(MPU6050_t *DataStruct)
 {
   uint8_t Rx_Data[6];
 
+  Rx_Data[0] = ACCEL_XOUT_H_REG;
   // Read 6 BYTES of data starting from ACCEL_XOUT_H register //
-  i2c_MPU6050_read_reg(ACCEL_XOUT_H_REG, Rx_Data, 6);
+  i2c_MPU6050_read(Rx_Data, 6);
 
   DataStruct->Accel_X_RAW = (uint16_t) (Rx_Data[0] << 8 | Rx_Data[1]);
   DataStruct->Accel_Y_RAW = (uint16_t) (Rx_Data[2] << 8 | Rx_Data[3]);
@@ -698,8 +708,9 @@ void MPU6050_Read_Gyro(MPU6050_t *DataStruct)
 {
   uint8_t Rx_Data[6];
 
+  Rx_Data[0] = GYRO_XOUT_H_REG;
   // Read 6 BYTES of data starting from GYRO_XOUT_H register //
-  i2c_MPU6050_read_reg(GYRO_XOUT_H_REG, Rx_Data, 6);
+  i2c_MPU6050_read(Rx_Data, 6);
 
   DataStruct->Gyro_X_RAW = (uint16_t) (Rx_Data[0] << 8 | Rx_Data[1]);
   DataStruct->Gyro_Y_RAW = (uint16_t) (Rx_Data[2] << 8 | Rx_Data[3]);
@@ -727,8 +738,9 @@ void MPU6050_Read_Temp(MPU6050_t *DataStruct)
   uint8_t Rx_Data[2];
   int16_t temp;
 
+  Rx_Data[0] = TEMP_OUT_H_REG;
   // Read 2 BYTES of data starting from TEMP_OUT_H_REG register
-  i2c_MPU6050_read_reg(TEMP_OUT_H_REG, Rx_Data, 2);
+  i2c_MPU6050_read(Rx_Data, 2);
 
   temp = (int16_t) (Rx_Data[0] << 8 | Rx_Data[1]);
   DataStruct->Temperature = (float) ((uint16_t) temp / (float) 340.0 + (float) 36.53);
@@ -744,57 +756,57 @@ void MPU6050_Read_Temp(MPU6050_t *DataStruct)
  * The values are stored in the DataStruct corresponding fields.
  *
  * */
-void MPU6050_Read_All(MPU6050_t *DataStruct)
-{
-  uint8_t Rx_Data[14];
-  uint16_t temp;
+// void MPU6050_Read_All(MPU6050_t *DataStruct)
+// {
+//   uint8_t Rx_Data[14];
+//   uint16_t temp;
 
-  // Read 14 BYTES of data starting from ACCEL_XOUT_H register //
-  i2c_MPU6050_read_reg(ACCEL_XOUT_H_REG, Rx_Data, 14);
+//   // Read 14 BYTES of data starting from ACCEL_XOUT_H register //
+//   i2c_MPU6050_read(ACCEL_XOUT_H_REG, Rx_Data, 14);
 
-  DataStruct->Accel_X_RAW = (uint16_t) (Rx_Data[0] << 8 | Rx_Data[1]);
-  DataStruct->Accel_Y_RAW = (uint16_t) (Rx_Data[2] << 8 | Rx_Data[3]);
-  DataStruct->Accel_Z_RAW = (uint16_t) (Rx_Data[4] << 8 | Rx_Data[5]);
+//   DataStruct->Accel_X_RAW = (uint16_t) (Rx_Data[0] << 8 | Rx_Data[1]);
+//   DataStruct->Accel_Y_RAW = (uint16_t) (Rx_Data[2] << 8 | Rx_Data[3]);
+//   DataStruct->Accel_Z_RAW = (uint16_t) (Rx_Data[4] << 8 | Rx_Data[5]);
 
-  DataStruct->Gyro_X_RAW = (uint16_t) (Rx_Data[8] << 8 | Rx_Data[9]);
-  DataStruct->Gyro_Y_RAW = (uint16_t) (Rx_Data[10] << 8 | Rx_Data[11]);
-  DataStruct->Gyro_Z_RAW = (uint16_t) (Rx_Data[12] << 8 | Rx_Data[13]);
+//   DataStruct->Gyro_X_RAW = (uint16_t) (Rx_Data[8] << 8 | Rx_Data[9]);
+//   DataStruct->Gyro_Y_RAW = (uint16_t) (Rx_Data[10] << 8 | Rx_Data[11]);
+//   DataStruct->Gyro_Z_RAW = (uint16_t) (Rx_Data[12] << 8 | Rx_Data[13]);
 
-  DataStruct->Gx = DataStruct->Gyro_X_RAW / (Mpu6050_Config_.gyro_sensitivity);
-  DataStruct->Gy = DataStruct->Gyro_Y_RAW / (Mpu6050_Config_.gyro_sensitivity);
-  DataStruct->Gz = DataStruct->Gyro_Z_RAW / (Mpu6050_Config_.gyro_sensitivity);
+//   DataStruct->Gx = DataStruct->Gyro_X_RAW / (Mpu6050_Config_.gyro_sensitivity);
+//   DataStruct->Gy = DataStruct->Gyro_Y_RAW / (Mpu6050_Config_.gyro_sensitivity);
+//   DataStruct->Gz = DataStruct->Gyro_Z_RAW / (Mpu6050_Config_.gyro_sensitivity);
 
-  DataStruct->Ax = DataStruct->Accel_X_RAW / (Mpu6050_Config_.accel_sensitivity);
-  DataStruct->Ay = DataStruct->Accel_Y_RAW / (Mpu6050_Config_.accel_sensitivity);
-  DataStruct->Az = DataStruct->Accel_Z_RAW / (Mpu6050_Config_.accel_sensitivity);
+//   DataStruct->Ax = DataStruct->Accel_X_RAW / (Mpu6050_Config_.accel_sensitivity);
+//   DataStruct->Ay = DataStruct->Accel_Y_RAW / (Mpu6050_Config_.accel_sensitivity);
+//   DataStruct->Az = DataStruct->Accel_Z_RAW / (Mpu6050_Config_.accel_sensitivity);
 
-  temp = (uint16_t) (Rx_Data[6] << 8 | Rx_Data[7]);
-  DataStruct->Temperature = (float) ((uint16_t) temp / (float) 340.0 + (float) 36.53);
+//   temp = (uint16_t) (Rx_Data[6] << 8 | Rx_Data[7]);
+//   DataStruct->Temperature = (float) ((uint16_t) temp / (float) 340.0 + (float) 36.53);
 
-  // Kalman angle solve
-  double dt = (double) (HAL_GetTick() - timer) / 1000;
-  timer = HAL_GetTick();
-  double roll;
-  double roll_sqrt = sqrt(
-	  DataStruct->Accel_X_RAW * DataStruct->Accel_X_RAW + DataStruct->Accel_Z_RAW * DataStruct->Accel_Z_RAW);
-  if (roll_sqrt != 0.0) {
-      roll = atan(DataStruct->Accel_Y_RAW / roll_sqrt) * RAD_TO_DEG;
-  } else {
-      roll = 0.0;
-  }
-  double pitch = atan2(-DataStruct->Accel_X_RAW, DataStruct->Accel_Z_RAW) * RAD_TO_DEG;
-  if ((pitch < -90 && DataStruct->KalmanAngleY > 90) || (pitch > 90 && DataStruct->KalmanAngleY < -90)) {
-      KalmanY.angle = pitch;
-      DataStruct->KalmanAngleY = pitch;
-  } else {
-      DataStruct->KalmanAngleY = Kalman_getAngle(&KalmanY, pitch, DataStruct->Gy, dt);
-  }
-  if (fabs(DataStruct->KalmanAngleY) > 90)
-      DataStruct->Gx = -DataStruct->Gx;
+//   // Kalman angle solve
+//   double dt = (double) (HAL_GetTick() - timer) / 1000;
+//   timer = HAL_GetTick();
+//   double roll;
+//   double roll_sqrt = sqrt(
+// 	  DataStruct->Accel_X_RAW * DataStruct->Accel_X_RAW + DataStruct->Accel_Z_RAW * DataStruct->Accel_Z_RAW);
+//   if (roll_sqrt != 0.0) {
+//       roll = atan(DataStruct->Accel_Y_RAW / roll_sqrt) * RAD_TO_DEG;
+//   } else {
+//       roll = 0.0;
+//   }
+//   double pitch = atan2(-DataStruct->Accel_X_RAW, DataStruct->Accel_Z_RAW) * RAD_TO_DEG;
+//   if ((pitch < -90 && DataStruct->KalmanAngleY > 90) || (pitch > 90 && DataStruct->KalmanAngleY < -90)) {
+//       KalmanY.angle = pitch;
+//       DataStruct->KalmanAngleY = pitch;
+//   } else {
+//       DataStruct->KalmanAngleY = Kalman_getAngle(&KalmanY, pitch, DataStruct->Gy, dt);
+//   }
+//   if (fabs(DataStruct->KalmanAngleY) > 90)
+//       DataStruct->Gx = -DataStruct->Gx;
 
-  DataStruct->KalmanAngleX = Kalman_getAngle(&KalmanX, roll, DataStruct->Gy, dt);
+//   DataStruct->KalmanAngleX = Kalman_getAngle(&KalmanX, roll, DataStruct->Gy, dt);
 
-}
+// }
 
 /* -- Kalman_getAngle() --
  * Input: Kalman_getAngle *Kalman_Data, double newAngle, double newRate, double dt
