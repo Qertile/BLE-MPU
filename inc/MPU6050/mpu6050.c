@@ -93,15 +93,20 @@ Kalman_t KalmanY = {
   .R_measure = 0.03f,
 };
 
-/* -- i2c_MPU6050_write_reg() --
- * Input: Command
- * Return: None
- * Description:
+/** ----- i2c_MPU6050_write() -----
+ * @brief 
+ *      Internal function of the MPU6050 driver, that uses I2C to write data to the I2C bus.
  *
- * Internal function of the MPU6050 driver, that uses I2C to write data to the I2C bus.
+ * @param _tx_buff
+ *      A pointer of buffer that contains data to be transmitted
+ * 
+ * @param write_size
+ *      Size of data to be transmitted
+ * 
+ * @return None
  *
- * */
-static void i2c_MPU6050_write_reg(uint8_t *data, uint8_t num_of_data)
+**/
+static void i2c_MPU6050_write(uint8_t *_tx_buff, uint8_t write_size)
 {
   // HAL Driver Usage //
   #ifdef MPU6050_USE_HAL
@@ -109,28 +114,41 @@ static void i2c_MPU6050_write_reg(uint8_t *data, uint8_t num_of_data)
   #endif
 
   #ifndef MPU6050_USE_HAL
-    i2c_write_data(i2c_handle, MPU6050_WRITE_ADDR, data, 2);
+    I2C_write( &g_i2c_inst_0, 
+                MPU6050_ADDR_LOW, 
+                _tx_buff, 
+                write_size, 
+                I2C_RELEASE_BUS );
+    I2C_wait_complete( &g_i2c_inst_0, I2C_NO_TIMEOUT );
   #endif
 }
 
-/* -- i2c_MPU6050_read_reg() --
- * Input: Command
- * Return: None
- * Description:
+/** ----- i2c_MPU6050_read() -----
+ * @brief 
+ *       Internal function of the MPU6050 driver, that uses I2C to 
+ *       write a command to the I2C bus. Follows Mem_Read format.
+ * @param _rx_buff
+ *      A pointer of buffer that contains data to be received
+ * 
+ * @param read_size
+ *      Size of data to be received
+ * 
+ * @return None
  *
- * Internal function of the MPU6050 driver, that uses I2C to write a command to the I2C bus.
- * Follows Mem_Read format.
- *
- * */
-static void i2c_MPU6050_read_reg(uint8_t command, uint8_t *data, uint8_t num_of_data)
+**/
+static void i2c_MPU6050_read(uint8_t *_rx_buff, uint8_t read_size)
 {
   #ifdef MPU6050_USE_HAL
     HAL_I2C_Mem_Read(&hi2c1, MPU6050_WRITE_ADDR, command, 1, data, num_of_data, HAL_I2C_TIMEOUT);
   #endif
 
   #ifndef MPU6050_USE_HAL
-    i2c_write_data(i2c_handle, MPU6050_WRITE_ADDR, &command, 1);
-    i2c_recv_data(i2c_handle, MPU6050_READ_ADDR, data, num_of_data);
+    I2C_read( &g_i2c_inst_0, 
+                MPU6050_ADDR_LOW, 
+                _rx_buff, 
+                read_size, 
+                I2C_RELEASE_BUS );
+    I2C_wait_complete( &g_i2c_inst_0, I2C_NO_TIMEOUT );
   #endif
 }
 
