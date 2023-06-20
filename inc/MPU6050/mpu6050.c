@@ -3,7 +3,7 @@
 
 void Mpu6050_Init(void){
     // MPU6050 fast mode is 400kHz std mode is 100 kHz
-    I2C_init( &g_i2c_inst_0, COREI2C_BASE_ADDR, COREI2C_SER_ADDR, I2C_PCLK_DIV_256);
+    I2C_init( g_core_i2c0, COREI2C_BASE_ADDR, COREI2C_SER_ADDR, I2C_PCLK_DIV_256);
 
 }
 
@@ -114,12 +114,12 @@ static void i2c_MPU6050_write(uint8_t *_tx_buff, uint8_t write_size)
   #endif
 
   #ifndef MPU6050_USE_HAL
-    I2C_write( &g_i2c_inst_0,
+    I2C_write( g_core_i2c0,
                 MPU6050_ADDR_LOW, 
                 _tx_buff, 
                 write_size, 
                 I2C_RELEASE_BUS );
-    I2C_wait_complete( &g_i2c_inst_0, I2C_NO_TIMEOUT );
+    I2C_wait_complete( g_core_i2c0, I2C_NO_TIMEOUT );
   #endif
 }
 
@@ -143,21 +143,21 @@ static void i2c_MPU6050_read(uint8_t *_rx_buff, uint8_t read_size)
   #endif
 
   #ifndef MPU6050_USE_HAL
-    I2C_write( &g_i2c_inst_0,
+    I2C_write( g_core_i2c0,
                 MPU6050_ADDR_LOW, 
                 _rx_buff, 
                 1, 
                 I2C_RELEASE_BUS );
-    I2C_wait_complete( &g_i2c_inst_0, I2C_NO_TIMEOUT );
+    I2C_wait_complete( g_core_i2c0, I2C_NO_TIMEOUT );
     
     memset(_rx_buff,0, sizeof(_rx_buff));
 
-    I2C_read( &g_i2c_inst_0,
+    I2C_read( g_core_i2c0,
                 MPU6050_ADDR_LOW, 
                 _rx_buff, 
                 read_size, 
                 I2C_RELEASE_BUS );
-    I2C_wait_complete( &g_i2c_inst_0, I2C_NO_TIMEOUT );
+    I2C_wait_complete( g_core_i2c0, I2C_NO_TIMEOUT );
   #endif
 }
 
@@ -605,9 +605,9 @@ void MPU6050_set_power_mode(uint8_t power_mode, uint8_t freq)
  * */
 uint8_t MPU6050_Init(uint8_t accel_config, uint8_t gyro_config, uint8_t sample_rate)
 {
-  I2C_init( &g_i2c_inst_0, COREI2C_BASE_ADDR, COREI2C_SER_ADDR, I2C_PCLK_DIV_256);
-  I2C_enable_irq(&g_i2c_inst_0);
-  
+  I2C_init( g_core_i2c0, COREI2C_BASE_ADDR, COREI2C_SER_ADDR, I2C_PCLK_DIV_256);
+  I2C_enable_irq(g_core_i2c0);
+
   uint8_t check;
   uint8_t reg_trx[2];
 

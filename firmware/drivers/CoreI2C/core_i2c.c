@@ -257,7 +257,7 @@ void I2C_write
     }
 
     stat_ctrl = HAL_get_8bit_reg( this_i2c->base_address, STATUS);
-    stat_ctrl = stat_ctrl;  /* Avoids lint warning. */
+//    stat_ctrl = stat_ctrl;  /* Avoids lint warning. */
 
     /* Enable the interrupt. ( Re-enable) */
     I2C_enable_irq( this_i2c );
@@ -326,7 +326,7 @@ void I2C_read
     }
 
     stat_ctrl = HAL_get_8bit_reg( this_i2c->base_address, STATUS);
-    stat_ctrl = stat_ctrl;  /* Avoids lint warning. */
+//    stat_ctrl = stat_ctrl;  /* Avoids lint warning. */
 
     /* Enable the interrupt. ( Re-enable) */
     I2C_enable_irq( this_i2c );
@@ -408,7 +408,7 @@ void I2C_write_read
         }
 
         stat_ctrl = HAL_get_8bit_reg( this_i2c->base_address, STATUS);
-        stat_ctrl = stat_ctrl;  /* Avoids lint warning. */
+//        stat_ctrl = stat_ctrl;  /* Avoids lint warning. */
             
         /* Enable the interrupt. ( Re-enable) */
         I2C_enable_irq( this_i2c );

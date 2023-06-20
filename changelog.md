@@ -14,6 +14,10 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 
 -----------------------------------
 ## BT-Gyro v0.1.1(2023.06.20) @master
+### New
+1. include "m2sxxx.h" in "i2c_interrupt.c"
+### Changed
+1. rename `g_i2C_inst_0` to `g_core_i2c0`
 ### Fixed
 1. fix code jumps into `I2C_enable_irq()` (issue #1)
 2. fix no signal while using `I2C_write()` (issue #2)

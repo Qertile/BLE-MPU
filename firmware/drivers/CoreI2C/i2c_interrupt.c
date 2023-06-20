@@ -9,6 +9,7 @@
 #include "../../hal/hal.h"
 #include "../../hal/hal_assert.h"
 #include "core_i2c.h"
+#include "../../CMSIS/m2sxxx.h"
 
 /*------------------------------------------------------------------------------
  * This function must be modified to enable interrupts generated from the
