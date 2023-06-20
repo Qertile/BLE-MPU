@@ -14,6 +14,7 @@
 
 #include <stdint.h>
 #include <stdio.h>
+#include <string.h>
 #include <math.h>
 #include "../../firmware/drivers/CoreI2C/core_i2c.h"
 
@@ -255,7 +256,7 @@ Mpu6050_Config_t Mpu6050_Config_;
 MPU6050_t Mpu6050_;
 
 /* ----- coreI2C instance ----- */
-i2c_instance_t *g_i2c_inst_0;
+i2c_instance_t g_i2c_inst_0;
 
 /* ========== Functions ========== */
 /** ------------------ Mpu_Init() ------------------

@@ -107,7 +107,7 @@ Common symbol       size              file
 Mpu6050_            0x58              ./inc/MPU6050/mpu6050.o
 timer               0x4               ./inc/MPU6050/mpu6050.o
 errno               0x4               c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-reent.o)
-g_i2c_inst_0        0x4               ./inc/MPU6050/mpu6050.o
+g_i2c_inst_0        0x6c              ./inc/MPU6050/mpu6050.o
 Mpu6050_Config_     0xc               ./inc/MPU6050/mpu6050.o
 
 Discarded input sections
@@ -151,11 +151,13 @@ Discarded input sections
  .group         0x00000000        0x8 ./inc/MPU6050/mpu6050.o
  .group         0x00000000        0x8 ./inc/MPU6050/mpu6050.o
  .group         0x00000000        0x8 ./inc/MPU6050/mpu6050.o
+ .group         0x00000000        0x8 ./inc/MPU6050/mpu6050.o
+ .group         0x00000000        0x8 ./inc/MPU6050/mpu6050.o
  .text          0x00000000        0x0 ./inc/MPU6050/mpu6050.o
  .data          0x00000000        0x0 ./inc/MPU6050/mpu6050.o
  .bss           0x00000000        0x0 ./inc/MPU6050/mpu6050.o
  .text.Mpu6050_Init
-                0x00000000       0x1c ./inc/MPU6050/mpu6050.o
+                0x00000000       0x18 ./inc/MPU6050/mpu6050.o
  .data.KalmanX  0x00000000       0x48 ./inc/MPU6050/mpu6050.o
  .data.KalmanY  0x00000000       0x48 ./inc/MPU6050/mpu6050.o
  .text.MPU6050_Read_Accel
@@ -167,6 +169,8 @@ Discarded input sections
  .text.Kalman_getAngle
                 0x00000000      0x2d8 ./inc/MPU6050/mpu6050.o
  .debug_macro   0x00000000      0x862 ./inc/MPU6050/mpu6050.o
+ .group         0x00000000        0x8 ./inc/MPU6050/mpu6050_ut.o
+ .group         0x00000000        0x8 ./inc/MPU6050/mpu6050_ut.o
  .group         0x00000000        0x8 ./inc/MPU6050/mpu6050_ut.o
  .group         0x00000000        0x8 ./inc/MPU6050/mpu6050_ut.o
  .group         0x00000000        0x8 ./inc/MPU6050/mpu6050_ut.o
@@ -219,6 +223,8 @@ Discarded input sections
  .debug_macro   0x00000000       0xbe ./inc/MPU6050/mpu6050_ut.o
  .debug_macro   0x00000000       0x16 ./inc/MPU6050/mpu6050_ut.o
  .debug_macro   0x00000000      0x197 ./inc/MPU6050/mpu6050_ut.o
+ .debug_macro   0x00000000       0x16 ./inc/MPU6050/mpu6050_ut.o
+ .debug_macro   0x00000000       0x35 ./inc/MPU6050/mpu6050_ut.o
  .debug_macro   0x00000000      0x1e1 ./inc/MPU6050/mpu6050_ut.o
  .debug_macro   0x00000000       0x35 ./inc/MPU6050/mpu6050_ut.o
  .debug_macro   0x00000000      0x136 ./inc/MPU6050/mpu6050_ut.o
@@ -524,6 +530,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x43 ./firmware/drivers/mss_sys_services/mss_sys_services.o
  .debug_macro   0x00000000      0x180 ./firmware/drivers/mss_sys_services/mss_sys_services.o
  .debug_macro   0x00000000      0x27a ./firmware/drivers/mss_sys_services/mss_sys_services.o
+ .debug_macro   0x00000000       0x35 ./firmware/drivers/mss_sys_services/mss_sys_services.o
  .group         0x00000000        0x8 ./firmware/drivers/mss_rtc/mss_rtc.o
  .group         0x00000000        0x8 ./firmware/drivers/mss_rtc/mss_rtc.o
  .group         0x00000000        0x8 ./firmware/drivers/mss_rtc/mss_rtc.o
@@ -866,8 +873,6 @@ Discarded input sections
  .text          0x00000000        0x0 ./firmware/drivers/CoreI2C/core_i2c.o
  .data          0x00000000        0x0 ./firmware/drivers/CoreI2C/core_i2c.o
  .bss           0x00000000        0x0 ./firmware/drivers/CoreI2C/core_i2c.o
- .text.I2C_init
-                0x00000000       0xcc ./firmware/drivers/CoreI2C/core_i2c.o
  .text.I2C_channel_init
                 0x00000000       0xcc ./firmware/drivers/CoreI2C/core_i2c.o
  .text.I2C_write_read
@@ -1438,29 +1443,29 @@ END GROUP
                 0x200004c0                . = ALIGN (0x10)
  *fill*         0x200004b4        0xc 
 
-.text           0x200004c0     0x4a20
+.text           0x200004c0     0x4af0
  CREATE_OBJECT_SYMBOLS
                 0x200004c0                __text_load = LOADADDR (.text)
                 0x200004c0                __text_start = .
  *(.text .text.* .gnu.linkonce.t.*)
  .text          0x200004c0       0x5c c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
  .text.i2c_MPU6050_write
-                0x2000051c       0x3c ./inc/MPU6050/mpu6050.o
+                0x2000051c       0x34 ./inc/MPU6050/mpu6050.o
  .text.i2c_MPU6050_read
-                0x20000558       0x5c ./inc/MPU6050/mpu6050.o
+                0x20000550       0x54 ./inc/MPU6050/mpu6050.o
  .text.accel_sensitiviy_config
-                0x200005b4       0x80 ./inc/MPU6050/mpu6050.o
+                0x200005a4       0x80 ./inc/MPU6050/mpu6050.o
  .text.gyro_sensitiviy_config
-                0x20000634       0x88 ./inc/MPU6050/mpu6050.o
- *fill*         0x200006bc        0x4 
+                0x20000624       0x88 ./inc/MPU6050/mpu6050.o
+ *fill*         0x200006ac        0x4 
  .text.MPU6050_self_test
-                0x200006c0      0x5a4 ./inc/MPU6050/mpu6050.o
+                0x200006b0      0x5a4 ./inc/MPU6050/mpu6050.o
  .text.MPU6050_set_power_mode
-                0x20000c64      0x108 ./inc/MPU6050/mpu6050.o
-                0x20000c64                MPU6050_set_power_mode
+                0x20000c54      0x108 ./inc/MPU6050/mpu6050.o
+                0x20000c54                MPU6050_set_power_mode
  .text.MPU6050_Init
-                0x20000d6c      0x110 ./inc/MPU6050/mpu6050.o
-                0x20000d6c                MPU6050_Init
+                0x20000d5c      0x120 ./inc/MPU6050/mpu6050.o
+                0x20000d5c                MPU6050_Init
  .text.main     0x20000e7c       0x3c ./inc/MPU6050/mpu6050_ut.o
                 0x20000e7c                main
  .text          0x20000eb8        0xe ./firmware/hal/CortexM3/GNU/hal.o
@@ -1508,241 +1513,245 @@ END GROUP
  .text.HPDMA_Error_IRQHandler
                 0x200017c8      0x100 ./firmware/drivers/mss_hpdma/mss_hpdma.o
                 0x200017c8                HPDMA_Error_IRQHandler
+ .text.I2C_init
+                0x200018c8       0xcc ./firmware/drivers/CoreI2C/core_i2c.o
+                0x200018c8                I2C_init
  .text.I2C_write
-                0x200018c8       0xc8 ./firmware/drivers/CoreI2C/core_i2c.o
-                0x200018c8                I2C_write
+                0x20001994       0xc8 ./firmware/drivers/CoreI2C/core_i2c.o
+                0x20001994                I2C_write
  .text.I2C_read
-                0x20001990       0xc8 ./firmware/drivers/CoreI2C/core_i2c.o
-                0x20001990                I2C_read
+                0x20001a5c       0xc8 ./firmware/drivers/CoreI2C/core_i2c.o
+                0x20001a5c                I2C_read
  .text.I2C_wait_complete
-                0x20001a58       0x34 ./firmware/drivers/CoreI2C/core_i2c.o
-                0x20001a58                I2C_wait_complete
+                0x20001b24       0x34 ./firmware/drivers/CoreI2C/core_i2c.o
+                0x20001b24                I2C_wait_complete
  .text.I2C_enable_irq
-                0x20001a8c       0x14 ./firmware/drivers/CoreI2C/i2c_interrupt.o
-                0x20001a8c                I2C_enable_irq
- .text._close   0x20001aa0       0x18 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
-                0x20001aa0                _close
- .text._exit    0x20001ab8        0xc ./firmware/CMSIS/startup_gcc/newlib_stubs.o
-                0x20001ab8                _exit
- .text._fstat   0x20001ac4       0x20 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
-                0x20001ac4                _fstat
- .text._isatty  0x20001ae4       0x18 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
-                0x20001ae4                _isatty
- .text._lseek   0x20001afc       0x1c ./firmware/CMSIS/startup_gcc/newlib_stubs.o
-                0x20001afc                _lseek
- .text._read    0x20001b18       0x1c ./firmware/CMSIS/startup_gcc/newlib_stubs.o
-                0x20001b18                _read
+                0x20001b58       0x14 ./firmware/drivers/CoreI2C/i2c_interrupt.o
+                0x20001b58                I2C_enable_irq
+ .text._close   0x20001b6c       0x18 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+                0x20001b6c                _close
+ .text._exit    0x20001b84        0xc ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+                0x20001b84                _exit
+ .text._fstat   0x20001b90       0x20 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+                0x20001b90                _fstat
+ .text._isatty  0x20001bb0       0x18 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+                0x20001bb0                _isatty
+ .text._lseek   0x20001bc8       0x1c ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+                0x20001bc8                _lseek
+ .text._read    0x20001be4       0x1c ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+                0x20001be4                _read
  .text._write_r
-                0x20001b34       0x1c ./firmware/CMSIS/startup_gcc/newlib_stubs.o
-                0x20001b34                _write_r
- .text._sbrk    0x20001b50       0x9c ./firmware/CMSIS/startup_gcc/newlib_stubs.o
-                0x20001b50                _sbrk
+                0x20001c00       0x1c ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+                0x20001c00                _write_r
+ .text._sbrk    0x20001c1c       0x9c ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+                0x20001c1c                _sbrk
  .text.SystemInit
-                0x20001bec       0x20 ./firmware/CMSIS/system_m2sxxx.o
-                0x20001bec                SystemInit
+                0x20001cb8       0x20 ./firmware/CMSIS/system_m2sxxx.o
+                0x20001cb8                SystemInit
  .text.get_silicon_revision
-                0x20001c0c       0x48 ./firmware/CMSIS/system_m2sxxx.o
+                0x20001cd8       0x48 ./firmware/CMSIS/system_m2sxxx.o
  .text.silicon_workarounds
-                0x20001c54       0x20 ./firmware/CMSIS/system_m2sxxx.o
+                0x20001d20       0x20 ./firmware/CMSIS/system_m2sxxx.o
  .text.m2s050_rev_a_workarounds
-                0x20001c74       0x30 ./firmware/CMSIS/system_m2sxxx.o
- .text          0x20001ca4      0x370 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m\libgcc.a(_arm_addsubdf3.o)
-                0x20001ca4                __aeabi_drsub
-                0x20001cac                __aeabi_dsub
-                0x20001cac                __subdf3
-                0x20001cb0                __aeabi_dadd
-                0x20001cb0                __adddf3
-                0x20001f28                __floatunsidf
-                0x20001f28                __aeabi_ui2d
-                0x20001f48                __floatsidf
-                0x20001f48                __aeabi_i2d
-                0x20001f6c                __aeabi_f2d
-                0x20001f6c                __extendsfdf2
-                0x20001fa8                __floatundidf
-                0x20001fa8                __aeabi_ul2d
-                0x20001fb8                __floatdidf
-                0x20001fb8                __aeabi_l2d
- .text          0x20002014      0x424 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m\libgcc.a(_arm_muldivdf3.o)
-                0x20002014                __aeabi_dmul
-                0x20002014                __muldf3
-                0x20002268                __divdf3
-                0x20002268                __aeabi_ddiv
- .text          0x20002438       0xa0 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m\libgcc.a(_arm_truncdfsf2.o)
-                0x20002438                __truncdfsf2
-                0x20002438                __aeabi_d2f
- .text          0x200024d8      0x21c c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m\libgcc.a(_arm_addsubsf3.o)
-                0x200024d8                __aeabi_frsub
-                0x200024e0                __subsf3
-                0x200024e0                __aeabi_fsub
-                0x200024e4                __aeabi_fadd
-                0x200024e4                __addsf3
-                0x20002644                __aeabi_ui2f
-                0x20002644                __floatunsisf
-                0x2000264c                __aeabi_i2f
-                0x2000264c                __floatsisf
-                0x20002668                __aeabi_ul2f
-                0x20002668                __floatundisf
-                0x20002678                __aeabi_l2f
-                0x20002678                __floatdisf
- .text          0x200026f4      0x2a0 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m\libgcc.a(_arm_muldivsf3.o)
-                0x200026f4                __mulsf3
-                0x200026f4                __aeabi_fmul
-                0x2000285c                __aeabi_fdiv
-                0x2000285c                __divsf3
- .text          0x20002994       0xec c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m\libgcc.a(_arm_cmpsf2.o)
-                0x20002994                __gesf2
-                0x20002994                __gtsf2
-                0x2000299c                __lesf2
-                0x2000299c                __ltsf2
-                0x200029a4                __nesf2
-                0x200029a4                __eqsf2
-                0x200029a4                __cmpsf2
-                0x20002a04                __aeabi_cfrcmple
-                0x20002a0c                __aeabi_cfcmpeq
-                0x20002a0c                __aeabi_cfcmple
-                0x20002a1c                __aeabi_fcmpeq
-                0x20002a30                __aeabi_fcmplt
-                0x20002a44                __aeabi_fcmple
-                0x20002a58                __aeabi_fcmpge
-                0x20002a6c                __aeabi_fcmpgt
- .text.__errno  0x20002a80        0xc c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
-                0x20002a80                __errno
+                0x20001d40       0x30 ./firmware/CMSIS/system_m2sxxx.o
+ .text          0x20001d70      0x370 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m\libgcc.a(_arm_addsubdf3.o)
+                0x20001d70                __aeabi_drsub
+                0x20001d78                __aeabi_dsub
+                0x20001d78                __subdf3
+                0x20001d7c                __aeabi_dadd
+                0x20001d7c                __adddf3
+                0x20001ff4                __floatunsidf
+                0x20001ff4                __aeabi_ui2d
+                0x20002014                __floatsidf
+                0x20002014                __aeabi_i2d
+                0x20002038                __aeabi_f2d
+                0x20002038                __extendsfdf2
+                0x20002074                __floatundidf
+                0x20002074                __aeabi_ul2d
+                0x20002084                __floatdidf
+                0x20002084                __aeabi_l2d
+ .text          0x200020e0      0x424 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m\libgcc.a(_arm_muldivdf3.o)
+                0x200020e0                __aeabi_dmul
+                0x200020e0                __muldf3
+                0x20002334                __divdf3
+                0x20002334                __aeabi_ddiv
+ .text          0x20002504       0xa0 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m\libgcc.a(_arm_truncdfsf2.o)
+                0x20002504                __truncdfsf2
+                0x20002504                __aeabi_d2f
+ .text          0x200025a4      0x21c c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m\libgcc.a(_arm_addsubsf3.o)
+                0x200025a4                __aeabi_frsub
+                0x200025ac                __subsf3
+                0x200025ac                __aeabi_fsub
+                0x200025b0                __aeabi_fadd
+                0x200025b0                __addsf3
+                0x20002710                __aeabi_ui2f
+                0x20002710                __floatunsisf
+                0x20002718                __aeabi_i2f
+                0x20002718                __floatsisf
+                0x20002734                __aeabi_ul2f
+                0x20002734                __floatundisf
+                0x20002744                __aeabi_l2f
+                0x20002744                __floatdisf
+ .text          0x200027c0      0x2a0 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m\libgcc.a(_arm_muldivsf3.o)
+                0x200027c0                __mulsf3
+                0x200027c0                __aeabi_fmul
+                0x20002928                __aeabi_fdiv
+                0x20002928                __divsf3
+ .text          0x20002a60       0xec c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m\libgcc.a(_arm_cmpsf2.o)
+                0x20002a60                __gesf2
+                0x20002a60                __gtsf2
+                0x20002a68                __lesf2
+                0x20002a68                __ltsf2
+                0x20002a70                __nesf2
+                0x20002a70                __eqsf2
+                0x20002a70                __cmpsf2
+                0x20002ad0                __aeabi_cfrcmple
+                0x20002ad8                __aeabi_cfcmpeq
+                0x20002ad8                __aeabi_cfcmple
+                0x20002ae8                __aeabi_fcmpeq
+                0x20002afc                __aeabi_fcmplt
+                0x20002b10                __aeabi_fcmple
+                0x20002b24                __aeabi_fcmpge
+                0x20002b38                __aeabi_fcmpgt
+ .text.__errno  0x20002b4c        0xc c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
+                0x20002b4c                __errno
  .text.__libc_init_array
-                0x20002a8c       0x4c c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
-                0x20002a8c                __libc_init_array
- .text.memset   0x20002ad8       0x10 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
-                0x20002ad8                memset
- .text.printf   0x20002ae8       0x30 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-printf.o)
-                0x20002ae8                iprintf
-                0x20002ae8                printf
- .text._puts_r  0x20002b18       0xbc c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-puts.o)
-                0x20002b18                _puts_r
- .text.puts     0x20002bd4       0x10 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-puts.o)
-                0x20002bd4                puts
+                0x20002b58       0x4c c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
+                0x20002b58                __libc_init_array
+ .text.memset   0x20002ba4       0x10 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
+                0x20002ba4                memset
+ .text.printf   0x20002bb4       0x30 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-printf.o)
+                0x20002bb4                iprintf
+                0x20002bb4                printf
+ .text._puts_r  0x20002be4       0xbc c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-puts.o)
+                0x20002be4                _puts_r
+ .text.puts     0x20002ca0       0x10 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-puts.o)
+                0x20002ca0                puts
  .text.__swbuf_r
-                0x20002be4       0xa8 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-wbuf.o)
-                0x20002be4                __swbuf_r
+                0x20002cb0       0xa8 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-wbuf.o)
+                0x20002cb0                __swbuf_r
  .text.__swsetup_r
-                0x20002c8c       0xd8 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-wsetup.o)
-                0x20002c8c                __swsetup_r
+                0x20002d58       0xd8 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-wsetup.o)
+                0x20002d58                __swsetup_r
  .text.__sflush_r
-                0x20002d64      0x106 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-fflush.o)
-                0x20002d64                __sflush_r
- *fill*         0x20002e6a        0x2 
+                0x20002e30      0x106 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-fflush.o)
+                0x20002e30                __sflush_r
+ *fill*         0x20002f36        0x2 
  .text._fflush_r
-                0x20002e6c       0x54 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-fflush.o)
-                0x20002e6c                _fflush_r
+                0x20002f38       0x54 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-fflush.o)
+                0x20002f38                _fflush_r
  .text._cleanup_r
-                0x20002ec0        0xc c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-findfp.o)
-                0x20002ec0                _cleanup_r
+                0x20002f8c        0xc c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-findfp.o)
+                0x20002f8c                _cleanup_r
  .text.std.isra.0
-                0x20002ecc       0x48 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-findfp.o)
+                0x20002f98       0x48 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-findfp.o)
  .text.__sfmoreglue
-                0x20002f14       0x2c c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-findfp.o)
-                0x20002f14                __sfmoreglue
- .text.__sinit  0x20002f40       0x60 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-findfp.o)
-                0x20002f40                __sinit
- .text.__sfp    0x20002fa0       0x74 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-findfp.o)
-                0x20002fa0                __sfp
+                0x20002fe0       0x2c c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-findfp.o)
+                0x20002fe0                __sfmoreglue
+ .text.__sinit  0x2000300c       0x60 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-findfp.o)
+                0x2000300c                __sinit
+ .text.__sfp    0x2000306c       0x74 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-findfp.o)
+                0x2000306c                __sfp
  .text._fwalk_reent
-                0x20003014       0x3c c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-fwalk.o)
-                0x20003014                _fwalk_reent
+                0x200030e0       0x3c c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-fwalk.o)
+                0x200030e0                _fwalk_reent
  .text.__smakebuf_r
-                0x20003050       0x98 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-makebuf.o)
-                0x20003050                __smakebuf_r
- .text._free_r  0x200030e8       0x88 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-nano-freer.o)
-                0x200030e8                _free_r
+                0x2000311c       0x98 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-makebuf.o)
+                0x2000311c                __smakebuf_r
+ .text._free_r  0x200031b4       0x88 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-nano-freer.o)
+                0x200031b4                _free_r
  .text._malloc_r
-                0x20003170       0xac c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-nano-mallocr.o)
-                0x20003170                _malloc_r
+                0x2000323c       0xac c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-nano-mallocr.o)
+                0x2000323c                _malloc_r
  .text.__sfputc_r
-                0x2000321c       0x2c c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-nano-vfprintf.o)
+                0x200032e8       0x2c c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-nano-vfprintf.o)
  .text.__sfputs_r
-                0x20003248       0x24 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-nano-vfprintf.o)
-                0x20003248                __sfputs_r
+                0x20003314       0x24 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-nano-vfprintf.o)
+                0x20003314                __sfputs_r
  .text._vfprintf_r
-                0x2000326c      0x210 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-nano-vfprintf.o)
-                0x2000326c                _vfprintf_r
-                0x2000326c                _vfiprintf_r
+                0x20003338      0x210 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-nano-vfprintf.o)
+                0x20003338                _vfprintf_r
+                0x20003338                _vfiprintf_r
  .text._printf_common
-                0x2000347c       0xea c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-nano-vfprintf_i.o)
-                0x2000347c                _printf_common
- *fill*         0x20003566        0x2 
+                0x20003548       0xea c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-nano-vfprintf_i.o)
+                0x20003548                _printf_common
+ *fill*         0x20003632        0x2 
  .text._printf_i
-                0x20003568      0x240 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-nano-vfprintf_i.o)
-                0x20003568                _printf_i
- .text._sbrk_r  0x200037a8       0x20 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-sbrkr.o)
-                0x200037a8                _sbrk_r
- .text.__sread  0x200037c8       0x22 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-stdio.o)
-                0x200037c8                __sread
+                0x20003634      0x240 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-nano-vfprintf_i.o)
+                0x20003634                _printf_i
+ .text._sbrk_r  0x20003874       0x20 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-sbrkr.o)
+                0x20003874                _sbrk_r
+ .text.__sread  0x20003894       0x22 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-stdio.o)
+                0x20003894                __sread
  .text.__swrite
-                0x200037ea       0x38 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-stdio.o)
-                0x200037ea                __swrite
- .text.__sseek  0x20003822       0x24 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-stdio.o)
-                0x20003822                __sseek
+                0x200038b6       0x38 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-stdio.o)
+                0x200038b6                __swrite
+ .text.__sseek  0x200038ee       0x24 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-stdio.o)
+                0x200038ee                __sseek
  .text.__sclose
-                0x20003846        0x8 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-stdio.o)
-                0x20003846                __sclose
- *fill*         0x2000384e        0x2 
+                0x20003912        0x8 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-stdio.o)
+                0x20003912                __sclose
+ *fill*         0x2000391a        0x2 
  .text._close_r
-                0x20003850       0x20 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-closer.o)
-                0x20003850                _close_r
+                0x2000391c       0x20 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-closer.o)
+                0x2000391c                _close_r
  .text._fstat_r
-                0x20003870       0x24 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-fstatr.o)
-                0x20003870                _fstat_r
+                0x2000393c       0x24 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-fstatr.o)
+                0x2000393c                _fstat_r
  .text._isatty_r
-                0x20003894       0x20 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-isattyr.o)
-                0x20003894                _isatty_r
+                0x20003960       0x20 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-isattyr.o)
+                0x20003960                _isatty_r
  .text._lseek_r
-                0x200038b4       0x24 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-lseekr.o)
-                0x200038b4                _lseek_r
- .text.memchr   0x200038d8       0x1c c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memchr.o)
-                0x200038d8                memchr
- .text._read_r  0x200038f4       0x24 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-readr.o)
-                0x200038f4                _read_r
- .text.pow      0x20003918      0x2f0 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-w_pow.o)
-                0x20003918                pow
+                0x20003980       0x24 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-lseekr.o)
+                0x20003980                _lseek_r
+ .text.memchr   0x200039a4       0x1c c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memchr.o)
+                0x200039a4                memchr
+ .text._read_r  0x200039c0       0x24 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-readr.o)
+                0x200039c0                _read_r
+ .text.pow      0x200039e4      0x2f0 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-w_pow.o)
+                0x200039e4                pow
+ *fill*         0x20003cd4        0x4 
  .text.__ieee754_pow
-                0x20003c08      0xaa0 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-e_pow.o)
-                0x20003c08                __ieee754_pow
+                0x20003cd8      0xaa0 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-e_pow.o)
+                0x20003cd8                __ieee754_pow
  .text.__ieee754_sqrt
-                0x200046a8      0x18c c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-e_sqrt.o)
-                0x200046a8                __ieee754_sqrt
- .text.fabs     0x20004834        0x8 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-s_fabs.o)
-                0x20004834                fabs
- .text.finite   0x2000483c        0xc c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-s_finite.o)
-                0x2000483c                finite
+                0x20004778      0x18c c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-e_sqrt.o)
+                0x20004778                __ieee754_sqrt
+ .text.fabs     0x20004904        0x8 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-s_fabs.o)
+                0x20004904                fabs
+ .text.finite   0x2000490c        0xc c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-s_finite.o)
+                0x2000490c                finite
  .text.__fpclassifyd
-                0x20004848       0x58 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-s_fpclassify.o)
-                0x20004848                __fpclassifyd
- .text.matherr  0x200048a0        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-s_matherr.o)
-                0x200048a0                matherr
- .text.nan      0x200048a4        0xc c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-s_nan.o)
-                0x200048a4                nan
- .text.rint     0x200048b0      0x11c c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-s_rint.o)
-                0x200048b0                rint
- *fill*         0x200049cc        0x4 
- .text.scalbn   0x200049d0       0xec c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-s_scalbn.o)
-                0x200049d0                scalbn
+                0x20004918       0x58 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-s_fpclassify.o)
+                0x20004918                __fpclassifyd
+ .text.matherr  0x20004970        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-s_matherr.o)
+                0x20004970                matherr
+ .text.nan      0x20004974        0xc c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-s_nan.o)
+                0x20004974                nan
+ .text.rint     0x20004980      0x11c c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-s_rint.o)
+                0x20004980                rint
+ *fill*         0x20004a9c        0x4 
+ .text.scalbn   0x20004aa0       0xec c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-s_scalbn.o)
+                0x20004aa0                scalbn
  .text.copysign
-                0x20004abc       0x10 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-s_copysign.o)
-                0x20004abc                copysign
- .text          0x20004acc      0x110 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m\libgcc.a(_arm_cmpdf2.o)
-                0x20004acc                __gtdf2
-                0x20004acc                __gedf2
-                0x20004ad4                __ltdf2
-                0x20004ad4                __ledf2
-                0x20004adc                __nedf2
-                0x20004adc                __eqdf2
-                0x20004adc                __cmpdf2
-                0x20004b58                __aeabi_cdrcmple
-                0x20004b68                __aeabi_cdcmpeq
-                0x20004b68                __aeabi_cdcmple
-                0x20004b78                __aeabi_dcmpeq
-                0x20004b8c                __aeabi_dcmplt
-                0x20004ba0                __aeabi_dcmple
-                0x20004bb4                __aeabi_dcmpge
-                0x20004bc8                __aeabi_dcmpgt
+                0x20004b8c       0x10 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-s_copysign.o)
+                0x20004b8c                copysign
+ .text          0x20004b9c      0x110 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m\libgcc.a(_arm_cmpdf2.o)
+                0x20004b9c                __gtdf2
+                0x20004b9c                __gedf2
+                0x20004ba4                __ltdf2
+                0x20004ba4                __ledf2
+                0x20004bac                __nedf2
+                0x20004bac                __eqdf2
+                0x20004bac                __cmpdf2
+                0x20004c28                __aeabi_cdrcmple
+                0x20004c38                __aeabi_cdcmpeq
+                0x20004c38                __aeabi_cdcmple
+                0x20004c48                __aeabi_dcmpeq
+                0x20004c5c                __aeabi_dcmplt
+                0x20004c70                __aeabi_dcmple
+                0x20004c84                __aeabi_dcmpge
+                0x20004c98                __aeabi_dcmpgt
  *(.plt)
  *(.gnu.warning)
  *(.glue_7t)
@@ -1751,7 +1760,7 @@ END GROUP
  .glue_7        0x00000000        0x0 linker stubs
  *(.vfp11_veneer)
  .vfp11_veneer  0x00000000        0x0 linker stubs
-                0x20004bdc                . = ALIGN (0x4)
+                0x20004cac                . = ALIGN (0x4)
  *crtbegin.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o) .ctors)
  *(SORT(.ctors.*))
@@ -1761,190 +1770,189 @@ END GROUP
  *(SORT(.dtors.*))
  *crtend.o(.dtors)
  *(.rodata .rodata.* .gnu.linkonce.r.*)
- .rodata        0x20004bdc      0x13d ./inc/MPU6050/mpu6050.o
- *fill*         0x20004d19        0x3 
- .rodata        0x20004d1c       0x1f ./inc/MPU6050/mpu6050_ut.o
- *fill*         0x20004d3b        0x1 
- .rodata        0x20004d3c       0x60 ./firmware/drivers/mss_pdma/mss_pdma.o
- .rodata        0x20004d9c       0x30 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .rodata        0x20004cac      0x13d ./inc/MPU6050/mpu6050.o
+ *fill*         0x20004de9        0x3 
+ .rodata        0x20004dec       0x1f ./inc/MPU6050/mpu6050_ut.o
+ *fill*         0x20004e0b        0x1 
+ .rodata        0x20004e0c       0x60 ./firmware/drivers/mss_pdma/mss_pdma.o
+ .rodata        0x20004e6c       0x30 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
  .rodata.str1.1
-                0x20004dcc        0x2 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
- *fill*         0x20004dce        0x2 
+                0x20004e9c        0x2 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+ *fill*         0x20004e9e        0x2 
  .rodata._global_impure_ptr
-                0x20004dd0        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
-                0x20004dd0                _global_impure_ptr
+                0x20004ea0        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+                0x20004ea0                _global_impure_ptr
  .rodata.__sf_fake_stdin
-                0x20004dd4       0x20 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-findfp.o)
-                0x20004dd4                __sf_fake_stdin
+                0x20004ea4       0x20 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-findfp.o)
+                0x20004ea4                __sf_fake_stdin
  .rodata.__sf_fake_stdout
-                0x20004df4       0x20 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-findfp.o)
-                0x20004df4                __sf_fake_stdout
+                0x20004ec4       0x20 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-findfp.o)
+                0x20004ec4                __sf_fake_stdout
  .rodata.__sf_fake_stderr
-                0x20004e14       0x20 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-findfp.o)
-                0x20004e14                __sf_fake_stderr
+                0x20004ee4       0x20 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-findfp.o)
+                0x20004ee4                __sf_fake_stderr
  .rodata.str1.1
-                0x20004e34       0x11 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-nano-vfprintf.o)
+                0x20004f04       0x11 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-nano-vfprintf.o)
  .rodata.str1.1
-                0x20004e45       0x22 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-nano-vfprintf_i.o)
- *fill*         0x20004e67        0x1 
+                0x20004f15       0x22 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-nano-vfprintf_i.o)
+ *fill*         0x20004f37        0x1 
  .rodata.str1.4
-                0x20004e68        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-w_pow.o)
- *fill*         0x20004e6c        0x4 
- .rodata.dp_h   0x20004e70       0x10 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-e_pow.o)
- .rodata.dp_l   0x20004e80       0x10 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-e_pow.o)
- .rodata.bp     0x20004e90       0x10 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-e_pow.o)
+                0x20004f38        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-w_pow.o)
+ *fill*         0x20004f3c        0x4 
+ .rodata.dp_h   0x20004f40       0x10 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-e_pow.o)
+ .rodata.dp_l   0x20004f50       0x10 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-e_pow.o)
+ .rodata.bp     0x20004f60       0x10 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-e_pow.o)
  .rodata.str1.4
-                0x20004ea0        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-e_pow.o)
+                0x20004f70        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-e_pow.o)
                                   0x1 (size before relaxing)
- *fill*         0x20004ea4        0x4 
- .rodata.TWO52  0x20004ea8       0x10 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-s_rint.o)
+ *fill*         0x20004f74        0x4 
+ .rodata.TWO52  0x20004f78       0x10 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-s_rint.o)
  *(.ARM.extab* .gnu.linkonce.armextab.*)
  *(.gcc_except_table)
  *(.eh_frame_hdr)
  *(.eh_frame)
- .eh_frame      0x20004eb8        0x0 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
+ .eh_frame      0x20004f88        0x0 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
  *(.vector_table)
  *(.init)
- .init          0x20004eb8        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crti.o
-                0x20004eb8                _init
- .init          0x20004ebc        0x8 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtn.o
+ .init          0x20004f88        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crti.o
+                0x20004f88                _init
+ .init          0x20004f8c        0x8 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtn.o
  *(.fini)
- .fini          0x20004ec4        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crti.o
-                0x20004ec4                _fini
- .fini          0x20004ec8        0x8 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtn.o
-                0x20004ed0                PROVIDE (__preinit_array_start, .)
+ .fini          0x20004f94        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crti.o
+                0x20004f94                _fini
+ .fini          0x20004f98        0x8 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtn.o
+                0x20004fa0                PROVIDE (__preinit_array_start, .)
  *(.preinit_array)
-                0x20004ed0                PROVIDE (__preinit_array_end, .)
-                0x20004ed0                PROVIDE (__init_array_start, .)
+                0x20004fa0                PROVIDE (__preinit_array_end, .)
+                0x20004fa0                PROVIDE (__init_array_start, .)
  *(SORT(.init_array.*))
  *(.init_array)
- .init_array    0x20004ed0        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
-                0x20004ed4                PROVIDE (__init_array_end, .)
-                0x20004ed4                PROVIDE (__fini_array_start, .)
+ .init_array    0x20004fa0        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
+                0x20004fa4                PROVIDE (__init_array_end, .)
+                0x20004fa4                PROVIDE (__fini_array_start, .)
  *(.fini_array)
- .fini_array    0x20004ed4        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
+ .fini_array    0x20004fa4        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
  *(SORT(.fini_array.*))
-                0x20004ed8                PROVIDE (__fini_array_end, .)
-                0x20004ee0                . = ALIGN (0x10)
- *fill*         0x20004ed8        0x8 
-                0x20004ee0                __exidx_start = .
+                0x20004fa8                PROVIDE (__fini_array_end, .)
+                0x20004fb0                . = ALIGN (0x10)
+ *fill*         0x20004fa8        0x8 
+                0x20004fb0                __exidx_start = .
 
-.v4_bx          0x20004ee0        0x0
+.v4_bx          0x20004fb0        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x20004ee0        0x0
+.iplt           0x20004fb0        0x0
  .iplt          0x00000000        0x0 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
 
-.rel.dyn        0x20004ee0        0x0
+.rel.dyn        0x20004fb0        0x0
  .rel.iplt      0x00000000        0x0 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x20004ee0                __exidx_end = .
-                0x20004ee0                _etext = .
-                0x20004ee0                PROVIDE (__text_end, .)
+                0x20004fb0                __exidx_end = .
+                0x20004fb0                _etext = .
+                0x20004fb0                PROVIDE (__text_end, .)
 
-.data           0x20004ee0       0x70
-                0x20004ee0                __data_load = LOADADDR (.data)
-                0x20004ee0                _sidata = LOADADDR (.data)
-                0x20004ee0                __data_start = .
-                0x20004ee0                _sdata = .
+.data           0x20004fb0       0x70
+                0x20004fb0                __data_load = LOADADDR (.data)
+                0x20004fb0                _sidata = LOADADDR (.data)
+                0x20004fb0                __data_start = .
+                0x20004fb0                _sdata = .
  *(.jcr)
- .jcr           0x20004ee0        0x0 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
- .jcr           0x20004ee0        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtend.o
+ .jcr           0x20004fb0        0x0 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
+ .jcr           0x20004fb0        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtend.o
  *(.got.plt)
  *(.got)
  *(.shdata)
  *(.data .data.* .gnu.linkonce.d.*)
  .data.impure_data
-                0x20004ee4       0x60 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+                0x20004fb4       0x60 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
  .data._impure_ptr
-                0x20004f44        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
-                0x20004f44                _impure_ptr
+                0x20005014        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+                0x20005014                _impure_ptr
  .data.__fdlib_version
-                0x20004f48        0x1 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-s_lib_ver.o)
-                0x20004f48                __fdlib_version
-                0x20004f50                . = ALIGN (0x10)
- *fill*         0x20004f49        0x7 
-                0x20004f50                _edata = .
+                0x20005018        0x1 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-s_lib_ver.o)
+                0x20005018                __fdlib_version
+                0x20005020                . = ALIGN (0x10)
+ *fill*         0x20005019        0x7 
+                0x20005020                _edata = .
 
-.igot.plt       0x20004f50        0x0
+.igot.plt       0x20005020        0x0
  .igot.plt      0x00000000        0x0 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
 
-.bss            0x20004f50      0x110
-                0x20004f50                __bss_start__ = .
-                0x20004f50                _sbss = .
+.bss            0x20005020      0x170
+                0x20005020                __bss_start__ = .
+                0x20005020                _sbss = .
  *(.shbss)
  *(.bss .bss.* .gnu.linkonce.b.*)
- .bss           0x20004f50       0x1c c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
+ .bss           0x20005020       0x1c c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
  .bss.g_comblk_cmd_opcode
-                0x20004f6c        0x1 ./firmware/drivers/mss_sys_services/mss_comblk.o
- *fill*         0x20004f6d        0x3 
+                0x2000503c        0x1 ./firmware/drivers/mss_sys_services/mss_comblk.o
+ *fill*         0x2000503d        0x3 
  .bss.g_comblk_p_cmd
-                0x20004f70        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x20005040        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
  .bss.g_comblk_cmd_size
-                0x20004f74        0x2 ./firmware/drivers/mss_sys_services/mss_comblk.o
- *fill*         0x20004f76        0x2 
+                0x20005044        0x2 ./firmware/drivers/mss_sys_services/mss_comblk.o
+ *fill*         0x20005046        0x2 
  .bss.g_comblk_p_data
-                0x20004f78        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x20005048        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
  .bss.g_comblk_data_size
-                0x20004f7c        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x2000504c        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
  .bss.g_comblk_p_response
-                0x20004f80        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x20005050        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
  .bss.g_comblk_response_size
-                0x20004f84        0x2 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x20005054        0x2 ./firmware/drivers/mss_sys_services/mss_comblk.o
  .bss.g_comblk_response_idx
-                0x20004f86        0x2 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x20005056        0x2 ./firmware/drivers/mss_sys_services/mss_comblk.o
  .bss.g_comblk_completion_handler
-                0x20004f88        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x20005058        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
  .bss.g_comblk_page_handler
-                0x20004f8c        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x2000505c        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
  .bss.g_request_in_progress
-                0x20004f90        0x1 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x20005060        0x1 ./firmware/drivers/mss_sys_services/mss_comblk.o
  .bss.g_comblk_state
-                0x20004f91        0x1 ./firmware/drivers/mss_sys_services/mss_comblk.o
- *fill*         0x20004f92        0x2 
+                0x20005061        0x1 ./firmware/drivers/mss_sys_services/mss_comblk.o
+ *fill*         0x20005062        0x2 
  .bss.g_async_event_handler
-                0x20004f94        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x20005064        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
  .bss.g_pdma_isr_table
-                0x20004f98       0x20 ./firmware/drivers/mss_pdma/mss_pdma.o
+                0x20005068       0x20 ./firmware/drivers/mss_pdma/mss_pdma.o
  .bss.g_transfer
-                0x20004fb8       0x18 ./firmware/drivers/mss_hpdma/mss_hpdma.o
+                0x20005088       0x18 ./firmware/drivers/mss_hpdma/mss_hpdma.o
  .bss.g_hpdma_end_desc
-                0x20004fd0        0x4 ./firmware/drivers/mss_hpdma/mss_hpdma.o
+                0x200050a0        0x4 ./firmware/drivers/mss_hpdma/mss_hpdma.o
  .bss.g_hpdma_current_desc
-                0x20004fd4        0x4 ./firmware/drivers/mss_hpdma/mss_hpdma.o
+                0x200050a4        0x4 ./firmware/drivers/mss_hpdma/mss_hpdma.o
  .bss.heap_end.5162
-                0x20004fd8        0x4 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+                0x200050a8        0x4 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
  .bss.__malloc_sbrk_start
-                0x20004fdc        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-nano-mallocr.o)
-                0x20004fdc                __malloc_sbrk_start
+                0x200050ac        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-nano-mallocr.o)
+                0x200050ac                __malloc_sbrk_start
  .bss.__malloc_free_list
-                0x20004fe0        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-nano-mallocr.o)
-                0x20004fe0                __malloc_free_list
+                0x200050b0        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-nano-mallocr.o)
+                0x200050b0                __malloc_free_list
  *(COMMON)
- *fill*         0x20004fe4        0x4 
- COMMON         0x20004fe8       0x6c ./inc/MPU6050/mpu6050.o
-                0x20004fe8                Mpu6050_
-                0x20005040                timer
-                0x20005044                g_i2c_inst_0
-                0x20005048                Mpu6050_Config_
- COMMON         0x20005054        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-reent.o)
-                0x20005054                errno
-                0x20005060                . = ALIGN (0x10)
- *fill*         0x20005058        0x8 
-                0x20005060                __bss_end__ = .
-                0x20005060                _end = .
-                0x20005060                __end = _end
-                0x20005060                _ebss = .
-                0x20005060                PROVIDE (end, .)
+ *fill*         0x200050b4        0x4 
+ COMMON         0x200050b8       0xd4 ./inc/MPU6050/mpu6050.o
+                0x200050b8                Mpu6050_
+                0x20005110                timer
+                0x20005114                g_i2c_inst_0
+                0x20005180                Mpu6050_Config_
+ COMMON         0x2000518c        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-reent.o)
+                0x2000518c                errno
+                0x20005190                . = ALIGN (0x10)
+                0x20005190                __bss_end__ = .
+                0x20005190                _end = .
+                0x20005190                __end = _end
+                0x20005190                _ebss = .
+                0x20005190                PROVIDE (end, .)
 
-.heap           0x20005060     0x9fa0
-                0x20005060                __heap_start__ = .
-                0x20006060                . = (. + MIN_SIZE_HEAP)
- *fill*         0x20005060     0x1000 
+.heap           0x20005190     0x9e70
+                0x20005190                __heap_start__ = .
+                0x20006190                . = (. + MIN_SIZE_HEAP)
+ *fill*         0x20005190     0x1000 
                 0x2000f000                . = (. + (((ABSOLUTE (RAM_START_ADDRESS) + RAM_SIZE) - MAIN_STACK_SIZE) - .))
- *fill*         0x20006060     0x8fa0 
+ *fill*         0x20006190     0x8e70 
                 0x2000f000                _eheap = .
 
 .stack          0x2000f000     0x1000
@@ -2015,27 +2023,27 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0xa60b
+.debug_info     0x00000000     0xa60d
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000       0x21 ./src/main.o
- .debug_info    0x00000021      0xa11 ./inc/MPU6050/mpu6050.o
- .debug_info    0x00000a32      0x58b ./inc/MPU6050/mpu6050_ut.o
- .debug_info    0x00000fbd       0x94 ./firmware/hal/CortexM3/GNU/hal.o
- .debug_info    0x00001051       0x9e ./firmware/hal/CortexM3/GNU/hw_reg_access.o
- .debug_info    0x000010ef      0x18b ./firmware/hal/CortexM3/cortex_nvic.o
- .debug_info    0x0000127a       0x96 ./firmware/drivers_config/sys_config/sys_config.o
- .debug_info    0x00001310      0xb0d ./firmware/drivers/mss_sys_services/mss_comblk.o
- .debug_info    0x00001e1d     0x1e16 ./firmware/drivers/mss_sys_services/mss_sys_services.o
- .debug_info    0x00003c33     0x1165 ./firmware/drivers/mss_rtc/mss_rtc.o
- .debug_info    0x00004d98     0x10bd ./firmware/drivers/mss_pdma/mss_pdma.o
- .debug_info    0x00005e55     0x1158 ./firmware/drivers/mss_nvm/mss_nvm.o
- .debug_info    0x00006fad     0x1169 ./firmware/drivers/mss_hpdma/mss_hpdma.o
- .debug_info    0x00008116      0x353 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
- .debug_info    0x00008469      0xc82 ./firmware/drivers/CoreI2C/core_i2c.o
- .debug_info    0x000090eb      0x34b ./firmware/drivers/CoreI2C/i2c_interrupt.o
- .debug_info    0x00009436      0x692 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
- .debug_info    0x00009ac8       0xa0 ./firmware/CMSIS/startup_gcc/startup_m2sxxx.o
- .debug_info    0x00009b68      0xaa3 ./firmware/CMSIS/system_m2sxxx.o
+ .debug_info    0x00000021      0xa12 ./inc/MPU6050/mpu6050.o
+ .debug_info    0x00000a33      0x58c ./inc/MPU6050/mpu6050_ut.o
+ .debug_info    0x00000fbf       0x94 ./firmware/hal/CortexM3/GNU/hal.o
+ .debug_info    0x00001053       0x9e ./firmware/hal/CortexM3/GNU/hw_reg_access.o
+ .debug_info    0x000010f1      0x18b ./firmware/hal/CortexM3/cortex_nvic.o
+ .debug_info    0x0000127c       0x96 ./firmware/drivers_config/sys_config/sys_config.o
+ .debug_info    0x00001312      0xb0d ./firmware/drivers/mss_sys_services/mss_comblk.o
+ .debug_info    0x00001e1f     0x1e16 ./firmware/drivers/mss_sys_services/mss_sys_services.o
+ .debug_info    0x00003c35     0x1165 ./firmware/drivers/mss_rtc/mss_rtc.o
+ .debug_info    0x00004d9a     0x10bd ./firmware/drivers/mss_pdma/mss_pdma.o
+ .debug_info    0x00005e57     0x1158 ./firmware/drivers/mss_nvm/mss_nvm.o
+ .debug_info    0x00006faf     0x1169 ./firmware/drivers/mss_hpdma/mss_hpdma.o
+ .debug_info    0x00008118      0x353 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
+ .debug_info    0x0000846b      0xc82 ./firmware/drivers/CoreI2C/core_i2c.o
+ .debug_info    0x000090ed      0x34b ./firmware/drivers/CoreI2C/i2c_interrupt.o
+ .debug_info    0x00009438      0x692 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_info    0x00009aca       0xa0 ./firmware/CMSIS/startup_gcc/startup_m2sxxx.o
+ .debug_info    0x00009b6a      0xaa3 ./firmware/CMSIS/system_m2sxxx.o
 
 .debug_abbrev   0x00000000     0x1872
  *(.debug_abbrev)
@@ -2059,27 +2067,27 @@ END GROUP
  .debug_abbrev  0x000016d5       0x14 ./firmware/CMSIS/startup_gcc/startup_m2sxxx.o
  .debug_abbrev  0x000016e9      0x189 ./firmware/CMSIS/system_m2sxxx.o
 
-.debug_line     0x00000000     0x508c
+.debug_line     0x00000000     0x50be
  *(.debug_line)
  .debug_line    0x00000000       0x2e ./src/main.o
- .debug_line    0x0000002e      0x4f8 ./inc/MPU6050/mpu6050.o
- .debug_line    0x00000526      0x327 ./inc/MPU6050/mpu6050_ut.o
- .debug_line    0x0000084d       0x56 ./firmware/hal/CortexM3/GNU/hal.o
- .debug_line    0x000008a3       0x94 ./firmware/hal/CortexM3/GNU/hw_reg_access.o
- .debug_line    0x00000937      0x2c2 ./firmware/hal/CortexM3/cortex_nvic.o
- .debug_line    0x00000bf9      0x2bc ./firmware/drivers_config/sys_config/sys_config.o
- .debug_line    0x00000eb5      0x54f ./firmware/drivers/mss_sys_services/mss_comblk.o
- .debug_line    0x00001404      0xdc1 ./firmware/drivers/mss_sys_services/mss_sys_services.o
- .debug_line    0x000021c5      0x688 ./firmware/drivers/mss_rtc/mss_rtc.o
- .debug_line    0x0000284d      0x457 ./firmware/drivers/mss_pdma/mss_pdma.o
- .debug_line    0x00002ca4      0x69b ./firmware/drivers/mss_nvm/mss_nvm.o
- .debug_line    0x0000333f      0x479 ./firmware/drivers/mss_hpdma/mss_hpdma.o
- .debug_line    0x000037b8      0x4f9 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
- .debug_line    0x00003cb1      0x765 ./firmware/drivers/CoreI2C/core_i2c.o
- .debug_line    0x00004416      0x354 ./firmware/drivers/CoreI2C/i2c_interrupt.o
- .debug_line    0x0000476a      0x423 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
- .debug_line    0x00004b8d      0x199 ./firmware/CMSIS/startup_gcc/startup_m2sxxx.o
- .debug_line    0x00004d26      0x366 ./firmware/CMSIS/system_m2sxxx.o
+ .debug_line    0x0000002e      0x512 ./inc/MPU6050/mpu6050.o
+ .debug_line    0x00000540      0x33f ./inc/MPU6050/mpu6050_ut.o
+ .debug_line    0x0000087f       0x56 ./firmware/hal/CortexM3/GNU/hal.o
+ .debug_line    0x000008d5       0x94 ./firmware/hal/CortexM3/GNU/hw_reg_access.o
+ .debug_line    0x00000969      0x2c2 ./firmware/hal/CortexM3/cortex_nvic.o
+ .debug_line    0x00000c2b      0x2bc ./firmware/drivers_config/sys_config/sys_config.o
+ .debug_line    0x00000ee7      0x54f ./firmware/drivers/mss_sys_services/mss_comblk.o
+ .debug_line    0x00001436      0xdc1 ./firmware/drivers/mss_sys_services/mss_sys_services.o
+ .debug_line    0x000021f7      0x688 ./firmware/drivers/mss_rtc/mss_rtc.o
+ .debug_line    0x0000287f      0x457 ./firmware/drivers/mss_pdma/mss_pdma.o
+ .debug_line    0x00002cd6      0x69b ./firmware/drivers/mss_nvm/mss_nvm.o
+ .debug_line    0x00003371      0x479 ./firmware/drivers/mss_hpdma/mss_hpdma.o
+ .debug_line    0x000037ea      0x4f9 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
+ .debug_line    0x00003ce3      0x765 ./firmware/drivers/CoreI2C/core_i2c.o
+ .debug_line    0x00004448      0x354 ./firmware/drivers/CoreI2C/i2c_interrupt.o
+ .debug_line    0x0000479c      0x423 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_line    0x00004bbf      0x199 ./firmware/CMSIS/startup_gcc/startup_m2sxxx.o
+ .debug_line    0x00004d58      0x366 ./firmware/CMSIS/system_m2sxxx.o
 
 .debug_frame    0x00000000     0x2a58
  *(.debug_frame)
@@ -2142,17 +2150,17 @@ END GROUP
 .debug_str      0x00000000    0x1744c
  *(.debug_str)
  .debug_str     0x00000000     0x2470 ./src/main.o
- .debug_str     0x00002470     0x51db ./inc/MPU6050/mpu6050.o
-                               0x78d0 (size before relaxing)
- .debug_str     0x0000764b       0xdd ./inc/MPU6050/mpu6050_ut.o
-                               0x7637 (size before relaxing)
- .debug_str     0x00007728      0x1c9 ./firmware/hal/CortexM3/cortex_nvic.o
+ .debug_str     0x00002470     0x51e7 ./inc/MPU6050/mpu6050.o
+                               0x78dc (size before relaxing)
+ .debug_str     0x00007657       0xdd ./inc/MPU6050/mpu6050_ut.o
+                               0x7643 (size before relaxing)
+ .debug_str     0x00007734      0x1c9 ./firmware/hal/CortexM3/cortex_nvic.o
                                0x3628 (size before relaxing)
- .debug_str     0x000078f1     0x5709 ./firmware/drivers_config/sys_config/sys_config.o
+ .debug_str     0x000078fd     0x5709 ./firmware/drivers_config/sys_config/sys_config.o
                                0x871d (size before relaxing)
- .debug_str     0x0000cffa      0xa24 ./firmware/drivers/mss_sys_services/mss_comblk.o
+ .debug_str     0x0000d006      0xa24 ./firmware/drivers/mss_sys_services/mss_comblk.o
                                0x94e5 (size before relaxing)
- .debug_str     0x0000da1e     0x2ba9 ./firmware/drivers/mss_sys_services/mss_sys_services.o
+ .debug_str     0x0000da2a     0x2b9d ./firmware/drivers/mss_sys_services/mss_sys_services.o
                                0xd707 (size before relaxing)
  .debug_str     0x000105c7      0x83b ./firmware/drivers/mss_rtc/mss_rtc.o
                                0xbeb1 (size before relaxing)
@@ -2351,86 +2359,87 @@ END GROUP
  *(.isr_vector)
 OUTPUT(BT-Gyro-SW.elf elf32-littlearm)
 
-.debug_macro    0x00000000     0x5660
+.debug_macro    0x00000000     0x56a4
  .debug_macro   0x00000000       0x11 ./src/main.o
  .debug_macro   0x00000011      0x862 ./src/main.o
- .debug_macro   0x00000873      0x176 ./inc/MPU6050/mpu6050.o
- .debug_macro   0x000009e9       0x22 ./inc/MPU6050/mpu6050.o
- .debug_macro   0x00000a0b       0x44 ./inc/MPU6050/mpu6050.o
- .debug_macro   0x00000a4f       0x58 ./inc/MPU6050/mpu6050.o
- .debug_macro   0x00000aa7       0x22 ./inc/MPU6050/mpu6050.o
- .debug_macro   0x00000ac9      0x1df ./inc/MPU6050/mpu6050.o
- .debug_macro   0x00000ca8       0x58 ./inc/MPU6050/mpu6050.o
- .debug_macro   0x00000d00       0x35 ./inc/MPU6050/mpu6050.o
- .debug_macro   0x00000d35       0x9c ./inc/MPU6050/mpu6050.o
- .debug_macro   0x00000dd1       0x16 ./inc/MPU6050/mpu6050.o
- .debug_macro   0x00000de7       0x97 ./inc/MPU6050/mpu6050.o
- .debug_macro   0x00000e7e      0x27a ./inc/MPU6050/mpu6050.o
- .debug_macro   0x000010f8       0xf6 ./inc/MPU6050/mpu6050.o
- .debug_macro   0x000011ee       0x10 ./inc/MPU6050/mpu6050.o
- .debug_macro   0x000011fe       0x52 ./inc/MPU6050/mpu6050.o
- .debug_macro   0x00001250       0x16 ./inc/MPU6050/mpu6050.o
- .debug_macro   0x00001266       0x43 ./inc/MPU6050/mpu6050.o
- .debug_macro   0x000012a9      0x180 ./inc/MPU6050/mpu6050.o
- .debug_macro   0x00001429       0x10 ./inc/MPU6050/mpu6050.o
- .debug_macro   0x00001439       0x22 ./inc/MPU6050/mpu6050.o
- .debug_macro   0x0000145b       0xbe ./inc/MPU6050/mpu6050.o
- .debug_macro   0x00001519       0x16 ./inc/MPU6050/mpu6050.o
- .debug_macro   0x0000152f      0x197 ./inc/MPU6050/mpu6050.o
- .debug_macro   0x000016c6      0x1e1 ./inc/MPU6050/mpu6050.o
- .debug_macro   0x000018a7       0x35 ./inc/MPU6050/mpu6050.o
- .debug_macro   0x000018dc      0x136 ./inc/MPU6050/mpu6050.o
- .debug_macro   0x00001a12      0x172 ./inc/MPU6050/mpu6050_ut.o
- .debug_macro   0x00001b84       0xa8 ./firmware/hal/CortexM3/cortex_nvic.o
- .debug_macro   0x00001c2c       0x1c ./firmware/hal/CortexM3/cortex_nvic.o
- .debug_macro   0x00001c48       0xa9 ./firmware/drivers_config/sys_config/sys_config.o
- .debug_macro   0x00001cf1       0x26 ./firmware/drivers_config/sys_config/sys_config.o
- .debug_macro   0x00001d17       0x3a ./firmware/drivers_config/sys_config/sys_config.o
- .debug_macro   0x00001d51       0x34 ./firmware/drivers_config/sys_config/sys_config.o
- .debug_macro   0x00001d85      0xc83 ./firmware/drivers_config/sys_config/sys_config.o
- .debug_macro   0x00002a08      0x265 ./firmware/drivers_config/sys_config/sys_config.o
- .debug_macro   0x00002c6d       0x3a ./firmware/drivers_config/sys_config/sys_config.o
- .debug_macro   0x00002ca7       0x34 ./firmware/drivers_config/sys_config/sys_config.o
- .debug_macro   0x00002cdb      0x14b ./firmware/drivers/mss_sys_services/mss_comblk.o
- .debug_macro   0x00002e26      0x3bd ./firmware/drivers/mss_sys_services/mss_sys_services.o
- .debug_macro   0x000031e3      0x2f8 ./firmware/drivers/mss_sys_services/mss_sys_services.o
- .debug_macro   0x000034db      0x16d ./firmware/drivers/mss_sys_services/mss_sys_services.o
- .debug_macro   0x00003648       0x10 ./firmware/drivers/mss_sys_services/mss_sys_services.o
- .debug_macro   0x00003658       0x35 ./firmware/drivers/mss_sys_services/mss_sys_services.o
- .debug_macro   0x0000368d      0x1fb ./firmware/drivers/mss_rtc/mss_rtc.o
- .debug_macro   0x00003888       0x4a ./firmware/drivers/mss_rtc/mss_rtc.o
- .debug_macro   0x000038d2      0x184 ./firmware/drivers/mss_pdma/mss_pdma.o
- .debug_macro   0x00003a56      0x273 ./firmware/drivers/mss_pdma/mss_pdma.o
- .debug_macro   0x00003cc9      0x292 ./firmware/drivers/mss_nvm/mss_nvm.o
- .debug_macro   0x00003f5b       0x16 ./firmware/drivers/mss_nvm/mss_nvm.o
- .debug_macro   0x00003f71      0x134 ./firmware/drivers/mss_hpdma/mss_hpdma.o
- .debug_macro   0x000040a5       0x4a ./firmware/drivers/mss_hpdma/mss_hpdma.o
- .debug_macro   0x000040ef       0x10 ./firmware/drivers/mss_hpdma/mss_hpdma.o
- .debug_macro   0x000040ff      0x123 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
- .debug_macro   0x00004222       0x64 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
- .debug_macro   0x00004286      0x106 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
- .debug_macro   0x0000438c       0x40 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
- .debug_macro   0x000043cc      0x25b ./firmware/drivers/CoreI2C/core_i2c.o
- .debug_macro   0x00004627      0x1c1 ./firmware/drivers/CoreI2C/core_i2c.o
- .debug_macro   0x000047e8       0x3c ./firmware/drivers/CoreI2C/core_i2c.o
- .debug_macro   0x00004824       0xe6 ./firmware/drivers/CoreI2C/i2c_interrupt.o
- .debug_macro   0x0000490a      0x186 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
- .debug_macro   0x00004a90       0x16 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
- .debug_macro   0x00004aa6      0x10e ./firmware/CMSIS/startup_gcc/newlib_stubs.o
- .debug_macro   0x00004bb4       0x86 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
- .debug_macro   0x00004c3a       0x16 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
- .debug_macro   0x00004c50       0x29 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
- .debug_macro   0x00004c79       0x16 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
- .debug_macro   0x00004c8f      0x48e ./firmware/CMSIS/startup_gcc/newlib_stubs.o
- .debug_macro   0x0000511d       0x16 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
- .debug_macro   0x00005133       0x10 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
- .debug_macro   0x00005143       0x10 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
- .debug_macro   0x00005153       0x10 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
- .debug_macro   0x00005163       0x35 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
- .debug_macro   0x00005198      0x122 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
- .debug_macro   0x000052ba       0x10 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
- .debug_macro   0x000052ca      0x241 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
- .debug_macro   0x0000550b      0x155 ./firmware/CMSIS/system_m2sxxx.o
+ .debug_macro   0x00000873      0x18d ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x00000a00       0x22 ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x00000a22       0x44 ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x00000a66       0x58 ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x00000abe       0x22 ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x00000ae0      0x1df ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x00000cbf       0x58 ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x00000d17       0x35 ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x00000d4c       0x9c ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x00000de8       0x16 ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x00000dfe       0x97 ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x00000e95      0x27a ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x0000110f       0xf6 ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x00001205       0x10 ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x00001215       0x52 ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x00001267       0x16 ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x0000127d       0x43 ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x000012c0      0x180 ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x00001440       0x10 ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x00001450       0x22 ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x00001472       0xbe ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x00001530       0x16 ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x00001546      0x197 ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x000016dd       0x16 ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x000016f3       0x35 ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x00001728      0x1e1 ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x00001909       0x35 ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x0000193e      0x136 ./inc/MPU6050/mpu6050.o
+ .debug_macro   0x00001a74      0x189 ./inc/MPU6050/mpu6050_ut.o
+ .debug_macro   0x00001bfd       0xa8 ./firmware/hal/CortexM3/cortex_nvic.o
+ .debug_macro   0x00001ca5       0x1c ./firmware/hal/CortexM3/cortex_nvic.o
+ .debug_macro   0x00001cc1       0xa9 ./firmware/drivers_config/sys_config/sys_config.o
+ .debug_macro   0x00001d6a       0x26 ./firmware/drivers_config/sys_config/sys_config.o
+ .debug_macro   0x00001d90       0x3a ./firmware/drivers_config/sys_config/sys_config.o
+ .debug_macro   0x00001dca       0x34 ./firmware/drivers_config/sys_config/sys_config.o
+ .debug_macro   0x00001dfe      0xc83 ./firmware/drivers_config/sys_config/sys_config.o
+ .debug_macro   0x00002a81      0x265 ./firmware/drivers_config/sys_config/sys_config.o
+ .debug_macro   0x00002ce6       0x3a ./firmware/drivers_config/sys_config/sys_config.o
+ .debug_macro   0x00002d20       0x34 ./firmware/drivers_config/sys_config/sys_config.o
+ .debug_macro   0x00002d54      0x14b ./firmware/drivers/mss_sys_services/mss_comblk.o
+ .debug_macro   0x00002e9f      0x3bd ./firmware/drivers/mss_sys_services/mss_sys_services.o
+ .debug_macro   0x0000325c      0x2f8 ./firmware/drivers/mss_sys_services/mss_sys_services.o
+ .debug_macro   0x00003554      0x16d ./firmware/drivers/mss_sys_services/mss_sys_services.o
+ .debug_macro   0x000036c1       0x10 ./firmware/drivers/mss_sys_services/mss_sys_services.o
+ .debug_macro   0x000036d1      0x1fb ./firmware/drivers/mss_rtc/mss_rtc.o
+ .debug_macro   0x000038cc       0x4a ./firmware/drivers/mss_rtc/mss_rtc.o
+ .debug_macro   0x00003916      0x184 ./firmware/drivers/mss_pdma/mss_pdma.o
+ .debug_macro   0x00003a9a      0x273 ./firmware/drivers/mss_pdma/mss_pdma.o
+ .debug_macro   0x00003d0d      0x292 ./firmware/drivers/mss_nvm/mss_nvm.o
+ .debug_macro   0x00003f9f       0x16 ./firmware/drivers/mss_nvm/mss_nvm.o
+ .debug_macro   0x00003fb5      0x134 ./firmware/drivers/mss_hpdma/mss_hpdma.o
+ .debug_macro   0x000040e9       0x4a ./firmware/drivers/mss_hpdma/mss_hpdma.o
+ .debug_macro   0x00004133       0x10 ./firmware/drivers/mss_hpdma/mss_hpdma.o
+ .debug_macro   0x00004143      0x123 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
+ .debug_macro   0x00004266       0x64 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
+ .debug_macro   0x000042ca      0x106 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
+ .debug_macro   0x000043d0       0x40 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
+ .debug_macro   0x00004410      0x25b ./firmware/drivers/CoreI2C/core_i2c.o
+ .debug_macro   0x0000466b      0x1c1 ./firmware/drivers/CoreI2C/core_i2c.o
+ .debug_macro   0x0000482c       0x3c ./firmware/drivers/CoreI2C/core_i2c.o
+ .debug_macro   0x00004868       0xe6 ./firmware/drivers/CoreI2C/i2c_interrupt.o
+ .debug_macro   0x0000494e      0x186 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_macro   0x00004ad4       0x16 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_macro   0x00004aea      0x10e ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_macro   0x00004bf8       0x86 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_macro   0x00004c7e       0x16 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_macro   0x00004c94       0x29 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_macro   0x00004cbd       0x16 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_macro   0x00004cd3      0x48e ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_macro   0x00005161       0x16 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_macro   0x00005177       0x10 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_macro   0x00005187       0x10 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_macro   0x00005197       0x10 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_macro   0x000051a7       0x35 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_macro   0x000051dc      0x122 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_macro   0x000052fe       0x10 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_macro   0x0000530e      0x241 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_macro   0x0000554f      0x155 ./firmware/CMSIS/system_m2sxxx.o
 
 .comment        0x00000000       0x70
  .comment       0x00000000       0x70 ./src/main.o

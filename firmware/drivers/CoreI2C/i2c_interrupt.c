@@ -16,7 +16,8 @@
  */
 void I2C_enable_irq( i2c_instance_t * this_i2c )
 {
-    HAL_ASSERT(0)
+    I2C_isr(this_i2c);
+    // HAL_ASSERT(0)
 }
 
 /*------------------------------------------------------------------------------
@@ -25,5 +26,5 @@ void I2C_enable_irq( i2c_instance_t * this_i2c )
  */
 void I2C_disable_irq( i2c_instance_t * this_i2c )
 {
-    HAL_ASSERT(0)
+    // HAL_ASSERT(0)
 }
