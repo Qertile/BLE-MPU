@@ -254,9 +254,8 @@ typedef struct MPU6050_configuration{
 /* ========== Global Variables ========== */
 Mpu6050_Config_t Mpu6050_Config_;
 MPU6050_t Mpu6050_;
-
 /* ----- coreI2C instance ----- */
-i2c_instance_t *g_core_i2c0;
+ i2c_instance_t g_core_i2c0;
 
 /* ========== Functions ========== */
 /** ------------------ Mpu_Init() ------------------
@@ -284,6 +283,6 @@ void MPU6050_Read_Temp(MPU6050_t *DataStruct);
 void MPU6050_Read_All(MPU6050_t *DataStruct);
 double Kalman_getAngle(Kalman_t *Kalman, double newAngle, double newRate, double dt);
 
-
+extern void I2C_enable_irq( i2c_instance_t * this_i2c );
 
 #endif

@@ -2,7 +2,7 @@
 A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 module and connect to PC by a bluetooth module HM11. This repository contains the drivers of MUP6050 and HM11
 
 -----------------------------------
-## Unreleased v0.1.2(2023.06.##) @master
+## Unreleased v0.1.3(2023.06.##) @master
 ### New
 ### Changed
 ### Removed
@@ -11,6 +11,11 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ### Known Issues
 ### Notes
 ### Reference
+
+-----------------------------------
+## BT-Gyro v0.1.2(2023.06.21) @master
+### Fixed
+1. fix device didn’t response to commands (issue #3)
 
 -----------------------------------
 ## BT-Gyro v0.1.1(2023.06.20) @master
