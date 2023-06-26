@@ -16,7 +16,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include "../../firmware/CMSIS/m2sxxx.h"
 #include "../../firmware/drivers/CoreI2C/core_i2c.h"
+#include "../../firmware/drivers_config/sys_config/sys_config.h"
 
 #define MPU6050_SELF_TEST
 #define DEBUG_MPU6050
@@ -25,6 +27,7 @@
 /* ----- I2C Related ----- */
 #define COREI2C_BASE_ADDR   0x50000000
 #define COREI2C_SER_ADDR    0xFF
+#define I2C_TIMEOUT         10        // ms
 
 /* ----- MPU6050 Related ----- */
 #define MPU6050_ADDR_LOW    0x68    // 7-Bit address when AD0 is connect to GND //

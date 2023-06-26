@@ -119,7 +119,7 @@ static void i2c_MPU6050_write(uint8_t *_tx_buff, uint8_t write_size)
                 _tx_buff, 
                 write_size, 
                 I2C_RELEASE_BUS );
-    I2C_wait_complete( &g_core_i2c0, I2C_NO_TIMEOUT );
+    I2C_wait_complete( &g_core_i2c0, I2C_TIMEOUT );
   #endif
 }
 
@@ -148,9 +148,9 @@ static void i2c_MPU6050_read(uint8_t *_rx_buff, uint8_t read_size)
                 MPU6050_ADDR_LOW, 
                 _rx_buff, 
                 1,
-				I2C_RELEASE_BUS );
+				I2C_HOLD_BUS );
 	status = I2C_get_status( &g_core_i2c0 );
-    I2C_wait_complete( &g_core_i2c0, I2C_NO_TIMEOUT );
+    I2C_wait_complete( &g_core_i2c0, I2C_TIMEOUT );
 	status = I2C_get_status( &g_core_i2c0 );
     
     memset(_rx_buff,0, sizeof(_rx_buff));
@@ -159,8 +159,8 @@ static void i2c_MPU6050_read(uint8_t *_rx_buff, uint8_t read_size)
                 MPU6050_ADDR_LOW, 
                 _rx_buff, 
                 read_size, 
-				I2C_HOLD_BUS );
-    I2C_wait_complete( &g_core_i2c0, I2C_NO_TIMEOUT );
+				I2C_RELEASE_BUS );
+    I2C_wait_complete( &g_core_i2c0, I2C_TIMEOUT );
   #endif
 }
 
@@ -608,6 +608,8 @@ void MPU6050_set_power_mode(uint8_t power_mode, uint8_t freq)
  * */
 uint8_t MPU6050_Init(uint8_t accel_config, uint8_t gyro_config, uint8_t sample_rate)
 {
+  /* ----- I2C initialize ----- */
+  SysTick_Config(MSS_SYS_M3_CLK_FREQ / 100);
   I2C_init( &g_core_i2c0, COREI2C_BASE_ADDR, COREI2C_SER_ADDR, I2C_PCLK_DIV_256);
   I2C_enable_irq(&g_core_i2c0);
 
@@ -861,3 +863,6 @@ void FabricIrq0_IRQHandler(void){
     I2C_isr(&g_core_i2c0);
 }
 
+void SysTick_Handler(void) {
+    I2C_system_tick(&g_core_i2c0, 10);
+}

@@ -36,6 +36,6 @@ void I2C_disable_irq( i2c_instance_t * this_i2c )
     // HAL_ASSERT(0)
    if(this_i2c == &g_core_i2c0)
    {
-	   NVIC_EnableIRQ( FabricIrq0_IRQn );
+	   NVIC_DisableIRQ( FabricIrq0_IRQn );
    }
 }

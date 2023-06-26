@@ -2,7 +2,13 @@
 A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 module and connect to PC by a bluetooth module HM11. This repository contains the drivers of MUP6050 and HM11
 
 -----------------------------------
-## Unreleased v0.1.3(2023.06.##) @master
+## To-Do
+- [x] receive data into rx buffer 
+- [x] using write_read
+- [x] set timeout
+
+-----------------------------------
+## Unreleased v0.1.4(2023.06.##) @master
 ### New
 ### Changed
 ### Removed
@@ -11,6 +17,14 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ### Known Issues
 ### Notes
 ### Reference
+
+-----------------------------------
+## BT-Gyro v0.1.3(2023.06.26) @master
+### New
+1. receive data into rx buffer 
+2. set timeout for `i2c_wait_complete()`
+### Notes
+1. write_read is basiclly == write + read
 
 -----------------------------------
 ## BT-Gyro v0.1.2(2023.06.21) @master
