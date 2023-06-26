@@ -10,13 +10,16 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 -----------------------------------
 ## Unreleased v0.1.4(2023.06.##) @master
 ### New
+- create a new function `I2C_init()`
 ### Changed
 - refactor `MPU6050_Read_All()`
 ### Removed
 - remove memset in `i2c_MPU6050_read()`
 ### Deprecated
 ### Fixed
+- I2C will freeze if too much transaction in a specific period of time
 ### Known Issues
+- I2C will freeze if too much transaction in a specific period of time
 ### Notes
 - currently not use kalman angle functions, since it needs systick as timer
 ### Reference
