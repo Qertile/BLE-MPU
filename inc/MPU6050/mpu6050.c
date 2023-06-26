@@ -102,6 +102,7 @@ Kalman_t KalmanY = {
 **/
 static void i2c_MPU6050_write(uint8_t *_tx_buff, uint8_t write_size)
 {
+	i2c_status_t status;
   // HAL Driver Usage //
   #ifdef MPU6050_USE_HAL
     HAL_I2C_Mem_Write(&hi2c1, MPU6050_WRITE_ADDR, data[0], 1, data + 1, 1, HAL_I2C_TIMEOUT);
@@ -113,7 +114,8 @@ static void i2c_MPU6050_write(uint8_t *_tx_buff, uint8_t write_size)
                 _tx_buff, 
                 write_size, 
                 I2C_RELEASE_BUS );
-    I2C_wait_complete( &g_core_i2c0, I2C_TIMEOUT );
+    status = I2C_wait_complete( &g_core_i2c0, I2C_TIMEOUT );
+    if (status == I2C_TIMED_OUT) I2C_Initalize();
   #endif
 }
 
@@ -146,10 +148,8 @@ static void i2c_MPU6050_read(uint8_t *_rx_buff, uint8_t read_size)
     status = I2C_get_status( &g_core_i2c0 );
     I2C_wait_complete( &g_core_i2c0, I2C_TIMEOUT );
     status = I2C_get_status( &g_core_i2c0 );
-    if (status == I2C_TIMED_OUT)
+    if (status == I2C_TIMED_OUT) I2C_Initalize();
     
-    // memset(_rx_buff,0, sizeof(_rx_buff));
-
     I2C_read( &g_core_i2c0,
                 MPU6050_ADDR_LOW, 
                 _rx_buff, 
@@ -604,7 +604,7 @@ void MPU6050_set_power_mode(uint8_t power_mode, uint8_t freq)
 uint8_t MPU6050_Init(uint8_t accel_config, uint8_t gyro_config, uint8_t sample_rate)
 {
   /* ----- I2C initialize ----- */
-  I2C_init();
+  I2C_Initalize();
 
   /* ----- MPU6050 initialize ----- */
   uint8_t check;
@@ -854,7 +854,7 @@ double Kalman_getAngle(Kalman_t *Kalman, double newAngle, double newRate, double
   return Kalman->angle;
 };
 
-static void I2C_init(void){
+static void I2C_Initalize(void){
   /* ----- I2C initialize ----- */
   SysTick_Config(MSS_SYS_M3_CLK_FREQ / 100);
   I2C_init( &g_core_i2c0, COREI2C_BASE_ADDR, COREI2C_SER_ADDR, I2C_PCLK_DIV_256);

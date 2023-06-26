@@ -286,6 +286,8 @@ void MPU6050_Read_Temp(MPU6050_t *DataStruct);
 void MPU6050_Read_All(MPU6050_t *DataStruct);
 double Kalman_getAngle(Kalman_t *Kalman, double newAngle, double newRate, double dt);
 
+static void I2C_Initalize(void);
+
 extern void I2C_enable_irq( i2c_instance_t * this_i2c );
 
 #endif

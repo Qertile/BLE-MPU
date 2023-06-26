@@ -3,27 +3,33 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 
 -----------------------------------
 ## To-Do
-- [x] receive data into rx buffer 
-- [x] using write_read
-- [x] set timeout
 
 -----------------------------------
-## Unreleased v0.1.4(2023.06.##) @master
+## Unreleased v0.2.1(2023.06.##) @master
+### New
+### Changed
+### Removed
+### Deprecated
+### Fixed
+### Known Issues
+### Notes
+### Reference
+
+-----------------------------------
+## BT-Gyro v0.2.0(2023.06.26) @master
 ### New
 - create a new function `I2C_init()`
 ### Changed
 - refactor `MPU6050_Read_All()`
 ### Removed
 - remove memset in `i2c_MPU6050_read()`
-### Deprecated
 ### Fixed
-- I2C will freeze if too much transaction in a specific period of time
+- I2C will freeze if too much transaction in a specific period of time (re-initial if I2C timeout)
 ### Known Issues
 - I2C will freeze if too much transaction in a specific period of time
 ### Notes
 - currently not use kalman angle functions, since it needs systick as timer
-### Reference
-
+  
 -----------------------------------
 ## BT-Gyro v0.1.3(2023.06.26) @master
 ### New
