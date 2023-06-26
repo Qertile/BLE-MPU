@@ -14,7 +14,10 @@
 		printf("MPU6050 Initialization Success\n");
 
 	// Set power mode //
-	MPU6050_set_power_mode(MPU6050_CYCLE, MPU6050_low_power_1_25Hz);
-
+	MPU6050_set_power_mode(MPU6050_POWER_ON, MPU6050_rate_dont_care);
+	while (1){
+		MPU6050_Read_All(&MPU6050);
+	}
+	
  	return 0;
  }

@@ -148,10 +148,10 @@ static void i2c_MPU6050_read(uint8_t *_rx_buff, uint8_t read_size)
                 MPU6050_ADDR_LOW, 
                 _rx_buff, 
                 1,
-				I2C_HOLD_BUS );
-	status = I2C_get_status( &g_core_i2c0 );
+				        I2C_HOLD_BUS );
+    status = I2C_get_status( &g_core_i2c0 );
     I2C_wait_complete( &g_core_i2c0, I2C_TIMEOUT );
-	status = I2C_get_status( &g_core_i2c0 );
+    status = I2C_get_status( &g_core_i2c0 );
     
     memset(_rx_buff,0, sizeof(_rx_buff));
 
@@ -159,7 +159,7 @@ static void i2c_MPU6050_read(uint8_t *_rx_buff, uint8_t read_size)
                 MPU6050_ADDR_LOW, 
                 _rx_buff, 
                 read_size, 
-				I2C_RELEASE_BUS );
+				        I2C_RELEASE_BUS );
     I2C_wait_complete( &g_core_i2c0, I2C_TIMEOUT );
   #endif
 }
@@ -769,32 +769,33 @@ void MPU6050_Read_Temp(MPU6050_t *DataStruct)
  * The values are stored in the DataStruct corresponding fields.
  *
  * */
-// void MPU6050_Read_All(MPU6050_t *DataStruct)
-// {
-//   uint8_t Rx_Data[14];
-//   uint16_t temp;
+void MPU6050_Read_All(MPU6050_t *DataStruct)
+{
+  uint8_t Rx_Data[14];
+  uint16_t temp;
 
-//   // Read 14 BYTES of data starting from ACCEL_XOUT_H register //
-//   i2c_MPU6050_read(ACCEL_XOUT_H_REG, Rx_Data, 14);
+  Rx_Data[0] = ACCEL_XOUT_H_REG;
+  // Read 14 BYTES of data starting from ACCEL_XOUT_H register //
+  i2c_MPU6050_read(Rx_Data, 14);
 
-//   DataStruct->Accel_X_RAW = (uint16_t) (Rx_Data[0] << 8 | Rx_Data[1]);
-//   DataStruct->Accel_Y_RAW = (uint16_t) (Rx_Data[2] << 8 | Rx_Data[3]);
-//   DataStruct->Accel_Z_RAW = (uint16_t) (Rx_Data[4] << 8 | Rx_Data[5]);
+  DataStruct->Accel_X_RAW = (uint16_t) (Rx_Data[0] << 8 | Rx_Data[1]);
+  DataStruct->Accel_Y_RAW = (uint16_t) (Rx_Data[2] << 8 | Rx_Data[3]);
+  DataStruct->Accel_Z_RAW = (uint16_t) (Rx_Data[4] << 8 | Rx_Data[5]);
 
-//   DataStruct->Gyro_X_RAW = (uint16_t) (Rx_Data[8] << 8 | Rx_Data[9]);
-//   DataStruct->Gyro_Y_RAW = (uint16_t) (Rx_Data[10] << 8 | Rx_Data[11]);
-//   DataStruct->Gyro_Z_RAW = (uint16_t) (Rx_Data[12] << 8 | Rx_Data[13]);
+  DataStruct->Gyro_X_RAW = (uint16_t) (Rx_Data[8] << 8 | Rx_Data[9]);
+  DataStruct->Gyro_Y_RAW = (uint16_t) (Rx_Data[10] << 8 | Rx_Data[11]);
+  DataStruct->Gyro_Z_RAW = (uint16_t) (Rx_Data[12] << 8 | Rx_Data[13]);
 
-//   DataStruct->Gx = DataStruct->Gyro_X_RAW / (Mpu6050_Config_.gyro_sensitivity);
-//   DataStruct->Gy = DataStruct->Gyro_Y_RAW / (Mpu6050_Config_.gyro_sensitivity);
-//   DataStruct->Gz = DataStruct->Gyro_Z_RAW / (Mpu6050_Config_.gyro_sensitivity);
+  DataStruct->Gx = DataStruct->Gyro_X_RAW / (Mpu6050_Config_.gyro_sensitivity);
+  DataStruct->Gy = DataStruct->Gyro_Y_RAW / (Mpu6050_Config_.gyro_sensitivity);
+  DataStruct->Gz = DataStruct->Gyro_Z_RAW / (Mpu6050_Config_.gyro_sensitivity);
 
-//   DataStruct->Ax = DataStruct->Accel_X_RAW / (Mpu6050_Config_.accel_sensitivity);
-//   DataStruct->Ay = DataStruct->Accel_Y_RAW / (Mpu6050_Config_.accel_sensitivity);
-//   DataStruct->Az = DataStruct->Accel_Z_RAW / (Mpu6050_Config_.accel_sensitivity);
+  DataStruct->Ax = DataStruct->Accel_X_RAW / (Mpu6050_Config_.accel_sensitivity);
+  DataStruct->Ay = DataStruct->Accel_Y_RAW / (Mpu6050_Config_.accel_sensitivity);
+  DataStruct->Az = DataStruct->Accel_Z_RAW / (Mpu6050_Config_.accel_sensitivity);
 
-//   temp = (uint16_t) (Rx_Data[6] << 8 | Rx_Data[7]);
-//   DataStruct->Temperature = (float) ((uint16_t) temp / (float) 340.0 + (float) 36.53);
+  temp = (uint16_t) (Rx_Data[6] << 8 | Rx_Data[7]);
+  DataStruct->Temperature = (float) ((uint16_t) temp / (float) 340.0 + (float) 36.53);
 
 //   // Kalman angle solve
 //   double dt = (double) (HAL_GetTick() - timer) / 1000;
@@ -819,7 +820,7 @@ void MPU6050_Read_Temp(MPU6050_t *DataStruct)
 
 //   DataStruct->KalmanAngleX = Kalman_getAngle(&KalmanX, roll, DataStruct->Gy, dt);
 
-// }
+}
 
 /* -- Kalman_getAngle() --
  * Input: Kalman_getAngle *Kalman_Data, double newAngle, double newRate, double dt
