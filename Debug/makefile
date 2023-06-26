@@ -9,7 +9,7 @@ RM := rm -rf
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include src/subdir.mk
--include inc/HM11/subdir.mk
+-include inc/MPU6050/subdir.mk
 -include firmware/hal/CortexM3/GNU/subdir.mk
 -include firmware/hal/CortexM3/subdir.mk
 -include firmware/drivers_config/sys_config/subdir.mk
