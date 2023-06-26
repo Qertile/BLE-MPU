@@ -61,6 +61,10 @@ Discarded input sections
  .text          0x00000000        0x0 ./inc/HM11/hm11.o
  .data          0x00000000        0x0 ./inc/HM11/hm11.o
  .bss           0x00000000        0x0 ./inc/HM11/hm11.o
+ .text.NVIC_EnableIRQ
+                0x00000000       0x30 ./inc/HM11/hm11.o
+ .text.Hm11_Init
+                0x00000000       0x24 ./inc/HM11/hm11.o
  .debug_macro   0x00000000      0x862 ./inc/HM11/hm11.o
  .group         0x00000000        0x8 ./inc/HM11/hm11_ut.o
  .group         0x00000000        0x8 ./inc/HM11/hm11_ut.o
@@ -720,6 +724,8 @@ Discarded input sections
  .text          0x00000000        0x0 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
  .data          0x00000000        0x0 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
  .bss           0x00000000        0x0 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
+ .text.UART_init
+                0x00000000      0x110 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
  .text.UART_send
                 0x00000000       0x80 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
  .text.UART_fill_tx_fifo
@@ -1209,7 +1215,7 @@ END GROUP
                 0x200004c0                . = ALIGN (0x10)
  *fill*         0x200004b4        0xc 
 
-.text           0x200004c0      0xe50
+.text           0x200004c0      0xcf0
  CREATE_OBJECT_SYMBOLS
                 0x200004c0                __text_load = LOADADDR (.text)
                 0x200004c0                __text_start = .
@@ -1218,69 +1224,64 @@ END GROUP
  .text.FabricIrq1_IRQHandler
                 0x2000051c       0x2c ./inc/HM11/hm11.o
                 0x2000051c                FabricIrq1_IRQHandler
- .text.NVIC_EnableIRQ
-                0x20000548       0x30 ./inc/HM11/hm11_ut.o
- .text.main     0x20000578       0x38 ./inc/HM11/hm11_ut.o
-                0x20000578                main
- .text          0x200005b0       0x90 ./firmware/hal/CortexM3/GNU/hw_reg_access.o
-                0x200005b0                HW_set_32bit_reg
-                0x200005b4                HW_get_32bit_reg
-                0x200005b8                HW_set_32bit_reg_field
-                0x200005d4                HW_get_32bit_reg_field
-                0x200005e0                HW_set_16bit_reg
-                0x200005e4                HW_get_16bit_reg
-                0x200005e8                HW_set_16bit_reg_field
-                0x20000604                HW_get_16bit_reg_field
-                0x20000610                HW_set_8bit_reg
-                0x20000614                HW_get_8bit_reg
-                0x20000618                HW_set_8bit_reg_field
-                0x20000634                HW_get_8bit_reg_field
+ .text.main     0x20000548       0x24 ./inc/HM11/hm11_ut.o
+                0x20000548                main
+ .text          0x2000056c       0x90 ./firmware/hal/CortexM3/GNU/hw_reg_access.o
+                0x2000056c                HW_set_32bit_reg
+                0x20000570                HW_get_32bit_reg
+                0x20000574                HW_set_32bit_reg_field
+                0x20000590                HW_get_32bit_reg_field
+                0x2000059c                HW_set_16bit_reg
+                0x200005a0                HW_get_16bit_reg
+                0x200005a4                HW_set_16bit_reg_field
+                0x200005c0                HW_get_16bit_reg_field
+                0x200005cc                HW_set_8bit_reg
+                0x200005d0                HW_get_8bit_reg
+                0x200005d4                HW_set_8bit_reg_field
+                0x200005f0                HW_get_8bit_reg_field
  .text.ComBlk_IRQHandler
-                0x20000640       0x48 ./firmware/drivers/mss_sys_services/mss_comblk.o
-                0x20000640                ComBlk_IRQHandler
+                0x200005fc       0x48 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x200005fc                ComBlk_IRQHandler
  .text.handle_tx_okay_irq
-                0x20000688      0x1b0 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x20000644      0x1b0 ./firmware/drivers/mss_sys_services/mss_comblk.o
  .text.handle_rx_okay_irq
-                0x20000838      0x204 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x200007f4      0x204 ./firmware/drivers/mss_sys_services/mss_comblk.o
  .text.complete_request
-                0x20000a3c       0x40 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x200009f8       0x40 ./firmware/drivers/mss_sys_services/mss_comblk.o
  .text.abort_current_cmd
-                0x20000a7c       0x4c ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x20000a38       0x4c ./firmware/drivers/mss_sys_services/mss_comblk.o
  .text.fill_tx_fifo
-                0x20000ac8       0x64 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x20000a84       0x64 ./firmware/drivers/mss_sys_services/mss_comblk.o
  .text.process_sys_ctrl_command
-                0x20000b2c       0x28 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x20000ae8       0x28 ./firmware/drivers/mss_sys_services/mss_comblk.o
  .text.get_channel_id_from_status
-                0x20000b54       0xa0 ./firmware/drivers/mss_pdma/mss_pdma.o
+                0x20000b10       0xa0 ./firmware/drivers/mss_pdma/mss_pdma.o
  .text.DMA_IRQHandler
-                0x20000bf4       0x7c ./firmware/drivers/mss_pdma/mss_pdma.o
-                0x20000bf4                DMA_IRQHandler
+                0x20000bb0       0x7c ./firmware/drivers/mss_pdma/mss_pdma.o
+                0x20000bb0                DMA_IRQHandler
  .text.start_transfer
-                0x20000c70      0x14c ./firmware/drivers/mss_hpdma/mss_hpdma.o
+                0x20000c2c      0x14c ./firmware/drivers/mss_hpdma/mss_hpdma.o
  .text.HPDMA_Complete_IRQHandler
-                0x20000dbc       0xf4 ./firmware/drivers/mss_hpdma/mss_hpdma.o
-                0x20000dbc                HPDMA_Complete_IRQHandler
+                0x20000d78       0xf4 ./firmware/drivers/mss_hpdma/mss_hpdma.o
+                0x20000d78                HPDMA_Complete_IRQHandler
  .text.HPDMA_Error_IRQHandler
-                0x20000eb0      0x100 ./firmware/drivers/mss_hpdma/mss_hpdma.o
-                0x20000eb0                HPDMA_Error_IRQHandler
- .text.UART_init
-                0x20000fb0      0x110 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
-                0x20000fb0                UART_init
+                0x20000e6c      0x100 ./firmware/drivers/mss_hpdma/mss_hpdma.o
+                0x20000e6c                HPDMA_Error_IRQHandler
  .text.UART_get_rx
-                0x200010c0       0xc0 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
-                0x200010c0                UART_get_rx
+                0x20000f6c       0xc0 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
+                0x20000f6c                UART_get_rx
  .text.SystemInit
-                0x20001180       0x20 ./firmware/CMSIS/system_m2sxxx.o
-                0x20001180                SystemInit
+                0x2000102c       0x20 ./firmware/CMSIS/system_m2sxxx.o
+                0x2000102c                SystemInit
  .text.get_silicon_revision
-                0x200011a0       0x48 ./firmware/CMSIS/system_m2sxxx.o
+                0x2000104c       0x48 ./firmware/CMSIS/system_m2sxxx.o
  .text.silicon_workarounds
-                0x200011e8       0x20 ./firmware/CMSIS/system_m2sxxx.o
+                0x20001094       0x20 ./firmware/CMSIS/system_m2sxxx.o
  .text.m2s050_rev_a_workarounds
-                0x20001208       0x30 ./firmware/CMSIS/system_m2sxxx.o
+                0x200010b4       0x30 ./firmware/CMSIS/system_m2sxxx.o
  .text.__libc_init_array
-                0x20001238       0x4c c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
-                0x20001238                __libc_init_array
+                0x200010e4       0x4c c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
+                0x200010e4                __libc_init_array
  *(.plt)
  *(.gnu.warning)
  *(.glue_7t)
@@ -1289,7 +1290,7 @@ END GROUP
  .glue_7        0x00000000        0x0 linker stubs
  *(.vfp11_veneer)
  .vfp11_veneer  0x00000000        0x0 linker stubs
-                0x20001284                . = ALIGN (0x4)
+                0x20001130                . = ALIGN (0x4)
  *crtbegin.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o) .ctors)
  *(SORT(.ctors.*))
@@ -1299,132 +1300,131 @@ END GROUP
  *(SORT(.dtors.*))
  *crtend.o(.dtors)
  *(.rodata .rodata.* .gnu.linkonce.r.*)
- .rodata        0x20001284       0x60 ./firmware/drivers/mss_pdma/mss_pdma.o
+ .rodata        0x20001130       0x60 ./firmware/drivers/mss_pdma/mss_pdma.o
  *(.ARM.extab* .gnu.linkonce.armextab.*)
  *(.gcc_except_table)
  *(.eh_frame_hdr)
  *(.eh_frame)
- .eh_frame      0x200012e4        0x0 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
+ .eh_frame      0x20001190        0x0 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
  *(.vector_table)
  *(.init)
- .init          0x200012e4        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crti.o
-                0x200012e4                _init
- .init          0x200012e8        0x8 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtn.o
+ .init          0x20001190        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crti.o
+                0x20001190                _init
+ .init          0x20001194        0x8 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtn.o
  *(.fini)
- .fini          0x200012f0        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crti.o
-                0x200012f0                _fini
- .fini          0x200012f4        0x8 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtn.o
-                0x200012fc                PROVIDE (__preinit_array_start, .)
+ .fini          0x2000119c        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crti.o
+                0x2000119c                _fini
+ .fini          0x200011a0        0x8 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtn.o
+                0x200011a8                PROVIDE (__preinit_array_start, .)
  *(.preinit_array)
-                0x200012fc                PROVIDE (__preinit_array_end, .)
-                0x200012fc                PROVIDE (__init_array_start, .)
+                0x200011a8                PROVIDE (__preinit_array_end, .)
+                0x200011a8                PROVIDE (__init_array_start, .)
  *(SORT(.init_array.*))
  *(.init_array)
- .init_array    0x200012fc        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
-                0x20001300                PROVIDE (__init_array_end, .)
-                0x20001300                PROVIDE (__fini_array_start, .)
+ .init_array    0x200011a8        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
+                0x200011ac                PROVIDE (__init_array_end, .)
+                0x200011ac                PROVIDE (__fini_array_start, .)
  *(.fini_array)
- .fini_array    0x20001300        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
+ .fini_array    0x200011ac        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
  *(SORT(.fini_array.*))
-                0x20001304                PROVIDE (__fini_array_end, .)
-                0x20001310                . = ALIGN (0x10)
- *fill*         0x20001304        0xc 
-                0x20001310                __exidx_start = .
+                0x200011b0                PROVIDE (__fini_array_end, .)
+                0x200011b0                . = ALIGN (0x10)
+                0x200011b0                __exidx_start = .
 
-.v4_bx          0x20001310        0x0
+.v4_bx          0x200011b0        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x20001310        0x0
+.iplt           0x200011b0        0x0
  .iplt          0x00000000        0x0 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
 
-.rel.dyn        0x20001310        0x0
+.rel.dyn        0x200011b0        0x0
  .rel.iplt      0x00000000        0x0 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x20001310                __exidx_end = .
-                0x20001310                _etext = .
-                0x20001310                PROVIDE (__text_end, .)
+                0x200011b0                __exidx_end = .
+                0x200011b0                _etext = .
+                0x200011b0                PROVIDE (__text_end, .)
 
-.data           0x20001310       0x10
-                0x20001310                __data_load = LOADADDR (.data)
-                0x20001310                _sidata = LOADADDR (.data)
-                0x20001310                __data_start = .
-                0x20001310                _sdata = .
+.data           0x200011b0       0x10
+                0x200011b0                __data_load = LOADADDR (.data)
+                0x200011b0                _sidata = LOADADDR (.data)
+                0x200011b0                __data_start = .
+                0x200011b0                _sdata = .
  *(.jcr)
- .jcr           0x20001310        0x0 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
- .jcr           0x20001310        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtend.o
+ .jcr           0x200011b0        0x0 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
+ .jcr           0x200011b0        0x4 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtend.o
  *(.got.plt)
  *(.got)
  *(.shdata)
  *(.data .data.* .gnu.linkonce.d.*)
-                0x20001320                . = ALIGN (0x10)
- *fill*         0x20001314        0xc 
-                0x20001320                _edata = .
+                0x200011c0                . = ALIGN (0x10)
+ *fill*         0x200011b4        0xc 
+                0x200011c0                _edata = .
 
-.igot.plt       0x20001320        0x0
+.igot.plt       0x200011c0        0x0
  .igot.plt      0x00000000        0x0 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
 
-.bss            0x20001320       0xb0
-                0x20001320                __bss_start__ = .
-                0x20001320                _sbss = .
+.bss            0x200011c0       0xb0
+                0x200011c0                __bss_start__ = .
+                0x200011c0                _sbss = .
  *(.shbss)
  *(.bss .bss.* .gnu.linkonce.b.*)
- .bss           0x20001320       0x1c c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
+ .bss           0x200011c0       0x1c c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
  .bss.g_comblk_cmd_opcode
-                0x2000133c        0x1 ./firmware/drivers/mss_sys_services/mss_comblk.o
- *fill*         0x2000133d        0x3 
+                0x200011dc        0x1 ./firmware/drivers/mss_sys_services/mss_comblk.o
+ *fill*         0x200011dd        0x3 
  .bss.g_comblk_p_cmd
-                0x20001340        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x200011e0        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
  .bss.g_comblk_cmd_size
-                0x20001344        0x2 ./firmware/drivers/mss_sys_services/mss_comblk.o
- *fill*         0x20001346        0x2 
+                0x200011e4        0x2 ./firmware/drivers/mss_sys_services/mss_comblk.o
+ *fill*         0x200011e6        0x2 
  .bss.g_comblk_p_data
-                0x20001348        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x200011e8        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
  .bss.g_comblk_data_size
-                0x2000134c        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x200011ec        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
  .bss.g_comblk_p_response
-                0x20001350        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x200011f0        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
  .bss.g_comblk_response_size
-                0x20001354        0x2 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x200011f4        0x2 ./firmware/drivers/mss_sys_services/mss_comblk.o
  .bss.g_comblk_response_idx
-                0x20001356        0x2 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x200011f6        0x2 ./firmware/drivers/mss_sys_services/mss_comblk.o
  .bss.g_comblk_completion_handler
-                0x20001358        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x200011f8        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
  .bss.g_comblk_page_handler
-                0x2000135c        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x200011fc        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
  .bss.g_request_in_progress
-                0x20001360        0x1 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x20001200        0x1 ./firmware/drivers/mss_sys_services/mss_comblk.o
  .bss.g_comblk_state
-                0x20001361        0x1 ./firmware/drivers/mss_sys_services/mss_comblk.o
- *fill*         0x20001362        0x2 
+                0x20001201        0x1 ./firmware/drivers/mss_sys_services/mss_comblk.o
+ *fill*         0x20001202        0x2 
  .bss.g_async_event_handler
-                0x20001364        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x20001204        0x4 ./firmware/drivers/mss_sys_services/mss_comblk.o
  .bss.g_pdma_isr_table
-                0x20001368       0x20 ./firmware/drivers/mss_pdma/mss_pdma.o
+                0x20001208       0x20 ./firmware/drivers/mss_pdma/mss_pdma.o
  .bss.g_transfer
-                0x20001388       0x18 ./firmware/drivers/mss_hpdma/mss_hpdma.o
+                0x20001228       0x18 ./firmware/drivers/mss_hpdma/mss_hpdma.o
  .bss.g_hpdma_end_desc
-                0x200013a0        0x4 ./firmware/drivers/mss_hpdma/mss_hpdma.o
+                0x20001240        0x4 ./firmware/drivers/mss_hpdma/mss_hpdma.o
  .bss.g_hpdma_current_desc
-                0x200013a4        0x4 ./firmware/drivers/mss_hpdma/mss_hpdma.o
+                0x20001244        0x4 ./firmware/drivers/mss_hpdma/mss_hpdma.o
  *(COMMON)
- COMMON         0x200013a8       0x28 ./inc/HM11/hm11.o
-                0x200013a8                _rx_buffer_
-                0x200013c8                g_uart_0
-                0x200013d0                . = ALIGN (0x10)
-                0x200013d0                __bss_end__ = .
-                0x200013d0                _end = .
-                0x200013d0                __end = _end
-                0x200013d0                _ebss = .
-                0x200013d0                PROVIDE (end, .)
+ COMMON         0x20001248       0x28 ./inc/HM11/hm11.o
+                0x20001248                _rx_buffer_
+                0x20001268                g_uart_0
+                0x20001270                . = ALIGN (0x10)
+                0x20001270                __bss_end__ = .
+                0x20001270                _end = .
+                0x20001270                __end = _end
+                0x20001270                _ebss = .
+                0x20001270                PROVIDE (end, .)
 
-.heap           0x200013d0     0xdc30
-                0x200013d0                __heap_start__ = .
-                0x200023d0                . = (. + MIN_SIZE_HEAP)
- *fill*         0x200013d0     0x1000 
+.heap           0x20001270     0xdd90
+                0x20001270                __heap_start__ = .
+                0x20002270                . = (. + MIN_SIZE_HEAP)
+ *fill*         0x20001270     0x1000 
                 0x2000f000                . = (. + (((ABSOLUTE (RAM_START_ADDRESS) + RAM_SIZE) - MAIN_STACK_SIZE) - .))
- *fill*         0x200023d0     0xcc30 
+ *fill*         0x20002270     0xcd90 
                 0x2000f000                _eheap = .
 
 .stack          0x2000f000     0x1000
@@ -1451,170 +1451,170 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x848
+.debug_aranges  0x00000000      0x850
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x18 ./src/main.o
  .debug_aranges
-                0x00000018       0x20 ./inc/HM11/hm11.o
+                0x00000018       0x30 ./inc/HM11/hm11.o
  .debug_aranges
-                0x00000038       0x28 ./inc/HM11/hm11_ut.o
+                0x00000048       0x20 ./inc/HM11/hm11_ut.o
  .debug_aranges
-                0x00000060       0x20 ./firmware/hal/CortexM3/GNU/hal.o
+                0x00000068       0x20 ./firmware/hal/CortexM3/GNU/hal.o
  .debug_aranges
-                0x00000080       0x20 ./firmware/hal/CortexM3/GNU/hw_reg_access.o
+                0x00000088       0x20 ./firmware/hal/CortexM3/GNU/hw_reg_access.o
  .debug_aranges
-                0x000000a0       0x48 ./firmware/hal/CortexM3/cortex_nvic.o
+                0x000000a8       0x48 ./firmware/hal/CortexM3/cortex_nvic.o
  .debug_aranges
-                0x000000e8       0x18 ./firmware/drivers_config/sys_config/sys_config.o
+                0x000000f0       0x18 ./firmware/drivers_config/sys_config/sys_config.o
  .debug_aranges
-                0x00000100       0x90 ./firmware/drivers/mss_sys_services/mss_comblk.o
+                0x00000108       0x90 ./firmware/drivers/mss_sys_services/mss_comblk.o
  .debug_aranges
-                0x00000190      0x1c8 ./firmware/drivers/mss_sys_services/mss_sys_services.o
+                0x00000198      0x1c8 ./firmware/drivers/mss_sys_services/mss_sys_services.o
  .debug_aranges
-                0x00000358       0xc0 ./firmware/drivers/mss_rtc/mss_rtc.o
+                0x00000360       0xc0 ./firmware/drivers/mss_rtc/mss_rtc.o
  .debug_aranges
-                0x00000418       0x88 ./firmware/drivers/mss_pdma/mss_pdma.o
+                0x00000420       0x88 ./firmware/drivers/mss_pdma/mss_pdma.o
  .debug_aranges
-                0x000004a0       0x80 ./firmware/drivers/mss_nvm/mss_nvm.o
+                0x000004a8       0x80 ./firmware/drivers/mss_nvm/mss_nvm.o
  .debug_aranges
-                0x00000520       0x80 ./firmware/drivers/mss_hpdma/mss_hpdma.o
+                0x00000528       0x80 ./firmware/drivers/mss_hpdma/mss_hpdma.o
  .debug_aranges
-                0x000005a0       0x48 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
+                0x000005a8       0x48 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
  .debug_aranges
-                0x000005e8      0x110 ./firmware/drivers/CoreI2C/core_i2c.o
+                0x000005f0      0x110 ./firmware/drivers/CoreI2C/core_i2c.o
  .debug_aranges
-                0x000006f8       0x38 ./firmware/drivers/CoreI2C/i2c_interrupt.o
+                0x00000700       0x38 ./firmware/drivers/CoreI2C/i2c_interrupt.o
  .debug_aranges
-                0x00000730       0xa8 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+                0x00000738       0xa8 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
  .debug_aranges
-                0x000007d8       0x20 ./firmware/CMSIS/startup_gcc/startup_m2sxxx.o
+                0x000007e0       0x20 ./firmware/CMSIS/startup_gcc/startup_m2sxxx.o
  .debug_aranges
-                0x000007f8       0x50 ./firmware/CMSIS/system_m2sxxx.o
+                0x00000800       0x50 ./firmware/CMSIS/system_m2sxxx.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0xa0eb
+.debug_info     0x00000000     0xa0fc
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000       0x21 ./src/main.o
- .debug_info    0x00000021      0x154 ./inc/HM11/hm11.o
- .debug_info    0x00000175      0x517 ./inc/HM11/hm11_ut.o
- .debug_info    0x0000068c       0x94 ./firmware/hal/CortexM3/GNU/hal.o
- .debug_info    0x00000720       0x9e ./firmware/hal/CortexM3/GNU/hw_reg_access.o
- .debug_info    0x000007be      0x18b ./firmware/hal/CortexM3/cortex_nvic.o
- .debug_info    0x00000949       0x96 ./firmware/drivers_config/sys_config/sys_config.o
- .debug_info    0x000009df      0xb0d ./firmware/drivers/mss_sys_services/mss_comblk.o
- .debug_info    0x000014ec     0x1e16 ./firmware/drivers/mss_sys_services/mss_sys_services.o
- .debug_info    0x00003302     0x1165 ./firmware/drivers/mss_rtc/mss_rtc.o
- .debug_info    0x00004467     0x10bd ./firmware/drivers/mss_pdma/mss_pdma.o
- .debug_info    0x00005524     0x1158 ./firmware/drivers/mss_nvm/mss_nvm.o
- .debug_info    0x0000667c     0x1169 ./firmware/drivers/mss_hpdma/mss_hpdma.o
- .debug_info    0x000077e5      0x353 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
- .debug_info    0x00007b38      0xc82 ./firmware/drivers/CoreI2C/core_i2c.o
- .debug_info    0x000087ba      0x75c ./firmware/drivers/CoreI2C/i2c_interrupt.o
- .debug_info    0x00008f16      0x692 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
- .debug_info    0x000095a8       0xa0 ./firmware/CMSIS/startup_gcc/startup_m2sxxx.o
- .debug_info    0x00009648      0xaa3 ./firmware/CMSIS/system_m2sxxx.o
+ .debug_info    0x00000021      0x529 ./inc/HM11/hm11.o
+ .debug_info    0x0000054a      0x153 ./inc/HM11/hm11_ut.o
+ .debug_info    0x0000069d       0x94 ./firmware/hal/CortexM3/GNU/hal.o
+ .debug_info    0x00000731       0x9e ./firmware/hal/CortexM3/GNU/hw_reg_access.o
+ .debug_info    0x000007cf      0x18b ./firmware/hal/CortexM3/cortex_nvic.o
+ .debug_info    0x0000095a       0x96 ./firmware/drivers_config/sys_config/sys_config.o
+ .debug_info    0x000009f0      0xb0d ./firmware/drivers/mss_sys_services/mss_comblk.o
+ .debug_info    0x000014fd     0x1e16 ./firmware/drivers/mss_sys_services/mss_sys_services.o
+ .debug_info    0x00003313     0x1165 ./firmware/drivers/mss_rtc/mss_rtc.o
+ .debug_info    0x00004478     0x10bd ./firmware/drivers/mss_pdma/mss_pdma.o
+ .debug_info    0x00005535     0x1158 ./firmware/drivers/mss_nvm/mss_nvm.o
+ .debug_info    0x0000668d     0x1169 ./firmware/drivers/mss_hpdma/mss_hpdma.o
+ .debug_info    0x000077f6      0x353 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
+ .debug_info    0x00007b49      0xc82 ./firmware/drivers/CoreI2C/core_i2c.o
+ .debug_info    0x000087cb      0x75c ./firmware/drivers/CoreI2C/i2c_interrupt.o
+ .debug_info    0x00008f27      0x692 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_info    0x000095b9       0xa0 ./firmware/CMSIS/startup_gcc/startup_m2sxxx.o
+ .debug_info    0x00009659      0xaa3 ./firmware/CMSIS/system_m2sxxx.o
 
-.debug_abbrev   0x00000000     0x1773
+.debug_abbrev   0x00000000     0x1789
  *(.debug_abbrev)
  .debug_abbrev  0x00000000       0x13 ./src/main.o
- .debug_abbrev  0x00000013       0xba ./inc/HM11/hm11.o
- .debug_abbrev  0x000000cd      0x14b ./inc/HM11/hm11_ut.o
- .debug_abbrev  0x00000218       0x14 ./firmware/hal/CortexM3/GNU/hal.o
- .debug_abbrev  0x0000022c       0x14 ./firmware/hal/CortexM3/GNU/hw_reg_access.o
- .debug_abbrev  0x00000240       0xa3 ./firmware/hal/CortexM3/cortex_nvic.o
- .debug_abbrev  0x000002e3       0x4e ./firmware/drivers_config/sys_config/sys_config.o
- .debug_abbrev  0x00000331      0x1d2 ./firmware/drivers/mss_sys_services/mss_comblk.o
- .debug_abbrev  0x00000503      0x251 ./firmware/drivers/mss_sys_services/mss_sys_services.o
- .debug_abbrev  0x00000754      0x268 ./firmware/drivers/mss_rtc/mss_rtc.o
- .debug_abbrev  0x000009bc      0x20e ./firmware/drivers/mss_pdma/mss_pdma.o
- .debug_abbrev  0x00000bca      0x1cb ./firmware/drivers/mss_nvm/mss_nvm.o
- .debug_abbrev  0x00000d95      0x246 ./firmware/drivers/mss_hpdma/mss_hpdma.o
- .debug_abbrev  0x00000fdb       0xfb ./firmware/drivers/CoreUARTapb/core_uart_apb.o
- .debug_abbrev  0x000010d6      0x1b9 ./firmware/drivers/CoreI2C/core_i2c.o
- .debug_abbrev  0x0000128f      0x183 ./firmware/drivers/CoreI2C/i2c_interrupt.o
- .debug_abbrev  0x00001412      0x1c4 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
- .debug_abbrev  0x000015d6       0x14 ./firmware/CMSIS/startup_gcc/startup_m2sxxx.o
- .debug_abbrev  0x000015ea      0x189 ./firmware/CMSIS/system_m2sxxx.o
+ .debug_abbrev  0x00000013      0x15f ./inc/HM11/hm11.o
+ .debug_abbrev  0x00000172       0xbc ./inc/HM11/hm11_ut.o
+ .debug_abbrev  0x0000022e       0x14 ./firmware/hal/CortexM3/GNU/hal.o
+ .debug_abbrev  0x00000242       0x14 ./firmware/hal/CortexM3/GNU/hw_reg_access.o
+ .debug_abbrev  0x00000256       0xa3 ./firmware/hal/CortexM3/cortex_nvic.o
+ .debug_abbrev  0x000002f9       0x4e ./firmware/drivers_config/sys_config/sys_config.o
+ .debug_abbrev  0x00000347      0x1d2 ./firmware/drivers/mss_sys_services/mss_comblk.o
+ .debug_abbrev  0x00000519      0x251 ./firmware/drivers/mss_sys_services/mss_sys_services.o
+ .debug_abbrev  0x0000076a      0x268 ./firmware/drivers/mss_rtc/mss_rtc.o
+ .debug_abbrev  0x000009d2      0x20e ./firmware/drivers/mss_pdma/mss_pdma.o
+ .debug_abbrev  0x00000be0      0x1cb ./firmware/drivers/mss_nvm/mss_nvm.o
+ .debug_abbrev  0x00000dab      0x246 ./firmware/drivers/mss_hpdma/mss_hpdma.o
+ .debug_abbrev  0x00000ff1       0xfb ./firmware/drivers/CoreUARTapb/core_uart_apb.o
+ .debug_abbrev  0x000010ec      0x1b9 ./firmware/drivers/CoreI2C/core_i2c.o
+ .debug_abbrev  0x000012a5      0x183 ./firmware/drivers/CoreI2C/i2c_interrupt.o
+ .debug_abbrev  0x00001428      0x1c4 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_abbrev  0x000015ec       0x14 ./firmware/CMSIS/startup_gcc/startup_m2sxxx.o
+ .debug_abbrev  0x00001600      0x189 ./firmware/CMSIS/system_m2sxxx.o
 
-.debug_line     0x00000000     0x5050
+.debug_line     0x00000000     0x5063
  *(.debug_line)
  .debug_line    0x00000000       0x2e ./src/main.o
- .debug_line    0x0000002e      0x385 ./inc/HM11/hm11.o
- .debug_line    0x000003b3      0x3a1 ./inc/HM11/hm11_ut.o
- .debug_line    0x00000754       0x56 ./firmware/hal/CortexM3/GNU/hal.o
- .debug_line    0x000007aa       0x94 ./firmware/hal/CortexM3/GNU/hw_reg_access.o
- .debug_line    0x0000083e      0x2c2 ./firmware/hal/CortexM3/cortex_nvic.o
- .debug_line    0x00000b00      0x2bc ./firmware/drivers_config/sys_config/sys_config.o
- .debug_line    0x00000dbc      0x54f ./firmware/drivers/mss_sys_services/mss_comblk.o
- .debug_line    0x0000130b      0xdc1 ./firmware/drivers/mss_sys_services/mss_sys_services.o
- .debug_line    0x000020cc      0x688 ./firmware/drivers/mss_rtc/mss_rtc.o
- .debug_line    0x00002754      0x457 ./firmware/drivers/mss_pdma/mss_pdma.o
- .debug_line    0x00002bab      0x69b ./firmware/drivers/mss_nvm/mss_nvm.o
- .debug_line    0x00003246      0x479 ./firmware/drivers/mss_hpdma/mss_hpdma.o
- .debug_line    0x000036bf      0x4f9 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
- .debug_line    0x00003bb8      0x762 ./firmware/drivers/CoreI2C/core_i2c.o
- .debug_line    0x0000431a      0x414 ./firmware/drivers/CoreI2C/i2c_interrupt.o
- .debug_line    0x0000472e      0x423 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
- .debug_line    0x00004b51      0x199 ./firmware/CMSIS/startup_gcc/startup_m2sxxx.o
- .debug_line    0x00004cea      0x366 ./firmware/CMSIS/system_m2sxxx.o
+ .debug_line    0x0000002e      0x3ae ./inc/HM11/hm11.o
+ .debug_line    0x000003dc      0x38b ./inc/HM11/hm11_ut.o
+ .debug_line    0x00000767       0x56 ./firmware/hal/CortexM3/GNU/hal.o
+ .debug_line    0x000007bd       0x94 ./firmware/hal/CortexM3/GNU/hw_reg_access.o
+ .debug_line    0x00000851      0x2c2 ./firmware/hal/CortexM3/cortex_nvic.o
+ .debug_line    0x00000b13      0x2bc ./firmware/drivers_config/sys_config/sys_config.o
+ .debug_line    0x00000dcf      0x54f ./firmware/drivers/mss_sys_services/mss_comblk.o
+ .debug_line    0x0000131e      0xdc1 ./firmware/drivers/mss_sys_services/mss_sys_services.o
+ .debug_line    0x000020df      0x688 ./firmware/drivers/mss_rtc/mss_rtc.o
+ .debug_line    0x00002767      0x457 ./firmware/drivers/mss_pdma/mss_pdma.o
+ .debug_line    0x00002bbe      0x69b ./firmware/drivers/mss_nvm/mss_nvm.o
+ .debug_line    0x00003259      0x479 ./firmware/drivers/mss_hpdma/mss_hpdma.o
+ .debug_line    0x000036d2      0x4f9 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
+ .debug_line    0x00003bcb      0x762 ./firmware/drivers/CoreI2C/core_i2c.o
+ .debug_line    0x0000432d      0x414 ./firmware/drivers/CoreI2C/i2c_interrupt.o
+ .debug_line    0x00004741      0x423 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_line    0x00004b64      0x199 ./firmware/CMSIS/startup_gcc/startup_m2sxxx.o
+ .debug_line    0x00004cfd      0x366 ./firmware/CMSIS/system_m2sxxx.o
 
-.debug_frame    0x00000000     0x1f9c
+.debug_frame    0x00000000     0x1fb8
  *(.debug_frame)
- .debug_frame   0x00000000       0x34 ./inc/HM11/hm11.o
- .debug_frame   0x00000034       0x58 ./inc/HM11/hm11_ut.o
- .debug_frame   0x0000008c       0xf8 ./firmware/hal/CortexM3/cortex_nvic.o
- .debug_frame   0x00000184      0x240 ./firmware/drivers/mss_sys_services/mss_comblk.o
- .debug_frame   0x000003c4      0x7e0 ./firmware/drivers/mss_sys_services/mss_sys_services.o
- .debug_frame   0x00000ba4      0x324 ./firmware/drivers/mss_rtc/mss_rtc.o
- .debug_frame   0x00000ec8      0x234 ./firmware/drivers/mss_pdma/mss_pdma.o
- .debug_frame   0x000010fc      0x208 ./firmware/drivers/mss_nvm/mss_nvm.o
- .debug_frame   0x00001304      0x210 ./firmware/drivers/mss_hpdma/mss_hpdma.o
- .debug_frame   0x00001514       0xf0 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
- .debug_frame   0x00001604      0x480 ./firmware/drivers/CoreI2C/core_i2c.o
- .debug_frame   0x00001a84       0xa8 ./firmware/drivers/CoreI2C/i2c_interrupt.o
- .debug_frame   0x00001b2c      0x2a8 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
- .debug_frame   0x00001dd4      0x10c ./firmware/CMSIS/system_m2sxxx.o
- .debug_frame   0x00001ee0       0x20 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
- .debug_frame   0x00001f00       0x28 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
- .debug_frame   0x00001f28       0x2c c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
- .debug_frame   0x00001f54       0x28 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy.o)
- .debug_frame   0x00001f7c       0x20 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
+ .debug_frame   0x00000000       0x78 ./inc/HM11/hm11.o
+ .debug_frame   0x00000078       0x30 ./inc/HM11/hm11_ut.o
+ .debug_frame   0x000000a8       0xf8 ./firmware/hal/CortexM3/cortex_nvic.o
+ .debug_frame   0x000001a0      0x240 ./firmware/drivers/mss_sys_services/mss_comblk.o
+ .debug_frame   0x000003e0      0x7e0 ./firmware/drivers/mss_sys_services/mss_sys_services.o
+ .debug_frame   0x00000bc0      0x324 ./firmware/drivers/mss_rtc/mss_rtc.o
+ .debug_frame   0x00000ee4      0x234 ./firmware/drivers/mss_pdma/mss_pdma.o
+ .debug_frame   0x00001118      0x208 ./firmware/drivers/mss_nvm/mss_nvm.o
+ .debug_frame   0x00001320      0x210 ./firmware/drivers/mss_hpdma/mss_hpdma.o
+ .debug_frame   0x00001530       0xf0 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
+ .debug_frame   0x00001620      0x480 ./firmware/drivers/CoreI2C/core_i2c.o
+ .debug_frame   0x00001aa0       0xa8 ./firmware/drivers/CoreI2C/i2c_interrupt.o
+ .debug_frame   0x00001b48      0x2a8 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_frame   0x00001df0      0x10c ./firmware/CMSIS/system_m2sxxx.o
+ .debug_frame   0x00001efc       0x20 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
+ .debug_frame   0x00001f1c       0x28 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
+ .debug_frame   0x00001f44       0x2c c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
+ .debug_frame   0x00001f70       0x28 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy.o)
+ .debug_frame   0x00001f98       0x20 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
 
-.debug_str      0x00000000    0x157c4
+.debug_str      0x00000000    0x157ce
  *(.debug_str)
  .debug_str     0x00000000     0x2470 ./src/main.o
- .debug_str     0x00002470     0x8404 ./inc/HM11/hm11.o
-                               0xaa74 (size before relaxing)
- .debug_str     0x0000a874      0x55f ./inc/HM11/hm11_ut.o
-                               0xafe1 (size before relaxing)
- .debug_str     0x0000add3      0x1c9 ./firmware/hal/CortexM3/cortex_nvic.o
+ .debug_str     0x00002470     0x8952 ./inc/HM11/hm11.o
+                               0xaff9 (size before relaxing)
+ .debug_str     0x0000adc2       0x1b ./inc/HM11/hm11_ut.o
+                               0xaa66 (size before relaxing)
+ .debug_str     0x0000addd      0x1c9 ./firmware/hal/CortexM3/cortex_nvic.o
                                0x3628 (size before relaxing)
- .debug_str     0x0000af9c      0x298 ./firmware/drivers_config/sys_config/sys_config.o
+ .debug_str     0x0000afa6      0x298 ./firmware/drivers_config/sys_config/sys_config.o
                                0x871d (size before relaxing)
- .debug_str     0x0000b234      0x501 ./firmware/drivers/mss_sys_services/mss_comblk.o
+ .debug_str     0x0000b23e      0x501 ./firmware/drivers/mss_sys_services/mss_comblk.o
                                0x94e5 (size before relaxing)
- .debug_str     0x0000b735     0x2baa ./firmware/drivers/mss_sys_services/mss_sys_services.o
+ .debug_str     0x0000b73f     0x2baa ./firmware/drivers/mss_sys_services/mss_sys_services.o
                                0xd707 (size before relaxing)
- .debug_str     0x0000e2df      0x83b ./firmware/drivers/mss_rtc/mss_rtc.o
+ .debug_str     0x0000e2e9      0x83b ./firmware/drivers/mss_rtc/mss_rtc.o
                                0xbeb1 (size before relaxing)
- .debug_str     0x0000eb1a     0x14a7 ./firmware/drivers/mss_pdma/mss_pdma.o
+ .debug_str     0x0000eb24     0x14a7 ./firmware/drivers/mss_pdma/mss_pdma.o
                                0xab64 (size before relaxing)
- .debug_str     0x0000ffc1      0xced ./firmware/drivers/mss_nvm/mss_nvm.o
+ .debug_str     0x0000ffcb      0xced ./firmware/drivers/mss_nvm/mss_nvm.o
                                0x9e55 (size before relaxing)
- .debug_str     0x00010cae      0x76b ./firmware/drivers/mss_hpdma/mss_hpdma.o
+ .debug_str     0x00010cb8      0x76b ./firmware/drivers/mss_hpdma/mss_hpdma.o
                                0x9dff (size before relaxing)
- .debug_str     0x00011419      0xe26 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
+ .debug_str     0x00011423      0xe26 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
                                0x44ef (size before relaxing)
- .debug_str     0x0001223f     0x10dd ./firmware/drivers/CoreI2C/core_i2c.o
+ .debug_str     0x00012249     0x10dd ./firmware/drivers/CoreI2C/core_i2c.o
                                0x6e62 (size before relaxing)
- .debug_str     0x0001331c       0x57 ./firmware/drivers/CoreI2C/i2c_interrupt.o
+ .debug_str     0x00013326       0x57 ./firmware/drivers/CoreI2C/i2c_interrupt.o
                                0x9a40 (size before relaxing)
- .debug_str     0x00013373     0x1ef6 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_str     0x0001337d     0x1ef6 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
                                0x6a37 (size before relaxing)
- .debug_str     0x00015269      0x55b ./firmware/CMSIS/system_m2sxxx.o
+ .debug_str     0x00015273      0x55b ./firmware/CMSIS/system_m2sxxx.o
                                0x93cc (size before relaxing)
 
 .debug_loc
@@ -1800,18 +1800,18 @@ OUTPUT(BT-Gyro-SW.elf elf32-littlearm)
  .comment       0x00000000       0x71 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
  .comment       0x00000000       0x71 ./firmware/CMSIS/system_m2sxxx.o
 
-.debug_ranges   0x00000000      0x6d8
- .debug_ranges  0x00000000       0x10 ./inc/HM11/hm11.o
- .debug_ranges  0x00000010       0x18 ./inc/HM11/hm11_ut.o
- .debug_ranges  0x00000028       0x38 ./firmware/hal/CortexM3/cortex_nvic.o
- .debug_ranges  0x00000060       0x80 ./firmware/drivers/mss_sys_services/mss_comblk.o
- .debug_ranges  0x000000e0      0x1b8 ./firmware/drivers/mss_sys_services/mss_sys_services.o
- .debug_ranges  0x00000298       0xb0 ./firmware/drivers/mss_rtc/mss_rtc.o
- .debug_ranges  0x00000348       0x78 ./firmware/drivers/mss_pdma/mss_pdma.o
- .debug_ranges  0x000003c0       0x70 ./firmware/drivers/mss_nvm/mss_nvm.o
- .debug_ranges  0x00000430       0x70 ./firmware/drivers/mss_hpdma/mss_hpdma.o
- .debug_ranges  0x000004a0       0x38 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
- .debug_ranges  0x000004d8      0x100 ./firmware/drivers/CoreI2C/core_i2c.o
- .debug_ranges  0x000005d8       0x28 ./firmware/drivers/CoreI2C/i2c_interrupt.o
- .debug_ranges  0x00000600       0x98 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
- .debug_ranges  0x00000698       0x40 ./firmware/CMSIS/system_m2sxxx.o
+.debug_ranges   0x00000000      0x6e0
+ .debug_ranges  0x00000000       0x20 ./inc/HM11/hm11.o
+ .debug_ranges  0x00000020       0x10 ./inc/HM11/hm11_ut.o
+ .debug_ranges  0x00000030       0x38 ./firmware/hal/CortexM3/cortex_nvic.o
+ .debug_ranges  0x00000068       0x80 ./firmware/drivers/mss_sys_services/mss_comblk.o
+ .debug_ranges  0x000000e8      0x1b8 ./firmware/drivers/mss_sys_services/mss_sys_services.o
+ .debug_ranges  0x000002a0       0xb0 ./firmware/drivers/mss_rtc/mss_rtc.o
+ .debug_ranges  0x00000350       0x78 ./firmware/drivers/mss_pdma/mss_pdma.o
+ .debug_ranges  0x000003c8       0x70 ./firmware/drivers/mss_nvm/mss_nvm.o
+ .debug_ranges  0x00000438       0x70 ./firmware/drivers/mss_hpdma/mss_hpdma.o
+ .debug_ranges  0x000004a8       0x38 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
+ .debug_ranges  0x000004e0      0x100 ./firmware/drivers/CoreI2C/core_i2c.o
+ .debug_ranges  0x000005e0       0x28 ./firmware/drivers/CoreI2C/i2c_interrupt.o
+ .debug_ranges  0x00000608       0x98 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_ranges  0x000006a0       0x40 ./firmware/CMSIS/system_m2sxxx.o

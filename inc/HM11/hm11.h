@@ -20,6 +20,7 @@ uint8_t _rx_buffer_[32];
 
 
 /* ----- Functions ----- */
+static void Hm11_Init(void);
 extern void FabricIrq1_IRQHandler(void);
 
 
