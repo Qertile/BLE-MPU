@@ -19,6 +19,7 @@ C_DEPS :=
 SUBDIRS := \
 src \
 inc/MPU6050 \
+inc/HM11 \
 firmware/hal/CortexM3 \
 firmware/hal/CortexM3/GNU \
 firmware/drivers_config/sys_config \

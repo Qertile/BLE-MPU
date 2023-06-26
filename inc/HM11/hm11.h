@@ -17,10 +17,12 @@ UART_instance_t g_uart_0;
 
 /* ----- Global variables ----- */
 uint8_t _rx_buffer_[32];
+int8_t _tx_buffer_[15];
 
 
 /* ----- Functions ----- */
-static void Hm11_Init(void);
+void Hm11_Packet(void);
+void Hm11_Init(void);
 extern void FabricIrq1_IRQHandler(void);
 
 

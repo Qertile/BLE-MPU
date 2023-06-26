@@ -8,6 +8,7 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ## Unreleased v0.3.1(2023.06.##) @master
 ### New
 - integrate MPU6050 and HM11
+- test with MPU6050 and HM11
 ### Changed
 ### Removed
 ### Deprecated
@@ -17,7 +18,12 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ### Reference
 
 -----------------------------------
-## BT-Gyro v0.3.0(2023.06.##) @master
+## BT-Gyro v0.3.1(2023.06.26) @master
+### New
+- integrate MPU6050 and HM11
+- test with MPU6050 and HM11
+-----------------------------------
+## BT-Gyro v0.3.0(2023.06.26) @master
 ### New
 - create Hm11_Init()
 
