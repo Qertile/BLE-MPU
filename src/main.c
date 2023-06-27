@@ -1,7 +1,8 @@
 #include "../inc/HM11/hm11.h"
 #include "../inc/MPU6050/mpu6050.h"
+void delay(void);
 
- int main(void){
+int main(void){
 
 	// Main Data structure //
 	// MPU6050_t MPU6050;
@@ -16,10 +17,19 @@
 	// Set power mode //
 	MPU6050_set_power_mode(MPU6050_POWER_ON, MPU6050_rate_dont_care);
 	while (1){
+//		delay();
  		MPU6050_Read_All(&Mpu6050_);
 		Hm11_Packet();
-		UART_send( &g_uart_0, _tx_buffer_, sizeof(_tx_buffer_) );
+		UART_fill_tx_fifo( &g_uart_0, _tx_buffer_, 15 );
 	}
 
 	return 0;
  }
+
+void delay(void){
+
+	for(int i=0; i<1000; i++){
+		for(int j=0; j<1000; j++);
+	}
+	return;
+}

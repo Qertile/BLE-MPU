@@ -8,6 +8,7 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ## Unreleased v0.4.1(2023.06.##) @master
 ### New
 ### Changed
+- maybe the priority of I2C irq  is higher than UART irq
 ### Removed
 ### Deprecated
 ### Fixed
