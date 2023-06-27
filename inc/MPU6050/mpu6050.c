@@ -789,6 +789,7 @@ void MPU6050_Read_All(MPU6050_t *DataStruct)
   DataStruct->Az = DataStruct->Accel_Z_RAW / (Mpu6050_Config_.accel_sensitivity);
 
   temp = (uint16_t) (Rx_Data[6] << 8 | Rx_Data[7]);
+  DataStruct->Temperature = temp;
   DataStruct->Temperature = (float) ((uint16_t) temp / (float) 340.0 + (float) 36.53);
 
 //   // Kalman angle solve

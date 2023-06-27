@@ -3,12 +3,14 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 
 -----------------------------------
 ## To-Do
+- [ ] switch temperature data to raw
+- [ ] packet sensitivity configuration
 
 -----------------------------------
 ## Unreleased v0.3.1(2023.06.##) @master
 ### New
-- integrate MPU6050 and HM11
-- test with MPU6050 and HM11
+1. create `Temp_RAW` in MPU6050_t
+2. store temperature raw value MPU6050_t
 ### Changed
 ### Removed
 ### Deprecated

@@ -221,7 +221,8 @@ typedef struct {
   double Gz;
 
   /* Temperature */
-  float Temperature;
+  int16_t Temp_RAW;
+  float   Temperature;
 
   /* Angle -> Pitch/Roll */
   double KalmanAngleX;
