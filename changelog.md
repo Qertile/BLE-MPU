@@ -7,10 +7,11 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 - [ ] packet sensitivity configuration
 
 -----------------------------------
-## Unreleased v0.3.1(2023.06.##) @master
+## Unreleased v0.3.2(2023.06.##) @master
 ### New
 1. create `Temp_RAW` in MPU6050_t
-2. store temperature raw value MPU6050_t
+2. store raw temperature value MPU6050_t
+3. update raw temperature data into packet
 ### Changed
 ### Removed
 ### Deprecated

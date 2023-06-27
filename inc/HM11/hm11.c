@@ -14,8 +14,8 @@ void Hm11_Packet(void){
     _tx_buffer_[9] = Mpu6050_.Gyro_Y_RAW;
     _tx_buffer_[10] = Mpu6050_.Gyro_Z_RAW >> 8;
     _tx_buffer_[11] = Mpu6050_.Gyro_Z_RAW;
-//    _tx_buffer_[12] = Mpu6050_.Temperature >> 8;
-//    _tx_buffer_[13] = Mpu6050_.Temperature;
+    _tx_buffer_[12] = Mpu6050_.Temp_RAW >> 8;
+    _tx_buffer_[13] = Mpu6050_.Temp_RAW;
 //    _tx_buffer_[14] = Mpu6050_Config_.gyro_sensitivity << 4 | Mpu6050_Config_.accel_sensitivity;
 }
 
