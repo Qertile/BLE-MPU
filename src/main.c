@@ -16,7 +16,7 @@
 	// Set power mode //
 	MPU6050_set_power_mode(MPU6050_POWER_ON, MPU6050_rate_dont_care);
 	while (1){
-		MPU6050_Read_All(&Mpu6050_);
+ 		MPU6050_Read_All(&Mpu6050_);
 		Hm11_Packet();
 		UART_send( &g_uart_0, _tx_buffer_, sizeof(_tx_buffer_) );
 	}

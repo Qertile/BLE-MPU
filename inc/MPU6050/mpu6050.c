@@ -672,6 +672,34 @@ uint8_t MPU6050_Init(uint8_t accel_config, uint8_t gyro_config, uint8_t sample_r
   return MPU6050_FAILURE;
 }
 
+
+/* -- MPU6050_Read_Sens() --
+ * Input: MPU6050_t *DataStruct
+ * Return: None
+ * Description:
+ *
+ * Reads the sensitivity setting of accelerometer 
+ * and gyroscope and encode into one byte
+ *
+ * */
+void MPU6050_Read_Sens(MPU6050_t *DataStruct)
+{
+  uint8_t Rx_Data[2];
+
+  Rx_Data[0] = GYRO_CONFIG_REG;
+  // Read 6 BYTES of data starting from ACCEL_XOUT_H register //
+  i2c_MPU6050_read(Rx_Data, 2);
+
+  DataStruct->Sensitivity = (uint8_t) (Rx_Data[0] >> 3 & 0x03);
+
+
+  Rx_Data[0] = GYRO_CONFIG_REG;
+  // Read 6 BYTES of data starting from ACCEL_XOUT_H register //
+  i2c_MPU6050_read(Rx_Data, 1);
+
+  DataStruct->Sensitivity = (uint8_t) (Rx_Data[1] << 1 & 0x30);
+}
+
 /* -- MPU6050_Read_Accel() --
  * Input: MPU6050_t *DataStruct
  * Return: None

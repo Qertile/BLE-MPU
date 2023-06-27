@@ -284,7 +284,7 @@ void MPU6050_set_power_mode(uint8_t power_mode, uint8_t freq);
 // void MPU6050_disable_irq(void);
 // uint8_t MPU6050_get_irq_status(void);
 // void MPU6050_peripheral_config(void);
-void MPU6050_Read_Config(MPU6050_t *DataStruct);
+void MPU6050_Read_Sens(MPU6050_t *DataStruct);
 void MPU6050_Read_Accel(MPU6050_t *DataStruct);
 void MPU6050_Read_Gyro(MPU6050_t *DataStruct);
 void MPU6050_Read_Temp(MPU6050_t *DataStruct);
