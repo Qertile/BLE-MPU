@@ -2,6 +2,7 @@
 #include "../MPU6050/mpu6050.h"
 
 void Hm11_Packet(void){
+    MPU6050_Read_Sens(&Mpu6050_);
     _tx_buffer_[0] = Mpu6050_.Accel_X_RAW >> 8;
     _tx_buffer_[1] = Mpu6050_.Accel_X_RAW;
     _tx_buffer_[2] = Mpu6050_.Accel_Y_RAW >> 8;
@@ -16,7 +17,7 @@ void Hm11_Packet(void){
     _tx_buffer_[11] = Mpu6050_.Gyro_Z_RAW;
     _tx_buffer_[12] = Mpu6050_.Temp_RAW >> 8;
     _tx_buffer_[13] = Mpu6050_.Temp_RAW;
-//    _tx_buffer_[14] = Mpu6050_Config_.gyro_sensitivity << 4 | Mpu6050_Config_.accel_sensitivity;
+    _tx_buffer_[14] = Mpu6050_.Sensitivity;
 }
 
 void Hm11_Init(void){

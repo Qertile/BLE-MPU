@@ -16,6 +16,8 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ### Deprecated
 ### Fixed
 ### Known Issues
+1. configuration always zero 
+2. program go to hardfault handler if using while (1) to do UART and I2C tranction
 ### Notes
 ### Reference
 

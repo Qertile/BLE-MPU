@@ -693,10 +693,6 @@ void MPU6050_Read_Sens(MPU6050_t *DataStruct)
   DataStruct->Sensitivity = (uint8_t) (Rx_Data[0] >> 3 & 0x03);
 
 
-  Rx_Data[0] = GYRO_CONFIG_REG;
-  // Read 6 BYTES of data starting from ACCEL_XOUT_H register //
-  i2c_MPU6050_read(Rx_Data, 1);
-
   DataStruct->Sensitivity = (uint8_t) (Rx_Data[1] << 1 & 0x30);
 }
 
