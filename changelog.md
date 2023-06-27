@@ -3,23 +3,28 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 
 -----------------------------------
 ## To-Do
-- [ ] packet sensitivity configuration
-- [ ] read sensitivity configuration
 
 -----------------------------------
-## Unreleased v0.3.3(2023.06.##) @master
+## Unreleased v0.4.1(2023.06.##) @master
 ### New
-- create `Sensitivity` in MPU6050_t
-- create function `MPU6050_Read_Sens()`
 ### Changed
 ### Removed
 ### Deprecated
 ### Fixed
 ### Known Issues
-1. configuration always zero 
-2. program go to hardfault handler if using while (1) to do UART and I2C tranction
 ### Notes
 ### Reference
+
+-----------------------------------
+## BT-Gyro v0.4.0(2023.06.27) @master
+### New
+- create `Sensitivity` in MPU6050_t
+- create function `MPU6050_Read_Sens()`
+### Fixed
+1. temp is always zero
+2. configuration always zero (zero is correct, need to modify packet definition)
+### Known Issues
+1. program go to hardfault handler if using while (1) to do UART and I2C tranction
 
 -----------------------------------
 ## BT-Gyro v0.3.2(2023.06.27) @master
