@@ -9,6 +9,8 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 -----------------------------------
 ## Unreleased v0.3.3(2023.06.##) @master
 ### New
+- create `Sensitivity` in MPU6050_t
+- create function `MPU6050_Read_Config()`
 ### Changed
 ### Removed
 ### Deprecated
