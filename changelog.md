@@ -7,6 +7,8 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 -----------------------------------
 ## Unreleased v0.4.2(2023.06.##) @master
 ### New
+- add header "AX", pad 2 bytes zero, and CRC8 at the end of packet (to make packet 20 bytes length)
+- create packet HEADER `HEADER_1` and `HEADER_2`
 ### Changed
 ### Removed
 ### Deprecated

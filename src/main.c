@@ -16,10 +16,10 @@ int main(void){
 	MPU6050_set_power_mode(MPU6050_POWER_ON, MPU6050_rate_dont_care);
 	
 	while (1){
- 		MPU6050_Read_All(&Mpu6050_);
-		for(int i=0; i<10; i++)	Hm11_Packet();
+
+		Hm11_Packet();
 	
-		UART_send( &g_uart_0, _tx_buffer_, 150 );
+		UART_send( &g_uart_0, _tx_buffer_, UART_TX_BUFF_SIZE );
 	}
 
 	return 0;

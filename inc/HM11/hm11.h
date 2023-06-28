@@ -15,13 +15,20 @@
 #define BAUD_VALUE_9600     650 // 650.04
 #define APRS_BUFF_SIZE    256
 
+#define UART_TX_BUFF_SIZE 150
+#define UART_RX_BUFF_SIZE 32
+
+/* ----- Packet Parameters ----- */
+#define HEADER_1    0x41
+#define HEADER_2    0x58
+
 /* ----- CoreUARTapb instance ----- */
 UART_instance_t g_uart_0;
 
 
 /* ----- Global variables ----- */
-uint8_t _rx_buffer_[32];
-int8_t _tx_buffer_[15];
+uint8_t *_rx_buffer_;
+int8_t *_tx_buffer_;
 
 /* ----- Functions ----- */
 void Hm11_Packet(void);
