@@ -5,18 +5,26 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ## To-Do
 
 -----------------------------------
-## Unreleased v0.4.1(2023.06.##) @master
+## Unreleased v0.4.2(2023.06.##) @master
 ### New
 ### Changed
-1. move SysTick_IRQn priority setting from `Hm11_Init()` to `MPU6050_Init()`
-2. move systick config from `I2C_Initialize()` to `MPU6050_Init()`
-3. maybe the priority of I2C irq is higher than UART irq
 ### Removed
 ### Deprecated
 ### Fixed
 ### Known Issues
 ### Notes
+- uart 115200 is fine, 230400 will lead to hardfault
 ### Reference
+
+-----------------------------------
+## BT-Gyro v0.4.1(2023.06.28) @master
+### Changed
+1. move SysTick_IRQn priority setting from `Hm11_Init()` to `MPU6050_Init()`
+2. move systick config from `I2C_Initialize()` to `MPU6050_Init()`
+3. maybe the priority of I2C irq is higher than UART irq
+4. change HM11 baudrate to 
+### Fixed
+1. program go to hardfault handler if using while (1) to do UART and I2C tranction
 
 -----------------------------------
 ## BT-Gyro v0.4.0(2023.06.27) @master

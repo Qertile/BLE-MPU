@@ -5,12 +5,10 @@ void Hm11_Init(void){
     /* ---------- UART Initialize ---------- */
     /* Initialize CoreUARTapb with its base address, baud value, and line configuration */
     UART_init( &g_uart_0, COREUARTAPB0_BASE_ADDR,
-    		BAUD_VALUE_9600, (DATA_8_BITS | NO_PARITY) );
+    		BAUD_VALUE_115200, (DATA_8_BITS | NO_PARITY) );
 	NVIC_EnableIRQ(FabricIrq1_IRQn);
-    
-    
 
-	calloc((uint8_t)_tx_buffer_, 15);
+	calloc((uint8_t)_tx_buffer_, 150);
 	calloc((uint8_t)_rx_buffer_, 32);
     return;
 }
