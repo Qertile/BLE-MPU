@@ -6,16 +6,17 @@
 #include <stdlib.h>
 #include "../../firmware/drivers/CoreUARTapb/core_uart_apb.h"
 #include "../../firmware/CMSIS/m2sxxx.h"
+#include "../CRC8/crc8.h"
 
 /* ----- UART Parameters ----- */
 #define COREUARTAPB0_BASE_ADDR   0x50001000
 #define BAUD_VALUE_115200    53 // 53.25
 #define BAUD_VALUE_230400	 26 // 26.12
 #define BAUD_VALUE_38400     162 // 161.76
-#define BAUD_VALUE_9600     650 // 650.04
-#define APRS_BUFF_SIZE    256
+#define BAUD_VALUE_9600      650 // 650.04
+#define APRS_BUFF_SIZE       256
 
-#define UART_TX_BUFF_SIZE 150
+#define UART_TX_BUFF_SIZE 100
 #define UART_RX_BUFF_SIZE 32
 
 /* ----- Packet Parameters ----- */

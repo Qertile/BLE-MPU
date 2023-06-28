@@ -3,21 +3,29 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 
 -----------------------------------
 ## To-Do
+- [ ] calibrate GY521 data
+- [ ] command receive handler
 
 -----------------------------------
 ## Unreleased v0.4.2(2023.06.##) @master
 ### New
-- add header "AX", pad 2 bytes zero, and CRC8 at the end of packet (to make packet 20 bytes length)
-- create packet HEADER `HEADER_1` and `HEADER_2`
 ### Changed
 ### Removed
 ### Deprecated
 ### Fixed
 ### Known Issues
 ### Notes
-- uart 115200 is fine, 230400 will lead to hardfault
 ### Reference
 
+-----------------------------------
+## BT-Gyro v0.5.0(2023.06.28) @master
+### New
+1. add header "AX", pad 2 bytes zero, and CRC8 at the end of packet (to make packet 20 bytes length)
+2. create packet HEADER `HEADER_1` and `HEADER_2`
+3. create crc8 functions
+### Notes
+- uart 115200 is fine, 230400 will lead to hardfault
+  
 -----------------------------------
 ## BT-Gyro v0.4.1(2023.06.28) @master
 ### Changed
