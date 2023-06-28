@@ -8,7 +8,6 @@ void Hm11_Init(void){
     		BAUD_VALUE_9600, (DATA_8_BITS | NO_PARITY) );
 	NVIC_EnableIRQ(FabricIrq1_IRQn);
     
-    NVIC_SetPriority(SysTick_IRQn, 0xFFu); /* Lowest possible priority */
     
 
 	calloc((uint8_t)_tx_buffer_, 15);

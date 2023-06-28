@@ -8,7 +8,9 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ## Unreleased v0.4.1(2023.06.##) @master
 ### New
 ### Changed
-- maybe the priority of I2C irq  is higher than UART irq
+1. move SysTick_IRQn priority setting from `Hm11_Init()` to `MPU6050_Init()`
+2. move systick config from `I2C_Initialize()` to `MPU6050_Init()`
+3. maybe the priority of I2C irq is higher than UART irq
 ### Removed
 ### Deprecated
 ### Fixed

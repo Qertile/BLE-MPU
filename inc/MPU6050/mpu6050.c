@@ -604,6 +604,8 @@ void MPU6050_set_power_mode(uint8_t power_mode, uint8_t freq)
 uint8_t MPU6050_Init(uint8_t accel_config, uint8_t gyro_config, uint8_t sample_rate)
 {
   /* ----- I2C initialize ----- */
+  SysTick_Config(MSS_SYS_M3_CLK_FREQ / 100);
+  NVIC_SetPriority(SysTick_IRQn, 0xFFu); /* Lowest possible priority */
   I2C_Initalize();
 
   /* ----- MPU6050 initialize ----- */
@@ -879,7 +881,6 @@ double Kalman_getAngle(Kalman_t *Kalman, double newAngle, double newRate, double
 
 static void I2C_Initalize(void){
   /* ----- I2C initialize ----- */
-  SysTick_Config(MSS_SYS_M3_CLK_FREQ / 100);
   I2C_init( &g_core_i2c0, COREI2C_BASE_ADDR, COREI2C_SER_ADDR, I2C_PCLK_DIV_256);
   I2C_enable_irq(&g_core_i2c0);
   return;
