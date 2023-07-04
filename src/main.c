@@ -17,7 +17,6 @@ int main(void){
 	
 	while (1){
 
-		Hm11_Packet();
 	}
 
 	return 0;

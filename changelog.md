@@ -12,6 +12,8 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ## Unreleased v0.6.2(2023.07.##) @master
 ### New
 ### Changed
+- move `Hm11_Packet()` into `SysTick_Handler()`
+- set count in `SysTick_Handler()` to 5000 let UART transmit every 10 ms
 ### Removed
 ### Deprecated
 ### Fixed
