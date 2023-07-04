@@ -10,36 +10,41 @@ void Hm11_Init(void){
 
 	_tx_buffer_ = (uint8_t*)calloc(0, UART_TX_BUFF_SIZE);
 	_rx_buffer_ = (uint8_t*)calloc(0, UART_RX_BUFF_SIZE);
+
     return;
 }
 
 void Hm11_Packet(void){
-    uint8_t crc8 = 0;
-    for (uint8_t i=0; i<5; i++){
-    	MPU6050_Read_All(&Mpu6050_);
-        MPU6050_Read_Sens(&Mpu6050_);
-        _tx_buffer_[20*i]    = HEADER_1;
-        _tx_buffer_[20*i+1]  = HEADER_2;
-        _tx_buffer_[20*i+2]  = Mpu6050_.Accel_X_RAW >> 8;
-        _tx_buffer_[20*i+3]  = Mpu6050_.Accel_X_RAW;
-        _tx_buffer_[20*i+4]  = Mpu6050_.Accel_Y_RAW >> 8;
-        _tx_buffer_[20*i+5]  = Mpu6050_.Accel_Y_RAW;
-        _tx_buffer_[20*i+6]  = Mpu6050_.Accel_Z_RAW >> 8;
-        _tx_buffer_[20*i+7]  = Mpu6050_.Accel_Z_RAW;
-        _tx_buffer_[20*i+8]  = Mpu6050_.Gyro_X_RAW >> 8;
-        _tx_buffer_[20*i+9]  = Mpu6050_.Gyro_X_RAW;
-        _tx_buffer_[20*i+10] = Mpu6050_.Gyro_Y_RAW >> 8;
-        _tx_buffer_[20*i+11] = Mpu6050_.Gyro_Y_RAW;
-        _tx_buffer_[20*i+12] = Mpu6050_.Gyro_Z_RAW >> 8;
-        _tx_buffer_[20*i+13] = Mpu6050_.Gyro_Z_RAW;
-        _tx_buffer_[20*i+14] = Mpu6050_.Temp_RAW >> 8;
-        _tx_buffer_[20*i+15] = Mpu6050_.Temp_RAW;
-        _tx_buffer_[20*i+16] = Mpu6050_.Sensitivity;
-        _tx_buffer_[20*i+17] = 0x00;
-        _tx_buffer_[20*i+18] = 0x00;
-        _tx_buffer_[20*i+19] = Crc8(_tx_buffer_+(20*i), 19);;
-    }
+    // uint8_t crc8 = 0;
+    // for (uint8_t i=0; i<5; i++){
+    // 	MPU6050_Read_All(&Mpu6050_);
+    //     MPU6050_Read_Sens(&Mpu6050_);
+    //     _tx_buffer_[20*i]    = HEADER_1;
+    //     _tx_buffer_[20*i+1]  = HEADER_2;
+    //     _tx_buffer_[20*i+2]  = Mpu6050_.Accel_X_RAW >> 8;
+    //     _tx_buffer_[20*i+3]  = Mpu6050_.Accel_X_RAW;
+    //     _tx_buffer_[20*i+4]  = Mpu6050_.Accel_Y_RAW >> 8;
+    //     _tx_buffer_[20*i+5]  = Mpu6050_.Accel_Y_RAW;
+    //     _tx_buffer_[20*i+6]  = Mpu6050_.Accel_Z_RAW >> 8;
+    //     _tx_buffer_[20*i+7]  = Mpu6050_.Accel_Z_RAW;
+    //     _tx_buffer_[20*i+8]  = Mpu6050_.Gyro_X_RAW >> 8;
+    //     _tx_buffer_[20*i+9]  = Mpu6050_.Gyro_X_RAW;
+    //     _tx_buffer_[20*i+10] = Mpu6050_.Gyro_Y_RAW >> 8;
+    //     _tx_buffer_[20*i+11] = Mpu6050_.Gyro_Y_RAW;
+    //     _tx_buffer_[20*i+12] = Mpu6050_.Gyro_Z_RAW >> 8;
+    //     _tx_buffer_[20*i+13] = Mpu6050_.Gyro_Z_RAW;
+    //     _tx_buffer_[20*i+14] = Mpu6050_.Temp_RAW >> 8;
+    //     _tx_buffer_[20*i+15] = Mpu6050_.Temp_RAW;
+    //     _tx_buffer_[20*i+16] = Mpu6050_.Sensitivity;
+    //     _tx_buffer_[20*i+17] = 0x00;
+    //     _tx_buffer_[20*i+18] = 0x00;
+    //     _tx_buffer_[20*i+19] = Crc8(_tx_buffer_+(20*i), 19);;
+    // }
 
+
+	for(uint8_t i=0; i<19; i++) _tx_buffer_[i] = 'A'+i;
+	_tx_buffer_[19] = 0x0A;
+//	for(int i=0; i<100; i++){for(int j=0; j<100; j++){;}}
 }
 
 void FabricIrq1_IRQHandler(void){

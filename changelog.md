@@ -4,10 +4,11 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 -----------------------------------
 ## To-Do
 - [ ] calibrate GY521 data
+- [ ] add time in packet
 - [ ] command receive handler
 
 -----------------------------------
-## Unreleased v0.4.2(2023.06.##) @master
+## Unreleased v0.5.2(2023.07.##) @master
 ### New
 ### Changed
 ### Removed
@@ -16,6 +17,14 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ### Known Issues
 ### Notes
 ### Reference
+
+-----------------------------------
+## BT-Gyro  v0.5.1(2023.07.04) @master
+### Changed
+- test the relationship between packet size and the correctness of received data
+### Notes
+- If BLE packet is not 10 or 20 bytes, data will be corrupted
+- In BLE 4.0 and 4.1, max ATT payload size is 20 bytes
 
 -----------------------------------
 ## BT-Gyro v0.5.0(2023.06.28) @master

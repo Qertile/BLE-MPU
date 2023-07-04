@@ -16,7 +16,7 @@
 #define BAUD_VALUE_9600      650 // 650.04
 #define APRS_BUFF_SIZE       256
 
-#define UART_TX_BUFF_SIZE 100
+#define UART_TX_BUFF_SIZE 20
 #define UART_RX_BUFF_SIZE 32
 
 /* ----- Packet Parameters ----- */
