@@ -1,7 +1,7 @@
 #include "hm11.h"
 #include "../MPU6050/mpu6050.h"
 
-	uint32_t j;
+	// uint32_t j;
 void Hm11_Init(void){
     /* ---------- UART Initialize ---------- */
     /* Initialize CoreUARTapb with its base address, baud value, and line configuration */
@@ -61,11 +61,15 @@ void HardFault_Handler(void){
 }
 
 void SysTick_Handler(void) {
-  static uint16_t count = 0;
-  I2C_system_tick(&g_core_i2c0, 1);
-  if (count == 1000){
-    UART_send( &g_uart_0, _tx_buffer_, 20 );
-  }
-  count++;
+    static uint16_t count = 0;
+    I2C_system_tick(&g_core_i2c0, 1);
+    if(_tx_buffer_ != ( int8_t* ) 0){
+        if (count == 10){
+            // UART tx every 1000 ticks (1ms)
+            UART_send( &g_uart_0, _tx_buffer_, 20 );
+            count = 0;
+        }
+    }
+    count++;
 }
 
