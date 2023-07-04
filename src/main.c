@@ -19,7 +19,7 @@ int main(void){
 
 		Hm11_Packet();
 	
-		UART_send( &g_uart_0, _tx_buffer_, UART_TX_BUFF_SIZE );
+		UART_send( &g_uart_0, _tx_buffer_, 20 );
 	}
 
 	return 0;

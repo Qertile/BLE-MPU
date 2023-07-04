@@ -1,6 +1,7 @@
 #include "hm11.h"
 #include "../MPU6050/mpu6050.h"
 
+	uint32_t j;
 void Hm11_Init(void){
     /* ---------- UART Initialize ---------- */
     /* Initialize CoreUARTapb with its base address, baud value, and line configuration */
@@ -10,13 +11,12 @@ void Hm11_Init(void){
 
 	_tx_buffer_ = (uint8_t*)calloc(0, UART_TX_BUFF_SIZE);
 	_rx_buffer_ = (uint8_t*)calloc(0, UART_RX_BUFF_SIZE);
-
     return;
 }
 
 void Hm11_Packet(void){
     // uint8_t crc8 = 0;
-    // for (uint8_t i=0; i<5; i++){
+//     for (uint8_t i=0; i<5; i++){
     // 	MPU6050_Read_All(&Mpu6050_);
     //     MPU6050_Read_Sens(&Mpu6050_);
     //     _tx_buffer_[20*i]    = HEADER_1;
@@ -42,9 +42,12 @@ void Hm11_Packet(void){
     // }
 
 
-	for(uint8_t i=0; i<19; i++) _tx_buffer_[i] = 'A'+i;
-	_tx_buffer_[19] = 0x0A;
-//	for(int i=0; i<100; i++){for(int j=0; j<100; j++){;}}
+	for(uint8_t i=0; i<20; i++) {
+		_tx_buffer_[i] = j;
+		j++;
+	}
+//	_tx_buffer_[19] = 0x0A;
+	for(int i=0; i<200; i++){for(int j=0; j<200; j++){;}}
 }
 
 void FabricIrq1_IRQHandler(void){
