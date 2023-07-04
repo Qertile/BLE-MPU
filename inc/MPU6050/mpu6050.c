@@ -604,7 +604,7 @@ void MPU6050_set_power_mode(uint8_t power_mode, uint8_t freq)
 uint8_t MPU6050_Init(uint8_t accel_config, uint8_t gyro_config, uint8_t sample_rate)
 {
   /* ----- I2C initialize ----- */
-  SysTick_Config(MSS_SYS_M3_CLK_FREQ / 1000);
+  SysTick_Config(MSS_SYS_M3_CLK_FREQ / 1000000); // set 1us systick
   NVIC_SetPriority(SysTick_IRQn, 0xFFu); /* Lowest possible priority */
   I2C_Initalize();
 
@@ -888,8 +888,4 @@ static void I2C_Initalize(void){
 
 void FabricIrq0_IRQHandler(void){
     I2C_isr(&g_core_i2c0);
-}
-
-void SysTick_Handler(void) {
-    I2C_system_tick(&g_core_i2c0, 1);
 }

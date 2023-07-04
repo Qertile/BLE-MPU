@@ -13,6 +13,9 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ### New
 ### Changed
 1. modify timeout of `I2C_system_tick()` to 1 ms
+2. modify `SysTick_Config()` to 1 us tick
+3. move `SysTick_Handler()` from mpu6050.c to hm11.c
+4. move `UART_send()` into `SysTick_Handler()`
 ### Removed
 ### Deprecated
 ### Fixed

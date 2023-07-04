@@ -60,3 +60,12 @@ void HardFault_Handler(void){
 
 }
 
+void SysTick_Handler(void) {
+  static uint16_t count = 0;
+  I2C_system_tick(&g_core_i2c0, 1);
+  if (count == 1000){
+    UART_send( &g_uart_0, _tx_buffer_, 20 );
+  }
+  count++;
+}
+
