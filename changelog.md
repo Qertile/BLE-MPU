@@ -9,19 +9,26 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 - [ ] command receive handler
 
 -----------------------------------
-## Unreleased v0.6.1(2023.07.##) @master
+## Unreleased v0.6.2(2023.07.##) @master
 ### New
 ### Changed
-1. modify timeout of `I2C_system_tick()` to 1 ms
-2. modify `SysTick_Config()` to 1 us tick
-3. move `SysTick_Handler()` from mpu6050.c to hm11.c
-4. move `UART_send()` into `SysTick_Handler()`
 ### Removed
 ### Deprecated
 ### Fixed
 ### Known Issues
 ### Notes
 ### Reference
+
+-----------------------------------
+## BT-Gyro v0.6.1(2023.07.04) @master
+### New
+1. config systick as a 2 us tick
+2. control UART tx interval by `count` in `SysTick_Handler()`
+### Changed
+1. modify timeout of `I2C_system_tick()` to 1 ms
+2. modify `SysTick_Config()` to 1 us tick
+3. move `SysTick_Handler()` from mpu6050.c to hm11.c
+4. move `UART_send()` into `SysTick_Handler()`
 
 -----------------------------------
 ## BT-Gyro v0.6.0(2023.07.04) @master

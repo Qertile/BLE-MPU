@@ -603,9 +603,15 @@ void MPU6050_set_power_mode(uint8_t power_mode, uint8_t freq)
  * */
 uint8_t MPU6050_Init(uint8_t accel_config, uint8_t gyro_config, uint8_t sample_rate)
 {
-  /* ----- I2C initialize ----- */
-  SysTick_Config(MSS_SYS_M3_CLK_FREQ / 1000); // set 1ms systick
+  
+  /* ----- SysTick initialize ----- */
   NVIC_SetPriority(SysTick_IRQn, 0xFFu); /* Lowest possible priority */
+  
+  /* set 2 us systick (minimum time interval of systick)
+  if less then 2 us, program will hang in systick handler */
+  SysTick_Config(MSS_SYS_M3_CLK_FREQ / 500000); 
+  
+  /* ----- I2C initialize ----- */
   I2C_Initalize();
 
   /* ----- MPU6050 initialize ----- */
