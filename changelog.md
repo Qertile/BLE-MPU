@@ -3,23 +3,38 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 
 -----------------------------------
 ## To-Do
-- [ ] using other way to delay
+- [x] using other way to delay
 - [ ] calibrate GY521 data
 - [ ] add time in packet
 - [ ] command receive handler
 
 -----------------------------------
-## Unreleased v0.6.2(2023.07.##) @master
+## Unreleased v0.7.#(2023.07.##) @master
 ### New
 ### Changed
-- move `Hm11_Packet()` into `SysTick_Handler()`
-- set count in `SysTick_Handler()` to 5000 let UART transmit every 10 ms
 ### Removed
 ### Deprecated
 ### Fixed
 ### Known Issues
 ### Notes
 ### Reference
+
+-----------------------------------
+## BT-Gyro v0.7.0(2023.07.05) @master
+### Changed
+- set systick to 1 ms to match the minimum value of I2C_system_tick()
+### Fixed
+- I2C is alive but data is always 0 (Issue #7)
+ 
+
+-----------------------------------
+## BT-Gyro v0.6.2(2023.07.04) @master
+### Changed
+1. move `Hm11_Packet()` into `SysTick_Handler()`
+2. set count in `SysTick_Handler()` to 5000 let UART transmit every 10 ms
+### Known Issues
+1. I2C is alive but data is always 0 (Issue #7)
+
 
 -----------------------------------
 ## BT-Gyro v0.6.1(2023.07.04) @master

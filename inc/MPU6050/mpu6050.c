@@ -607,9 +607,12 @@ uint8_t MPU6050_Init(uint8_t accel_config, uint8_t gyro_config, uint8_t sample_r
   /* ----- SysTick initialize ----- */
   NVIC_SetPriority(SysTick_IRQn, 0xFFu); /* Lowest possible priority */
   
-  /* set 2 us systick (minimum time interval of systick)
-  if less then 2 us, program will hang in systick handler */
-  SysTick_Config(MSS_SYS_M3_CLK_FREQ / 500000); 
+  /* set 2 us systick  (minimum time interval of systick)
+  if less then 2 us, program will hang in systick handler
+  
+  but here we set 1 ms, since minimum value of I2C timeout is 1 ms
+   */
+  SysTick_Config(MSS_SYS_M3_CLK_FREQ / 1000); 
   
   /* ----- I2C initialize ----- */
   I2C_Initalize();
