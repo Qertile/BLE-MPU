@@ -9,9 +9,10 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 -----------------------------------
 ## Unreleased v1.0.2 (2023.07.##) @master
 ### New
-1. create enum `HM11_Resolution``
+1. create `HM11_t`
 ### Changed
-1. rename `Sensitivity` in `MPU6050_t` to `Resolution`
+1. change `UART_RX_BUFF_SIZE` to 8
+1. change `UART_TX_BUFF_SIZE` to 20
 ### Removed
 ### Deprecated
 ### Fixed

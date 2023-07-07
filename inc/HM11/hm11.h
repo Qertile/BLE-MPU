@@ -16,8 +16,8 @@
 #define BAUD_VALUE_9600      650 // 650.04
 #define APRS_BUFF_SIZE       256
 
-#define UART_TX_BUFF_SIZE 100
-#define UART_RX_BUFF_SIZE 32
+#define UART_TX_BUFF_SIZE 20
+#define UART_RX_BUFF_SIZE 8
 
 /* ----- Packet Parameters ----- */
 #define HEADER_1    0x41
@@ -39,6 +39,13 @@ typedef enum{
   HM11_10Hz,            // BLE packet transmission rate 10Hz                  //
   HM11_1Hz,             // BLE packet transmission rate 1Hz
 }HM11_Resolution;
+
+
+typedef struct {
+  /* HM11 Tx Frequency, set by host command*/
+  uint8_t Frequency;
+} HM11_t
+HM11_t Hm11_;
 
 /* ----- Functions ----- */
 void Hm11_Packet(void);

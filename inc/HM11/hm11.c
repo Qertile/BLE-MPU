@@ -11,6 +11,8 @@ void Hm11_Init(void){
 
 	_tx_buffer_ = (uint8_t*)calloc(0, UART_TX_BUFF_SIZE);
 	_rx_buffer_ = (uint8_t*)calloc(0, UART_RX_BUFF_SIZE);
+
+    Hm11_.Frequency = 0x00;
     return;
 }
 
@@ -18,7 +20,7 @@ void Hm11_Packet(void){
     uint8_t crc8 = 0;
     MPU6050_Read_All(&Mpu6050_);
     MPU6050_Read_Sens(&Mpu6050_);
-
+    
     _tx_buffer_[0]  = HEADER_1;
     _tx_buffer_[1]  = HEADER_2;
     _tx_buffer_[2]  = Mpu6050_.Accel_X_RAW >> 8;
@@ -39,7 +41,7 @@ void Hm11_Packet(void){
     _tx_buffer_[17] = Mpu6050_.Num_packet >> 8;
     _tx_buffer_[18] = Mpu6050_.Num_packet;
 
-    _tx_buffer_[16] = Mpu6050_.Resolution;
+    _tx_buffer_[16] = _tx_buffer_[16] | (Hm11_.Frequency<<6) ;
 
     _tx_buffer_[19] = Crc8(_tx_buffer_, 19);
 
@@ -63,7 +65,7 @@ void SysTick_Handler(void) {
         if (count == 10){
             // UART tx every 10 ticks (10ms)
     		Hm11_Packet();
-            UART_send( &g_uart_0, _tx_buffer_, 20 );
+            UART_send( &g_uart_0, _tx_buffer_, UART_TX_BUFF_SIZE );
             Mpu6050_.Num_packet++;
             count = 0;
         }

@@ -703,6 +703,31 @@ void MPU6050_Read_Sens(MPU6050_t *DataStruct)
 
   DataStruct->Sensitivity = (uint8_t) (Rx_Data[0] >> 3 & 0x03);
   DataStruct->Sensitivity = (uint8_t) (Rx_Data[1] << 1 & 0x30);
+
+
+  switch (Mpu6050_Config_) {
+    case MPU6050_Gyroscope_250_deg:
+      reg_value = GYRO_SCALE_250_DEG;
+      Mpu6050_Config_.gyro_sensitivity = GYRO_SENS_250_DEG;
+      break;
+    case MPU6050_Gyroscope_500_deg:
+      reg_value = GYRO_SCALE_500_DEG;
+      Mpu6050_Config_.gyro_sensitivity = GYRO_SENS_500_DEG;
+      break;
+    case MPU6050_Gyroscope_1000_deg:
+      reg_value = GYRO_SCALE_1K_DEG;
+      Mpu6050_Config_.gyro_sensitivity = GYRO_SENS_1K_DEG;
+      break;
+    case MPU6050_Gyroscope_2000_deg:
+      reg_value = GYRO_SCALE_2K_DEG;
+      Mpu6050_Config_.gyro_sensitivity = GYRO_SENS_2K_DEG;
+      break;
+    default:
+      reg_value = GYRO_SCALE_250_DEG;
+      Mpu6050_Config_.gyro_sensitivity = GYRO_SENS_250_DEG;
+      break;
+  }
+
 }
 
 /* -- MPU6050_Read_Accel() --
