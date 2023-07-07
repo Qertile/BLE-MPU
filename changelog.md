@@ -7,9 +7,10 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 - [ ] command receive handler
 
 -----------------------------------
-## Unreleased v1.#.# (2023.07.##) @master
+## Unreleased v1.0.2 (2023.07.##) @master
 ### New
 ### Changed
+1. rename `Sensitivity` in `MPU6050_t` to `Resolution`
 ### Removed
 ### Deprecated
 ### Fixed

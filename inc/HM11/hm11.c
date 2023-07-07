@@ -34,21 +34,12 @@ void Hm11_Packet(void){
     _tx_buffer_[13] = Mpu6050_.Gyro_Z_RAW;
     _tx_buffer_[14] = Mpu6050_.Temp_RAW >> 8;
     _tx_buffer_[15] = Mpu6050_.Temp_RAW;
-    _tx_buffer_[16] = Mpu6050_.Sensitivity;
+    _tx_buffer_[16] = Mpu6050_.Resolution;
     _tx_buffer_[17] = Mpu6050_.Num_packet >> 8;
     _tx_buffer_[18] = Mpu6050_.Num_packet;
-    _tx_buffer_[19] = Crc8(_tx_buffer_, 19);;
+    _tx_buffer_[19] = Crc8(_tx_buffer_, 19);
 
 
-
-	// for(uint8_t i=0; i<20; i++) {
-	// 	_tx_buffer_[i] = j;
-	// 	j++;
-	// }
-//	_tx_buffer_[19] = 0x0A;
-
-    /* minimum delay before UART transmission */
-//	for(int i=0; i<250; i++){for(int j=0; j<250; j++){;}}
 }
 
 void FabricIrq1_IRQHandler(void){
