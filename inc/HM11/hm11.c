@@ -18,7 +18,7 @@ void Hm11_Packet(void){
     uint8_t crc8 = 0;
     MPU6050_Read_All(&Mpu6050_);
     MPU6050_Read_Sens(&Mpu6050_);
-    
+
     _tx_buffer_[0]  = HEADER_1;
     _tx_buffer_[1]  = HEADER_2;
     _tx_buffer_[2]  = Mpu6050_.Accel_X_RAW >> 8;
@@ -35,7 +35,7 @@ void Hm11_Packet(void){
     _tx_buffer_[13] = Mpu6050_.Gyro_Z_RAW;
     _tx_buffer_[14] = Mpu6050_.Temp_RAW >> 8;
     _tx_buffer_[15] = Mpu6050_.Temp_RAW;
-    _tx_buffer_[16] = Mpu6050_.Resolution;
+    _tx_buffer_[16] = Mpu6050_.Sensitivity;
     _tx_buffer_[17] = Mpu6050_.Num_packet >> 8;
     _tx_buffer_[18] = Mpu6050_.Num_packet;
 

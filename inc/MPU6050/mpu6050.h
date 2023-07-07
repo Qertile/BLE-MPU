@@ -225,7 +225,7 @@ typedef struct {
   // float   Temperature;
   
   /* Configuration */
-  uint8_t Resolution;
+  uint8_t Sensitivity;
 
   /* Number of packet */
   uint16_t Num_packet;
