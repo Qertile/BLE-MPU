@@ -11,7 +11,9 @@ void Hm11_Init(void){
 
 	_tx_buffer_ = (uint8_t*)calloc(0, UART_TX_BUFF_SIZE);
 	_rx_buffer_ = (uint8_t*)calloc(0, UART_RX_BUFF_SIZE);
+	memset(&Hm11_, 0, sizeof(HM11_t));
 
+    Hm11_.Onoff = 0x01;
     Hm11_.Frequency = 0x00;
     return;
 }
@@ -49,25 +51,27 @@ void Hm11_Packet(void){
 }
 
 void FabricIrq1_IRQHandler(void){
+//	memset(_rx_buffer_, 0, UART_RX_BUFF_SIZE);
     volatile uint8_t rx_size = 0;
     rx_size = UART_get_rx(&g_uart_0, _rx_buffer_, UART_RX_BUFF_SIZE);
 
-    if (_rx_buffer_[0] == 0x41 && _rx_buffer_[1] == 0x58){
-        switch (_rx_buffer_[2]){
-        case HM11_RESET:
-            break;
-        case HM11_TX_ON:
-            Hm11_.Onoff = HM11_TX_ON;
-            break;
-        case HM11_TX_OFF:
-            Hm11_.Onoff = HM11_TX_OFF;
-            break;
-        case HM11_SET_TX_FREQ:
-            Hm11_.Frequency = _rx_buffer_[3];
-            break;
-        
-        default:
-            break;
+    if (rx_size !=0){
+        if (_rx_buffer_[0] == 0x41 && _rx_buffer_[1] == 0x58){
+            switch (_rx_buffer_[2]){
+            case HM11_RESET:
+                break;
+            case HM11_TX_ON:
+                Hm11_.Onoff = HM11_TX_ON;
+                break;
+            case HM11_TX_OFF:
+                Hm11_.Onoff = HM11_TX_OFF;
+                break;
+            case HM11_SET_TX_FREQ:
+                Hm11_.Frequency = _rx_buffer_[3];
+                break;
+            default:
+                break;
+            }
         }
     }
 	return;
@@ -77,10 +81,13 @@ void HardFault_Handler(void){
 }
 
 void SysTick_Handler(void) {
-    static uint32_t count = 0;
-    volatile tx_rate = 0;   // number of ticks to transmit packet, 1 tick is 1 ms
+    static   uint32_t count = 0;
+    static uint16_t tx_rate = 0;   // number of ticks to transmit packet, 1 tick is 1 ms
+    static uint16_t last_tx_rate = 0; // to detect the change of tx_rate
 
     I2C_system_tick(&g_core_i2c0, 1);
+
+    last_tx_rate = tx_rate;
 
     switch(Hm11_.Frequency){
         case HM11_TX_RATE_100:
@@ -88,13 +95,15 @@ void SysTick_Handler(void) {
             break;
         case HM11_TX_RATE_10:
             tx_rate = 100;
+            break;
         case HM11_TX_RATE_1:
             tx_rate = 1000;
             break;
         default:
             tx_rate = 10;
-            break
+            break;
     }
+    if(tx_rate != last_tx_rate) count = 0; // tx rate is changed, reset counter
 
     if(_tx_buffer_ != ( int8_t* ) 0){
         if (count == tx_rate){
@@ -108,7 +117,6 @@ void SysTick_Handler(void) {
                 case HM11_TX_OFF:
                     break;
             }
-
             count = 0;
         }
     }

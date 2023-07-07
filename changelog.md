@@ -3,15 +3,10 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 
 -----------------------------------
 ## To-Do
-- [ ] add time in packet
-- [x] command receive handler
 
 -----------------------------------
-## Unreleased v1.0.3 (2023.07.##) @master
+## Unreleased v1.1.# (2023.07.##) @master
 ### New
-1. create `tx_rate` in `SysTick_Handler()` 
-2. create a switch to modify `tx_rate`
-3. create a switch to control transmit on/off
 ### Changed
 ### Removed
 ### Deprecated
@@ -19,6 +14,25 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ### Known Issues
 ### Notes
 ### Reference
+
+-----------------------------------
+## BT-Gyro v1.1.0 (2023.07.07) @master
+### New
+1. create `last_tx_rate` in systick handler
+2. reset `count` at the every change of `tx_rate`
+### Fixed
+1. fix errors while building v1.0.3
+### Known Issues
+1. BLE receive may not able to recive full command at one trancaction. 8 byte command will be received in 2 transactions -> 1 + 7
+
+
+-----------------------------------
+## BT-Gyro v1.0.3 (2023.07.07) @master
+### New
+1. create `tx_rate` in `SysTick_Handler()` 
+2. create a switch to modify `tx_rate`
+3. create a switch to control transmit on/off
+
 
 -----------------------------------
 ## BT-Gyro v1.0.2 (2023.07.07) @master

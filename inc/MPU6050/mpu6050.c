@@ -156,6 +156,8 @@ static void i2c_MPU6050_read(uint8_t *_rx_buff, uint8_t read_size)
                 read_size, 
                 I2C_RELEASE_BUS );
     I2C_wait_complete( &g_core_i2c0, I2C_TIMEOUT );
+    status = I2C_get_status( &g_core_i2c0 );
+    if (status == I2C_TIMED_OUT) I2C_Initalize();
   #endif
 }
 
@@ -618,7 +620,7 @@ uint8_t MPU6050_Init(uint8_t accel_config, uint8_t gyro_config, uint8_t sample_r
   I2C_Initalize();
 
   /* ----- MPU6050 initialize ----- */
-  uint8_t check;
+  i2c_status_t check;
   uint8_t reg_trx[2];
 
   check = I2C_get_status( &g_core_i2c0 );
@@ -704,30 +706,6 @@ void MPU6050_Read_Sens(MPU6050_t *DataStruct)
   DataStruct->Sensitivity = (uint8_t) (Rx_Data[0] >> 3 & 0x03);
   DataStruct->Sensitivity = (uint8_t) (Rx_Data[1] << 1 & 0x30);
 
-
-  switch (Mpu6050_Config_) {
-    case MPU6050_Gyroscope_250_deg:
-      reg_value = GYRO_SCALE_250_DEG;
-      Mpu6050_Config_.gyro_sensitivity = GYRO_SENS_250_DEG;
-      break;
-    case MPU6050_Gyroscope_500_deg:
-      reg_value = GYRO_SCALE_500_DEG;
-      Mpu6050_Config_.gyro_sensitivity = GYRO_SENS_500_DEG;
-      break;
-    case MPU6050_Gyroscope_1000_deg:
-      reg_value = GYRO_SCALE_1K_DEG;
-      Mpu6050_Config_.gyro_sensitivity = GYRO_SENS_1K_DEG;
-      break;
-    case MPU6050_Gyroscope_2000_deg:
-      reg_value = GYRO_SCALE_2K_DEG;
-      Mpu6050_Config_.gyro_sensitivity = GYRO_SENS_2K_DEG;
-      break;
-    default:
-      reg_value = GYRO_SCALE_250_DEG;
-      Mpu6050_Config_.gyro_sensitivity = GYRO_SENS_250_DEG;
-      break;
-  }
-
 }
 
 /* -- MPU6050_Read_Accel() --
@@ -754,9 +732,9 @@ void MPU6050_Read_Accel(MPU6050_t *DataStruct)
 
   // Convert the RAW values into acceleration in 'g' , so we have //
   // to divide according to the Full scale value set in FS_SEL    //
-  DataStruct->Ax = DataStruct->Accel_X_RAW / (Mpu6050_Config_.accel_sensitivity);
-  DataStruct->Ay = DataStruct->Accel_Y_RAW / (Mpu6050_Config_.accel_sensitivity);
-  DataStruct->Az = DataStruct->Accel_Z_RAW / (Mpu6050_Config_.accel_sensitivity);
+//  DataStruct->Ax = DataStruct->Accel_X_RAW / (Mpu6050_Config_.accel_sensitivity);
+//  DataStruct->Ay = DataStruct->Accel_Y_RAW / (Mpu6050_Config_.accel_sensitivity);
+//  DataStruct->Az = DataStruct->Accel_Z_RAW / (Mpu6050_Config_.accel_sensitivity);
 }
 
 /* -- MPU6050_Read_Gyro() --
@@ -783,9 +761,9 @@ void MPU6050_Read_Gyro(MPU6050_t *DataStruct)
 
   // Convert the RAW values into into dps , so we have          //
   // to divide according to the Full scale value set in FS_SEL  //
-  DataStruct->Gx = DataStruct->Gyro_X_RAW / (Mpu6050_Config_.gyro_sensitivity);
-  DataStruct->Gy = DataStruct->Gyro_Y_RAW / (Mpu6050_Config_.gyro_sensitivity);
-  DataStruct->Gz = DataStruct->Gyro_Z_RAW / (Mpu6050_Config_.gyro_sensitivity);
+//  DataStruct->Gx = DataStruct->Gyro_X_RAW / (Mpu6050_Config_.gyro_sensitivity);
+//  DataStruct->Gy = DataStruct->Gyro_Y_RAW / (Mpu6050_Config_.gyro_sensitivity);
+//  DataStruct->Gz = DataStruct->Gyro_Z_RAW / (Mpu6050_Config_.gyro_sensitivity);
 }
 
 /* -- MPU6050_Read_Gyro() --
@@ -808,7 +786,7 @@ void MPU6050_Read_Temp(MPU6050_t *DataStruct)
   i2c_MPU6050_read(Rx_Data, 2);
 
   temp = (int16_t) (Rx_Data[0] << 8 | Rx_Data[1]);
-  DataStruct->Temperature = (float) ((uint16_t) temp / (float) 340.0 + (float) 36.53);
+//  DataStruct->Temperature = (float) ((uint16_t) temp / (float) 340.0 + (float) 36.53);
 }
 
 /* -- MPU6050_Read_All() --
@@ -838,17 +816,17 @@ void MPU6050_Read_All(MPU6050_t *DataStruct)
   DataStruct->Gyro_Y_RAW = (uint16_t) (Rx_Data[10] << 8 | Rx_Data[11]);
   DataStruct->Gyro_Z_RAW = (uint16_t) (Rx_Data[12] << 8 | Rx_Data[13]);
 
-  DataStruct->Gx = DataStruct->Gyro_X_RAW / (Mpu6050_Config_.gyro_sensitivity);
-  DataStruct->Gy = DataStruct->Gyro_Y_RAW / (Mpu6050_Config_.gyro_sensitivity);
-  DataStruct->Gz = DataStruct->Gyro_Z_RAW / (Mpu6050_Config_.gyro_sensitivity);
-
-  DataStruct->Ax = DataStruct->Accel_X_RAW / (Mpu6050_Config_.accel_sensitivity);
-  DataStruct->Ay = DataStruct->Accel_Y_RAW / (Mpu6050_Config_.accel_sensitivity);
-  DataStruct->Az = DataStruct->Accel_Z_RAW / (Mpu6050_Config_.accel_sensitivity);
+//  DataStruct->Gx = DataStruct->Gyro_X_RAW / (Mpu6050_Config_.gyro_sensitivity);
+//  DataStruct->Gy = DataStruct->Gyro_Y_RAW / (Mpu6050_Config_.gyro_sensitivity);
+//  DataStruct->Gz = DataStruct->Gyro_Z_RAW / (Mpu6050_Config_.gyro_sensitivity);
+//
+//  DataStruct->Ax = DataStruct->Accel_X_RAW / (Mpu6050_Config_.accel_sensitivity);
+//  DataStruct->Ay = DataStruct->Accel_Y_RAW / (Mpu6050_Config_.accel_sensitivity);
+//  DataStruct->Az = DataStruct->Accel_Z_RAW / (Mpu6050_Config_.accel_sensitivity);
 
   temp = (uint16_t) (Rx_Data[6] << 8 | Rx_Data[7]);
   DataStruct->Temp_RAW = temp;
-  DataStruct->Temperature = (float) ((uint16_t) temp / (float) 340.0 + (float) 36.53);
+//  DataStruct->Temperature = (float) ((uint16_t) temp / (float) 340.0 + (float) 36.53);
 
 //   // Kalman angle solve
 //   double dt = (double) (HAL_GetTick() - timer) / 1000;

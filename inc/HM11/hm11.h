@@ -47,13 +47,13 @@ typedef enum{
   HM11_TX_RATE_100 = 0x00,    // BLE packet transmission rate 100Hz               //
   HM11_TX_RATE_10,            // BLE packet transmission rate 10Hz                  //
   HM11_TX_RATE_1,             // BLE packet transmission rate 1Hz                //
-}HM11_COMMAND;
+}HM11_TX_RATE;
 
 typedef struct {
   uint8_t Onoff;
   /* HM11 Tx Frequency, set by host command*/
   uint8_t Frequency;
-} HM11_t
+} HM11_t;
 HM11_t Hm11_;
 
 /* ----- Functions ----- */
