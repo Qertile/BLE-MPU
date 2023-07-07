@@ -9,8 +9,11 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 -----------------------------------
 ## Unreleased v1.#.#(2023.07.##) @master
 ### New
-- create `num_packet` in `SysTick_Handler()`
+1. create `num_packet` in `SysTick_Handler()`
 ### Changed
+1. move `num_packet` from `SysTick_Handler()` to `MPU6050_t`
+2. rename `Sensitivity` in `Mpu6050_t` to `Resolution`
+3. comment other unused element in `MPU6050_t`
 ### Removed
 ### Deprecated
 ### Fixed

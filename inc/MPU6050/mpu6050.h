@@ -208,28 +208,31 @@ typedef struct {
   int16_t Accel_X_RAW;
   int16_t Accel_Y_RAW;
   int16_t Accel_Z_RAW;
-  double Ax;
-  double Ay;
-  double Az;
+  // double Ax;
+  // double Ay;
+  // double Az;
 
   /* Gyro Acceleration */
   int16_t Gyro_X_RAW;
   int16_t Gyro_Y_RAW;
   int16_t Gyro_Z_RAW;
-  double Gx;
-  double Gy;
-  double Gz;
+  // double Gx;
+  // double Gy;
+  // double Gz;
 
   /* Temperature */
   int16_t Temp_RAW;
-  float   Temperature;
+  // float   Temperature;
   
   /* Configuration */
   uint8_t Sensitivity;
 
+  /* Configuration */
+  uint16_t Num_packet;
+
   /* Angle -> Pitch/Roll */
-  double KalmanAngleX;
-  double KalmanAngleY;
+  // double KalmanAngleX;
+  // double KalmanAngleY;
 
 } MPU6050_t;
 
