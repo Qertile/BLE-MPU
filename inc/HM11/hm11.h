@@ -50,16 +50,27 @@ typedef enum{
 }HM11_TX_RATE;
 
 typedef struct {
-  uint8_t Onoff;
-  /* HM11 Tx Frequency, set by host command*/
-  uint8_t Frequency;
+  /* HM11 last received command */
+  uint8_t last_cmd[8];
+  
+  /* HM11 Tx on/off, set by host command */
+  uint8_t onoff;
+
+  /* HM11 Tx Frequency, set by host command */
+  uint8_t frequency;
+  uint16_t tx_tick;
+  
 } HM11_t;
 HM11_t Hm11_;
 
 /* ----- Functions ----- */
 void Hm11_Packet(void);
 void Hm11_Init(void);
+void Hm11_Is_Rx_Full(void);
+void Hm11_Config_By_Cmd(void);
+
 extern void FabricIrq1_IRQHandler(void);
+extern void SysTick_Handler(void);
 
 
 

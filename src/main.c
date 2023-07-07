@@ -17,6 +17,8 @@ int main(void){
 	
 	while (1){
 
+
+	    Hm11_Is_Rx_Full();
 	}
 
 	return 0;

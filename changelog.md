@@ -5,7 +5,7 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ## To-Do
 
 -----------------------------------
-## Unreleased v1.1.# (2023.07.##) @master
+## Unreleased v2.0.# (2023.07.##) @master
 ### New
 ### Changed
 ### Removed
@@ -16,6 +16,16 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ### Reference
 
 -----------------------------------
+## BT-Gyro v2.0.0 (2023.07.07) @master
+### New
+1. Can receive command and modify tx frequency
+2. Echo back command
+3. release v2.0.0
+### Fixed
+1. BLE receive may not able to recive full command at one trancaction. 8 byte command will be received in 2 transactions -> 1 + 7
+2. need to pause the program to receive commands
+
+-----------------------------------
 ## BT-Gyro v1.1.0 (2023.07.07) @master
 ### New
 1. create `last_tx_rate` in systick handler
@@ -24,6 +34,7 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 1. fix errors while building v1.0.3
 ### Known Issues
 1. BLE receive may not able to recive full command at one trancaction. 8 byte command will be received in 2 transactions -> 1 + 7
+2. need to pause the program to receive commands
 
 
 -----------------------------------
