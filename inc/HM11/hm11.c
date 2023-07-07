@@ -62,12 +62,15 @@ void HardFault_Handler(void){
 
 void SysTick_Handler(void) {
     static uint32_t count = 0;
+    static uint16_t num_packet = 0;
+
     I2C_system_tick(&g_core_i2c0, 1);
     if(_tx_buffer_ != ( int8_t* ) 0){
         if (count == 10){
             // UART tx every 10 ticks (10ms)
     		Hm11_Packet();
             UART_send( &g_uart_0, _tx_buffer_, 20 );
+            num_packet++;
             count = 0;
         }
     }
