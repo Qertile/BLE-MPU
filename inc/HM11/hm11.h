@@ -35,13 +35,15 @@ int8_t *_tx_buffer_;
  * Send data packet in 100, 10, 1 Hz.
  */
 typedef enum{
-  HM11_100Hz = 0x00,    // BLE packet transmission rate 100Hz               //
-  HM11_10Hz,            // BLE packet transmission rate 10Hz                  //
-  HM11_1Hz,             // BLE packet transmission rate 1Hz
-}HM11_Resolution;
+  HM11_RESET = 0x00,    // BLE packet transmission rate 100Hz               //
+  HM11_TX_ON,            // BLE packet transmission rate 10Hz                  //
+  HM11_TX_OFF,             // BLE packet transmission rate 1Hz                //
+  HM11_SET_TX_FREQ,             // BLE packet transmission rate 1Hz
+}HM11_COMMAND;
 
 
 typedef struct {
+  uint8_t Onoff;
   /* HM11 Tx Frequency, set by host command*/
   uint8_t Frequency;
 } HM11_t

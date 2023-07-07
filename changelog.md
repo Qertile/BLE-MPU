@@ -4,21 +4,29 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 -----------------------------------
 ## To-Do
 - [ ] add time in packet
-- [ ] command receive handler
+- [x] command receive handler
 
 -----------------------------------
 ## Unreleased v1.0.2 (2023.07.##) @master
 ### New
-1. create `HM11_t`
 ### Changed
-1. change `UART_RX_BUFF_SIZE` to 8
-1. change `UART_TX_BUFF_SIZE` to 20
 ### Removed
 ### Deprecated
 ### Fixed
 ### Known Issues
 ### Notes
 ### Reference
+
+-----------------------------------
+## BT-Gyro v1.0.2 (2023.07.07) @master
+### New
+1. create `HM11_t`
+2. create enum `HM11_COMMAND`
+3. create a switch to handle received command
+### Changed
+1. change `UART_RX_BUFF_SIZE` to 8
+2. change `UART_TX_BUFF_SIZE` to 20
+
 
 -----------------------------------
 ## BT-Gyro v1.0.1 (2023.07.07) @master

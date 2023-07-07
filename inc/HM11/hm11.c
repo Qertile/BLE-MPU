@@ -51,6 +51,25 @@ void Hm11_Packet(void){
 void FabricIrq1_IRQHandler(void){
     volatile uint8_t rx_size = 0;
     rx_size = UART_get_rx(&g_uart_0, _rx_buffer_, UART_RX_BUFF_SIZE);
+
+    if (_rx_buffer_[0] == 0x41 && _rx_buffer_[1] == 0x58){
+        switch (_rx_buffer_[2]){
+        case HM11_RESET:
+            break;
+        case HM11_TX_ON:
+            Hm11_.Onoff = HM11_TX_ON;
+            break;
+        case HM11_TX_OFF:
+            Hm11_.Onoff = HM11_TX_OFF;
+            break;
+        case HM11_SET_TX_FREQ:
+            Hm11_.Frequency = _rx_buffer_[3];
+            break;
+        
+        default:
+            break;
+        }
+    }
 	return;
 }
 void HardFault_Handler(void){
@@ -59,7 +78,6 @@ void HardFault_Handler(void){
 
 void SysTick_Handler(void) {
     static uint32_t count = 0;
-
     I2C_system_tick(&g_core_i2c0, 1);
     if(_tx_buffer_ != ( int8_t* ) 0){
         if (count == 10){
