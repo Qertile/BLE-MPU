@@ -35,8 +35,8 @@ void Hm11_Packet(void){
     _tx_buffer_[14] = Mpu6050_.Temp_RAW >> 8;
     _tx_buffer_[15] = Mpu6050_.Temp_RAW;
     _tx_buffer_[16] = Mpu6050_.Sensitivity;
-    _tx_buffer_[17] = 0x00;
-    _tx_buffer_[18] = 0x00;
+    _tx_buffer_[17] = Mpu6050_.Num_packet >> 8;
+    _tx_buffer_[18] = Mpu6050_.Num_packet;
     _tx_buffer_[19] = Crc8(_tx_buffer_, 19);;
 
 
