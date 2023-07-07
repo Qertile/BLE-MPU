@@ -31,9 +31,7 @@ UART_instance_t g_uart_0;
 uint8_t *_rx_buffer_;
 int8_t *_tx_buffer_;
 
-/* Custom packet transmission rate setting.
- * Send data packet in 100, 10, 1 Hz.
- */
+/* Custom command for HM11. */
 typedef enum{
   HM11_RESET = 0x00,    // BLE packet transmission rate 100Hz               //
   HM11_TX_ON,            // BLE packet transmission rate 10Hz                  //
@@ -41,6 +39,15 @@ typedef enum{
   HM11_SET_TX_FREQ,             // BLE packet transmission rate 1Hz
 }HM11_COMMAND;
 
+
+/* Custom packet transmission rate setting.
+ * Send data packet in 100, 10, 1 Hz.
+ */
+typedef enum{
+  HM11_TX_RATE_100 = 0x00,    // BLE packet transmission rate 100Hz               //
+  HM11_TX_RATE_10,            // BLE packet transmission rate 10Hz                  //
+  HM11_TX_RATE_1,             // BLE packet transmission rate 1Hz                //
+}HM11_COMMAND;
 
 typedef struct {
   uint8_t Onoff;

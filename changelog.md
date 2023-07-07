@@ -7,8 +7,11 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 - [x] command receive handler
 
 -----------------------------------
-## Unreleased v1.0.2 (2023.07.##) @master
+## Unreleased v1.0.3 (2023.07.##) @master
 ### New
+1. create `tx_rate` in `SysTick_Handler()` 
+2. create a switch to modify `tx_rate`
+3. create a switch to control transmit on/off
 ### Changed
 ### Removed
 ### Deprecated

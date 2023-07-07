@@ -78,13 +78,37 @@ void HardFault_Handler(void){
 
 void SysTick_Handler(void) {
     static uint32_t count = 0;
+    volatile tx_rate = 0;   // number of ticks to transmit packet, 1 tick is 1 ms
+
     I2C_system_tick(&g_core_i2c0, 1);
+
+    switch(Hm11_.Frequency){
+        case HM11_TX_RATE_100:
+            tx_rate = 10;
+            break;
+        case HM11_TX_RATE_10:
+            tx_rate = 100;
+        case HM11_TX_RATE_1:
+            tx_rate = 1000;
+            break;
+        default:
+            tx_rate = 10;
+            break
+    }
+
     if(_tx_buffer_ != ( int8_t* ) 0){
-        if (count == 10){
-            // UART tx every 10 ticks (10ms)
-    		Hm11_Packet();
-            UART_send( &g_uart_0, _tx_buffer_, UART_TX_BUFF_SIZE );
-            Mpu6050_.Num_packet++;
+        if (count == tx_rate){
+            switch(Hm11_.Onoff){
+                case HM11_TX_ON:
+                    // UART tx every 10 ticks (10ms)
+                    Hm11_Packet();
+                    UART_send( &g_uart_0, _tx_buffer_, UART_TX_BUFF_SIZE );
+                    Mpu6050_.Num_packet++;
+                    break;
+                case HM11_TX_OFF:
+                    break;
+            }
+
             count = 0;
         }
     }
