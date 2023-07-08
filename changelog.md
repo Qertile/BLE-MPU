@@ -16,6 +16,12 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ### Reference
 
 -----------------------------------
+## BT-Gyro v2.0.1 (2023.07.08) @master
+### Changed
+- set default setting as onoff = 0, and tx_tick = 10
+
+
+-----------------------------------
 ## BT-Gyro v2.0.0 (2023.07.07) @master
 ### New
 1. Can receive command and modify tx frequency
@@ -24,6 +30,7 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ### Fixed
 1. BLE receive may not able to recive full command at one trancaction. 8 byte command will be received in 2 transactions -> 1 + 7
 2. need to pause the program to receive commands
+
 
 -----------------------------------
 ## BT-Gyro v1.1.0 (2023.07.07) @master

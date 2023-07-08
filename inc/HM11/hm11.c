@@ -13,9 +13,9 @@ void Hm11_Init(void){
 	_rx_buffer_ = (uint8_t*)calloc(0, UART_RX_BUFF_SIZE);
 	memset(&Hm11_, 0, sizeof(HM11_t));
 
-    Hm11_.onoff = 0x01;
+    Hm11_.onoff = 0x00;
     Hm11_.frequency = 0x00;
-    Hm11_.tx_tick = 1000;
+    Hm11_.tx_tick = 10;
     return;
 }
 
