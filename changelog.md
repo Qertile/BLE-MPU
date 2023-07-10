@@ -16,6 +16,11 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ### Reference
 
 -----------------------------------
+## BT-Gyro v2.1.0 (2023.07.08) @master
+### New
+- release into SmartFusion2
+
+-----------------------------------
 ## BT-Gyro v2.0.1 (2023.07.08) @master
 ### Changed
 - set default setting as onoff = 0, and tx_tick = 10
