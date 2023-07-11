@@ -60,6 +60,9 @@ typedef struct {
   uint8_t frequency;
   uint16_t tx_tick;
   
+  /* Number of packet */
+  uint16_t Num_packet;
+  
 } HM11_t;
 HM11_t Hm11_;
 

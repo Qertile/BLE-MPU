@@ -8,6 +8,7 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ## Unreleased v2.0.# (2023.07.##) @master
 ### New
 ### Changed
+1. move `Num_packet` form `Mpu6050_` to `Hm11_`
 ### Removed
 ### Deprecated
 ### Fixed

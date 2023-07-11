@@ -227,9 +227,6 @@ typedef struct {
   /* Configuration */
   uint8_t Sensitivity;
 
-  /* Number of packet */
-  uint16_t Num_packet;
-
   /* Angle -> Pitch/Roll */
   // double KalmanAngleX;
   // double KalmanAngleY;
