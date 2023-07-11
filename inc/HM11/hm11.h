@@ -52,7 +52,10 @@ typedef enum{
 typedef struct {
   /* HM11 last received command */
   uint8_t last_cmd[8];
-  
+
+  /* Number of packet */
+  uint16_t num_packet;
+
   /* HM11 Tx on/off, set by host command */
   uint8_t onoff;
 
@@ -60,8 +63,6 @@ typedef struct {
   uint8_t frequency;
   uint16_t tx_tick;
   
-  /* Number of packet */
-  uint16_t Num_packet;
   
 } HM11_t;
 HM11_t Hm11_;

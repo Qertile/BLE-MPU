@@ -5,7 +5,7 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ## To-Do
 
 -----------------------------------
-## Unreleased v2.1.# (2023.07.##) @master
+## Unreleased v2.2.# (2023.07.##) @master
 ### New
 ### Changed
 ### Removed
@@ -14,6 +14,14 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ### Known Issues
 ### Notes
 ### Reference
+
+-----------------------------------
+## BT-Gyro v2.2.0 (2023.07.11) @master
+### New
+1. test and release to SmartFusion2
+### Changed
+1. default Tx frequency is 1 Hz
+
 
 -----------------------------------
 ## BT-Gyro v2.1.1 (2023.07.11) @master

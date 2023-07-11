@@ -1,7 +1,6 @@
 #include "hm11.h"
 #include "../MPU6050/mpu6050.h"
 
-	// uint32_t j;
 void Hm11_Init(void){
     /* ---------- UART Initialize ---------- */
     /* Initialize CoreUARTapb with its base address, baud value, and line configuration */
@@ -14,8 +13,8 @@ void Hm11_Init(void){
 	memset(&Hm11_, 0, sizeof(HM11_t));
 
     Hm11_.onoff = 0x00;
-    Hm11_.frequency = 0x00;
-    Hm11_.tx_tick = 10;
+    Hm11_.frequency = HM11_TX_RATE_1;
+    Hm11_.num_packet = 0;
     return;
 }
 
@@ -41,8 +40,8 @@ void Hm11_Packet(void){
     _tx_buffer_[14] = Mpu6050_.Temp_RAW >> 8;
     _tx_buffer_[15] = Mpu6050_.Temp_RAW;
     _tx_buffer_[16] = Mpu6050_.Sensitivity;
-    _tx_buffer_[17] = Hm11_.Num_packet >> 8;
-    _tx_buffer_[18] = Hm11_.Num_packet;
+    _tx_buffer_[17] = Hm11_.num_packet >> 8;
+    _tx_buffer_[18] = Hm11_.num_packet;
 
     _tx_buffer_[16] = _tx_buffer_[16] | (Hm11_.frequency<<6) ;
 
@@ -72,7 +71,7 @@ void Hm11_Config_By_Cmd(void){
                 break;
             case HM11_TX_OFF:
                 Hm11_.onoff = HM11_TX_OFF;
-                Hm11_.Num_packet = 0;
+                Hm11_.num_packet = 0;
                 break;
             case HM11_SET_TX_FREQ:
                 Hm11_.frequency = Hm11_.last_cmd[3];
@@ -124,7 +123,7 @@ void SysTick_Handler(void) {
                 case HM11_TX_ON:
                     Hm11_Packet();
                     UART_send( &g_uart_0, _tx_buffer_, UART_TX_BUFF_SIZE );
-                    Mpu6050_.Num_packet++;
+                    Hm11_.num_packet++;
                     break;
                 case HM11_TX_OFF:
                     break;

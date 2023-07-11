@@ -108,12 +108,12 @@ c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9
 Allocating common symbols
 Common symbol       size              file
 
-Mpu6050_            0x12              ./src/main.o
+Mpu6050_            0x10              ./src/main.o
 timer               0x4               ./inc/MPU6050/mpu6050.o
 errno               0x4               c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-reent.o)
 g_core_i2c0         0x6c              ./src/main.o
 _rx_buffer_         0x4               ./src/main.o
-Hm11_               0xc               ./src/main.o
+Hm11_               0xe               ./src/main.o
 g_uart_0            0x8               ./src/main.o
 _tx_buffer_         0x4               ./src/main.o
 Mpu6050_Config_     0xc               ./src/main.o
@@ -1639,14 +1639,14 @@ END GROUP
                 0x200012d8       0x60 ./inc/HM11/hm11.o
                 0x200012d8                Hm11_Is_Rx_Full
  .text.Hm11_Config_By_Cmd
-                0x20001338       0x94 ./inc/HM11/hm11.o
+                0x20001338       0x98 ./inc/HM11/hm11.o
                 0x20001338                Hm11_Config_By_Cmd
  .text.FabricIrq1_IRQHandler
-                0x200013cc       0x54 ./inc/HM11/hm11.o
-                0x200013cc                FabricIrq1_IRQHandler
+                0x200013d0       0x54 ./inc/HM11/hm11.o
+                0x200013d0                FabricIrq1_IRQHandler
  .text.SysTick_Handler
-                0x20001420       0x9c ./inc/HM11/hm11.o
-                0x20001420                SysTick_Handler
+                0x20001424       0x98 ./inc/HM11/hm11.o
+                0x20001424                SysTick_Handler
  .text.Crc8     0x200014bc       0x78 ./inc/CRC8/crc8.o
                 0x200014bc                Crc8
  .text          0x20001534        0xe ./firmware/hal/CortexM3/GNU/hal.o
@@ -2150,9 +2150,9 @@ END GROUP
  *(COMMON)
  COMMON         0x2000643c       0xa8 ./src/main.o
                 0x2000643c                Mpu6050_
-                0x20006450                g_core_i2c0
-                0x200064bc                _rx_buffer_
-                0x200064c0                Hm11_
+                0x2000644c                g_core_i2c0
+                0x200064b8                _rx_buffer_
+                0x200064bc                Hm11_
                 0x200064cc                g_uart_0
                 0x200064d4                _tx_buffer_
                 0x200064d8                Mpu6050_Config_
@@ -2248,30 +2248,30 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0xbca3
+.debug_info     0x00000000     0xbc8e
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0x66a ./src/main.o
- .debug_info    0x0000066a     0x1076 ./inc/MPU6050/mpu6050.o
- .debug_info    0x000016e0       0x21 ./inc/MPU6050/mpu6050_ut.o
- .debug_info    0x00001701      0xa20 ./inc/HM11/hm11.o
- .debug_info    0x00002121       0x21 ./inc/HM11/hm11_ut.o
- .debug_info    0x00002142      0x102 ./inc/CRC8/crc8.o
- .debug_info    0x00002244       0x94 ./firmware/hal/CortexM3/GNU/hal.o
- .debug_info    0x000022d8       0x9e ./firmware/hal/CortexM3/GNU/hw_reg_access.o
- .debug_info    0x00002376      0x18b ./firmware/hal/CortexM3/cortex_nvic.o
- .debug_info    0x00002501       0x96 ./firmware/drivers_config/sys_config/sys_config.o
- .debug_info    0x00002597      0xb0d ./firmware/drivers/mss_sys_services/mss_comblk.o
- .debug_info    0x000030a4     0x1e16 ./firmware/drivers/mss_sys_services/mss_sys_services.o
- .debug_info    0x00004eba     0x1165 ./firmware/drivers/mss_rtc/mss_rtc.o
- .debug_info    0x0000601f     0x10bd ./firmware/drivers/mss_pdma/mss_pdma.o
- .debug_info    0x000070dc     0x1158 ./firmware/drivers/mss_nvm/mss_nvm.o
- .debug_info    0x00008234     0x1169 ./firmware/drivers/mss_hpdma/mss_hpdma.o
- .debug_info    0x0000939d      0x353 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
- .debug_info    0x000096f0      0xc82 ./firmware/drivers/CoreI2C/core_i2c.o
- .debug_info    0x0000a372      0x75c ./firmware/drivers/CoreI2C/i2c_interrupt.o
- .debug_info    0x0000aace      0x692 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
- .debug_info    0x0000b160       0xa0 ./firmware/CMSIS/startup_gcc/startup_m2sxxx.o
- .debug_info    0x0000b200      0xaa3 ./firmware/CMSIS/system_m2sxxx.o
+ .debug_info    0x00000000      0x667 ./src/main.o
+ .debug_info    0x00000667     0x1067 ./inc/MPU6050/mpu6050.o
+ .debug_info    0x000016ce       0x21 ./inc/MPU6050/mpu6050_ut.o
+ .debug_info    0x000016ef      0xa1d ./inc/HM11/hm11.o
+ .debug_info    0x0000210c       0x21 ./inc/HM11/hm11_ut.o
+ .debug_info    0x0000212d      0x102 ./inc/CRC8/crc8.o
+ .debug_info    0x0000222f       0x94 ./firmware/hal/CortexM3/GNU/hal.o
+ .debug_info    0x000022c3       0x9e ./firmware/hal/CortexM3/GNU/hw_reg_access.o
+ .debug_info    0x00002361      0x18b ./firmware/hal/CortexM3/cortex_nvic.o
+ .debug_info    0x000024ec       0x96 ./firmware/drivers_config/sys_config/sys_config.o
+ .debug_info    0x00002582      0xb0d ./firmware/drivers/mss_sys_services/mss_comblk.o
+ .debug_info    0x0000308f     0x1e16 ./firmware/drivers/mss_sys_services/mss_sys_services.o
+ .debug_info    0x00004ea5     0x1165 ./firmware/drivers/mss_rtc/mss_rtc.o
+ .debug_info    0x0000600a     0x10bd ./firmware/drivers/mss_pdma/mss_pdma.o
+ .debug_info    0x000070c7     0x1158 ./firmware/drivers/mss_nvm/mss_nvm.o
+ .debug_info    0x0000821f     0x1169 ./firmware/drivers/mss_hpdma/mss_hpdma.o
+ .debug_info    0x00009388      0x353 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
+ .debug_info    0x000096db      0xc82 ./firmware/drivers/CoreI2C/core_i2c.o
+ .debug_info    0x0000a35d      0x75c ./firmware/drivers/CoreI2C/i2c_interrupt.o
+ .debug_info    0x0000aab9      0x692 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_info    0x0000b14b       0xa0 ./firmware/CMSIS/startup_gcc/startup_m2sxxx.o
+ .debug_info    0x0000b1eb      0xaa3 ./firmware/CMSIS/system_m2sxxx.o
 
 .debug_abbrev   0x00000000     0x1c42
  *(.debug_abbrev)
@@ -2298,30 +2298,30 @@ END GROUP
  .debug_abbrev  0x00001aa5       0x14 ./firmware/CMSIS/startup_gcc/startup_m2sxxx.o
  .debug_abbrev  0x00001ab9      0x189 ./firmware/CMSIS/system_m2sxxx.o
 
-.debug_line     0x00000000     0x5e0b
+.debug_line     0x00000000     0x5fc7
  *(.debug_line)
- .debug_line    0x00000000      0x5a0 ./src/main.o
- .debug_line    0x000005a0      0x6b6 ./inc/MPU6050/mpu6050.o
- .debug_line    0x00000c56       0x3c ./inc/MPU6050/mpu6050_ut.o
- .debug_line    0x00000c92      0x651 ./inc/HM11/hm11.o
- .debug_line    0x000012e3       0x36 ./inc/HM11/hm11_ut.o
- .debug_line    0x00001319      0x1f6 ./inc/CRC8/crc8.o
- .debug_line    0x0000150f       0x56 ./firmware/hal/CortexM3/GNU/hal.o
- .debug_line    0x00001565       0x94 ./firmware/hal/CortexM3/GNU/hw_reg_access.o
- .debug_line    0x000015f9      0x2c2 ./firmware/hal/CortexM3/cortex_nvic.o
- .debug_line    0x000018bb      0x2bc ./firmware/drivers_config/sys_config/sys_config.o
- .debug_line    0x00001b77      0x54f ./firmware/drivers/mss_sys_services/mss_comblk.o
- .debug_line    0x000020c6      0xdc1 ./firmware/drivers/mss_sys_services/mss_sys_services.o
- .debug_line    0x00002e87      0x688 ./firmware/drivers/mss_rtc/mss_rtc.o
- .debug_line    0x0000350f      0x457 ./firmware/drivers/mss_pdma/mss_pdma.o
- .debug_line    0x00003966      0x69b ./firmware/drivers/mss_nvm/mss_nvm.o
- .debug_line    0x00004001      0x479 ./firmware/drivers/mss_hpdma/mss_hpdma.o
- .debug_line    0x0000447a      0x4f9 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
- .debug_line    0x00004973      0x762 ./firmware/drivers/CoreI2C/core_i2c.o
- .debug_line    0x000050d5      0x414 ./firmware/drivers/CoreI2C/i2c_interrupt.o
- .debug_line    0x000054e9      0x423 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
- .debug_line    0x0000590c      0x199 ./firmware/CMSIS/startup_gcc/startup_m2sxxx.o
- .debug_line    0x00005aa5      0x366 ./firmware/CMSIS/system_m2sxxx.o
+ .debug_line    0x00000000      0x5c5 ./src/main.o
+ .debug_line    0x000005c5      0x6d7 ./inc/MPU6050/mpu6050.o
+ .debug_line    0x00000c9c       0x3c ./inc/MPU6050/mpu6050_ut.o
+ .debug_line    0x00000cd8      0x668 ./inc/HM11/hm11.o
+ .debug_line    0x00001340       0x36 ./inc/HM11/hm11_ut.o
+ .debug_line    0x00001376      0x1f6 ./inc/CRC8/crc8.o
+ .debug_line    0x0000156c       0x56 ./firmware/hal/CortexM3/GNU/hal.o
+ .debug_line    0x000015c2       0x94 ./firmware/hal/CortexM3/GNU/hw_reg_access.o
+ .debug_line    0x00001656      0x2c2 ./firmware/hal/CortexM3/cortex_nvic.o
+ .debug_line    0x00001918      0x2f5 ./firmware/drivers_config/sys_config/sys_config.o
+ .debug_line    0x00001c0d      0x586 ./firmware/drivers/mss_sys_services/mss_comblk.o
+ .debug_line    0x00002193      0xdf8 ./firmware/drivers/mss_sys_services/mss_sys_services.o
+ .debug_line    0x00002f8b      0x6ad ./firmware/drivers/mss_rtc/mss_rtc.o
+ .debug_line    0x00003638      0x47e ./firmware/drivers/mss_pdma/mss_pdma.o
+ .debug_line    0x00003ab6      0x6c0 ./firmware/drivers/mss_nvm/mss_nvm.o
+ .debug_line    0x00004176      0x4a2 ./firmware/drivers/mss_hpdma/mss_hpdma.o
+ .debug_line    0x00004618      0x4f9 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
+ .debug_line    0x00004b11      0x762 ./firmware/drivers/CoreI2C/core_i2c.o
+ .debug_line    0x00005273      0x439 ./firmware/drivers/CoreI2C/i2c_interrupt.o
+ .debug_line    0x000056ac      0x423 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_line    0x00005acf      0x199 ./firmware/CMSIS/startup_gcc/startup_m2sxxx.o
+ .debug_line    0x00005c68      0x35f ./firmware/CMSIS/system_m2sxxx.o
 
 .debug_frame    0x00000000     0x2ccc
  *(.debug_frame)
@@ -2390,7 +2390,7 @@ END GROUP
  .debug_str     0x00000000     0xcda4 ./src/main.o
                                0xd031 (size before relaxing)
  .debug_str     0x0000cda4      0x946 ./inc/MPU6050/mpu6050.o
-                               0xd5e0 (size before relaxing)
+                               0xd5d5 (size before relaxing)
  .debug_str     0x0000d6ea       0x1c ./inc/MPU6050/mpu6050_ut.o
                                0x247e (size before relaxing)
  .debug_str     0x0000d706       0xf6 ./inc/HM11/hm11.o
