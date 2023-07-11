@@ -5,16 +5,23 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ## To-Do
 
 -----------------------------------
-## Unreleased v2.0.# (2023.07.##) @master
+## Unreleased v2.1.# (2023.07.##) @master
 ### New
 ### Changed
-1. move `Num_packet` form `Mpu6050_` to `Hm11_`
 ### Removed
 ### Deprecated
 ### Fixed
 ### Known Issues
 ### Notes
 ### Reference
+
+-----------------------------------
+## BT-Gyro v2.1.1 (2023.07.11) @master
+### New
+1. reset Num_packet when received Tx OFF command
+### Changed
+1. move `Num_packet` form `Mpu6050_` to `Hm11_`
+
 
 -----------------------------------
 ## BT-Gyro v2.1.0 (2023.07.08) @master

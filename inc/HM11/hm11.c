@@ -72,7 +72,7 @@ void Hm11_Config_By_Cmd(void){
                 break;
             case HM11_TX_OFF:
                 Hm11_.onoff = HM11_TX_OFF;
-                Hm11_.
+                Hm11_.Num_packet = 0;
                 break;
             case HM11_SET_TX_FREQ:
                 Hm11_.frequency = Hm11_.last_cmd[3];
