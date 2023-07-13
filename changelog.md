@@ -8,7 +8,7 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ## Unreleased v2.2.3 (2023.07.13) @master
 ### New
 1. create `Hm11_reset()`
-2. create `nrst` in HM11_t
+2. create `nrst` in HM11_t and clear nrst flag at the end of Hm11_reset()
 3. add rst flag in IRQHandler
 ### Changed
 ### Removed

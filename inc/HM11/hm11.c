@@ -118,7 +118,9 @@ void Hm11_reset(void){
 	UART_send(&g_uart_0, _reset, AT_TX_BUFF_SIZE);
 
     /* set HM11 to MODE 0 */
-   UART_send(&g_uart_0, _mode0, AT_TX_BUFF_SIZE);
+    UART_send(&g_uart_0, _mode0, AT_TX_BUFF_SIZE);
+
+	Hm11_.nrst = 1;
 }
 
 void FabricIrq1_IRQHandler(void){
