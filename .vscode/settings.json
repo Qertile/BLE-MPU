@@ -2,6 +2,7 @@
     "editor.fontSize": 18,
     "files.associations": {
         "m2sxxx.h": "c",
-        "core_uart_apb.h": "c"
+        "core_uart_apb.h": "c",
+        "crc8.h": "c"
     }
 }

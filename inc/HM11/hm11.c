@@ -3,7 +3,7 @@
 
 void Hm11_Init(void){
 	uint8_t _test[]  = "AT";
-//	uint8_t _noti[]  = "AT+NOTI1";
+	uint8_t _noti[]  = "AT+NOTI1";
 	uint8_t _mode0[] = "AT+MODE0";
 	uint8_t _reset[] = "AT+RESET";
 	uint8_t rx_size;
