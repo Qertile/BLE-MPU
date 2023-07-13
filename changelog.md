@@ -5,9 +5,8 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ## To-Do
 
 -----------------------------------
-## Unreleased v2.2.1 (2023.07.13) @master
+## Unreleased v2.2.# (2023.07.##) @master
 ### New
-1. create and set default MODE0 in Hm11_init()
 ### Changed
 ### Removed
 ### Deprecated
@@ -15,6 +14,15 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ### Known Issues
 ### Notes
 ### Reference
+
+-----------------------------------
+## BT_Gyro v2.2.1 (2023.07.13) @master
+### New
+1. create and set default MODE0 in Hm11_init()
+2. test and set default MODE0 in Hm11_init()
+### Notes
+1. User must disconnect BLE before using UART send any command
+
 
 -----------------------------------
 ## BT-Gyro v2.2.0 (2023.07.11) @master

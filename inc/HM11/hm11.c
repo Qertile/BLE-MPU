@@ -3,6 +3,7 @@
 
 void Hm11_Init(void){
 	uint8_t _mode0[] = "AT+MODE0";
+	uint8_t rx_size;
 
     /* ---------- UART Initialize ---------- */
     /* Initialize CoreUARTapb with its base address, baud value, and line configuration */
@@ -15,10 +16,14 @@ void Hm11_Init(void){
 	memset(&Hm11_, 0, sizeof(HM11_t));
 
     Hm11_.onoff = 0x00;
-    Hm11_.frequency = HM11_TX_RATE_1;
+    Hm11_.frequency = HM11_TX_RATE_100;
     Hm11_.num_packet = 0;
 
     UART_send(&g_uart_0, _mode0, sizeof(_mode0)-1);
+//    rx_size = UART_get_rx(&g_uart_0, _rx_buffer_, UART_RX_BUFF_SIZE);
+    if (_rx_buffer_[0] == 'O' && _rx_buffer_[1] == 'K' && _rx_buffer_[7] == '0'){
+    	return;
+    }
     return;
 }
 
