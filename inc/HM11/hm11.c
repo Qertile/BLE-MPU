@@ -68,6 +68,7 @@ void Hm11_Config_By_Cmd(void){
     if (Hm11_.last_cmd[0] == 0x41 && Hm11_.last_cmd[1] == 0x58){
         switch (Hm11_.last_cmd[2]){
             case HM11_RESET:
+                Hm11_.nrst = HM11_RESET;
             	Hm11_Init();
                 break;
             case HM11_TX_ON:
@@ -108,19 +109,21 @@ void Hm11_reset(void){
 	uint8_t _mode0[] = "AT+MODE0";
 
     /* lost connection */
-//	UART_send(&g_uart_0, _lost, 2);
+	UART_send(&g_uart_0, _lost, 2);
     
     /* turn notification if connect/disconnect */
-//	UART_send(&g_uart_0, _noti, AT_TX_BUFF_SIZE);
+	UART_send(&g_uart_0, _noti, AT_TX_BUFF_SIZE);
 
     /* send HM11 reset command */
-//	UART_send(&g_uart_0, _reset, AT_TX_BUFF_SIZE);
+	UART_send(&g_uart_0, _reset, AT_TX_BUFF_SIZE);
 
     /* set HM11 to MODE 0 */
-//    UART_send(&g_uart_0, _mode0, AT_TX_BUFF_SIZE);
+   UART_send(&g_uart_0, _mode0, AT_TX_BUFF_SIZE);
 }
 
 void FabricIrq1_IRQHandler(void){
+    if (!Hm11_.nrst) return;
+
     uint8_t rx_size = 0;
     uint8_t static idx = 0;
     

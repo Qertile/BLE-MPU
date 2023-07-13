@@ -63,6 +63,9 @@ typedef struct {
   /* HM11 Tx on/off, set by host command */
   uint8_t onoff;
 
+  /* is HM11 reseting itself */
+  uint8_t nrst;
+
   /* HM11 Tx Frequency, set by host command */
   uint8_t frequency;
   uint16_t tx_tick;
