@@ -75,15 +75,15 @@ typedef struct {
 HM11_t Hm11_;
 
 /* ----- Functions ----- */
-void Hm11_Packet(void);
+static void Hm11_Packet(void);
 void Hm11_Init(void);
 void Hm11_Is_Rx_Full(void);
-void Hm11_Config_By_Cmd(void);
-void Hm11_reset(void);
+static void Hm11_Config_By_Cmd(void);
+static void Hm11_Reset(void);
 
 extern void FabricIrq1_IRQHandler(void);
 extern void SysTick_Handler(void);
 
-void delay(void);
+inline static void Delay(void);
 
 #endif

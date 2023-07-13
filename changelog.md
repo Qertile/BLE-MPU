@@ -5,7 +5,7 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ## To-Do
 
 -----------------------------------
-## Unreleased v2.#.# (2023.07.13) @master
+## Unreleased v2.#.# (2023.07.##) @master
 ### New
 ### Changed
 ### Removed
@@ -14,6 +14,13 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ### Known Issues
 ### Notes
 ### Reference
+
+-----------------------------------
+## BT-Gyro v2.3.1 (2023.07.13) @master
+### Changed
+- set `Hm11_Packet()`, `Hm11_Config_By_Cmd`, `Hm11_reset`, and `Delay` as static functions
+- set `Delay` as a inline function
+
 
 -----------------------------------
 ## BT-Gyro v2.3.0 (2023.07.13) @master

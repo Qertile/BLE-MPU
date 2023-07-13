@@ -11,7 +11,7 @@ void Hm11_Init(void){
 
 	_ble_TxBuff_ = (uint8_t*)calloc(0, BLE_TX_BUFF_SIZE);
 	_ble_RxBuff_ = (uint8_t*)calloc(0, BLE_RX_BUFF_SIZE);
-	_at_RxBuff_ = (uint8_t*)calloc(0, AT_RX_BUFF_SIZE);
+	_at_RxBuff_  = (uint8_t*)calloc(0, AT_RX_BUFF_SIZE);
 	memset(&Hm11_, 0, sizeof(HM11_t));
 
     Hm11_.onoff = HM11_TX_OFF;
@@ -19,7 +19,7 @@ void Hm11_Init(void){
     Hm11_.num_packet = 0x00;
     Hm11_.nrst = 0x01;
 
-    Hm11_reset();
+    Hm11_Reset();
     return;
 }
 
@@ -104,28 +104,28 @@ void Hm11_Config_By_Cmd(void){
     }
 }
 
-void Hm11_reset(void){
+void Hm11_Reset(void){
 	uint8_t _lost[]  = "AT";
 	uint8_t _noti[]  = "AT+NOTI0";
 	uint8_t _reset[] = "AT+RESET";
 	uint8_t _mode0[] = "AT+MODE0";
 
     /* lost connection */
-	delay();
+	Delay();
 	UART_send(&g_uart_0, _lost, 2);
-	delay();
+	Delay();
     
     /* turn notification if connect/disconnect */
 	UART_send(&g_uart_0, _noti, AT_TX_BUFF_SIZE);
-	delay();
+	Delay();
 
     /* send HM11 reset command */
 	UART_send(&g_uart_0, _reset, AT_TX_BUFF_SIZE);
-	delay();
+	Delay();
 
     /* set HM11 to MODE 0 */
     UART_send(&g_uart_0, _mode0, AT_TX_BUFF_SIZE);
-	delay();
+	Delay();
 
 	Hm11_.nrst = 1;
 }
