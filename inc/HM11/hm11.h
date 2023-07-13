@@ -28,8 +28,8 @@ UART_instance_t g_uart_0;
 
 
 /* ----- Global variables ----- */
-uint8_t *_rx_buffer_;
-int8_t *_tx_buffer_;
+uint8_t *_ble_RxBuff_;
+int8_t *_ble_TxBuff_;
 
 /* Custom command for HM11. */
 typedef enum{

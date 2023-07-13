@@ -8,7 +8,10 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ## Unreleased v2.2.2 (2023.07.13) @master
 ### New
 1. create AT+RESET and AT command in Hm11_init()
+2. create `_at_RxBuff_` and `_at_TxBuff_`
 ### Changed
+1. rename `_rx_buffer_` to `_ble_RxBuff_`
+2. rename `_tx_buffer_` to `_ble_TxBuff_`
 ### Removed
 ### Deprecated
 ### Fixed
