@@ -2,7 +2,10 @@
 #include "../MPU6050/mpu6050.h"
 
 void Hm11_Init(void){
+	uint8_t _test[]  = "AT";
+//	uint8_t _noti[]  = "AT+NOTI1";
 	uint8_t _mode0[] = "AT+MODE0";
+	uint8_t _reset[] = "AT+RESET";
 	uint8_t rx_size;
 
     /* ---------- UART Initialize ---------- */
@@ -15,15 +18,25 @@ void Hm11_Init(void){
 	_rx_buffer_ = (uint8_t*)calloc(0, UART_RX_BUFF_SIZE);
 	memset(&Hm11_, 0, sizeof(HM11_t));
 
-    Hm11_.onoff = 0x00;
+    Hm11_.onoff = HM11_TX_OFF;
     Hm11_.frequency = HM11_TX_RATE_100;
-    Hm11_.num_packet = 0;
+    Hm11_.num_packet = 0x00;
 
-    UART_send(&g_uart_0, _mode0, sizeof(_mode0)-1);
-//    rx_size = UART_get_rx(&g_uart_0, _rx_buffer_, UART_RX_BUFF_SIZE);
-    if (_rx_buffer_[0] == 'O' && _rx_buffer_[1] == 'K' && _rx_buffer_[7] == '0'){
-    	return;
-    }
+	UART_send(&g_uart_0, _test, sizeof(_test)-1);
+//	UART_send(&g_uart_0, _noti, sizeof(_noti)-1);
+
+	UART_send(&g_uart_0, _reset, sizeof(_reset)-1);
+	if(_rx_buffer_[0] == 'O' && _rx_buffer_[1] == 'K' && _rx_buffer_[2] == '+'
+	&& _rx_buffer_[3] == 'R' && _rx_buffer_[4] == 'E' && _rx_buffer_[5] == 'S'
+	&& _rx_buffer_[6] == 'E' && _rx_buffer_[7] == 'T'){
+
+		UART_send(&g_uart_0, _mode0, sizeof(_mode0)-1);
+		if(_rx_buffer_[0] == 'O' && _rx_buffer_[1] == 'K' && _rx_buffer_[2] == '+'
+		&& _rx_buffer_[3] == 'M' && _rx_buffer_[4] == 'O' && _rx_buffer_[5] == 'D'
+		&& _rx_buffer_[6] == 'E' && _rx_buffer_[7] == '0'){
+			return;
+		}
+	}
     return;
 }
 
@@ -74,6 +87,7 @@ void Hm11_Config_By_Cmd(void){
     if (Hm11_.last_cmd[0] == 0x41 && Hm11_.last_cmd[1] == 0x58){
         switch (Hm11_.last_cmd[2]){
             case HM11_RESET:
+            	Hm11_Init();
                 break;
             case HM11_TX_ON:
                 Hm11_.onoff = HM11_TX_ON;

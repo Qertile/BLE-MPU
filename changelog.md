@@ -5,8 +5,9 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ## To-Do
 
 -----------------------------------
-## Unreleased v2.2.# (2023.07.##) @master
+## Unreleased v2.2.2 (2023.07.13) @master
 ### New
+1. create AT+RESET and AT command in Hm11_init()
 ### Changed
 ### Removed
 ### Deprecated
