@@ -14,8 +14,8 @@ void Hm11_Init(void){
     		BAUD_VALUE_115200, (DATA_8_BITS | NO_PARITY) );
 	NVIC_EnableIRQ(FabricIrq1_IRQn);
 
-	_ble_TxBuff_ = (uint8_t*)calloc(0, UART_TX_BUFF_SIZE);
-	_ble_RxBuff_ = (uint8_t*)calloc(0, UART_RX_BUFF_SIZE);
+	_ble_TxBuff_ = (uint8_t*)calloc(0, BLE_TX_BUFF_SIZE);
+	_ble_RxBuff_ = (uint8_t*)calloc(0, BLE_RX_BUFF_SIZE);
 	memset(&Hm11_, 0, sizeof(HM11_t));
 
     Hm11_.onoff = HM11_TX_OFF;
@@ -74,11 +74,11 @@ void Hm11_Packet(void){
 
 void Hm11_Is_Rx_Full(void){
     if(_ble_RxBuff_[7]!=0) {
-        for (uint8_t i=0; i<UART_RX_BUFF_SIZE; i++)
+        for (uint8_t i=0; i<BLE_RX_BUFF_SIZE; i++)
             Hm11_.last_cmd[i] = _ble_RxBuff_[i];
 
-        memset(_ble_RxBuff_, 0, UART_RX_BUFF_SIZE);
-        UART_send( &g_uart_0, Hm11_.last_cmd, UART_RX_BUFF_SIZE );
+        memset(_ble_RxBuff_, 0, BLE_RX_BUFF_SIZE);
+        UART_send( &g_uart_0, Hm11_.last_cmd, BLE_RX_BUFF_SIZE );
     }
     return;
 }
@@ -116,7 +116,7 @@ void Hm11_Config_By_Cmd(void){
                 Hm11_.tx_tick = 10;
                 break;
         }   
-        memset(Hm11_.last_cmd, 0, UART_RX_BUFF_SIZE);
+        memset(Hm11_.last_cmd, 0, BLE_RX_BUFF_SIZE);
     }
 }
 
@@ -124,9 +124,9 @@ void FabricIrq1_IRQHandler(void){
     uint8_t rx_size = 0;
     uint8_t static idx = 0;
     
-    rx_size = UART_get_rx(&g_uart_0, _ble_RxBuff_ + idx, UART_RX_BUFF_SIZE);
+    rx_size = UART_get_rx(&g_uart_0, _ble_RxBuff_ + idx, BLE_RX_BUFF_SIZE);
     idx += rx_size;
-    if (idx == UART_RX_BUFF_SIZE) idx = 0;
+    if (idx == BLE_RX_BUFF_SIZE) idx = 0;
 	return;
 }
 
@@ -145,7 +145,7 @@ void SysTick_Handler(void) {
             switch(Hm11_.onoff){
                 case HM11_TX_ON:
                     Hm11_Packet();
-                    UART_send( &g_uart_0, _ble_TxBuff_, UART_TX_BUFF_SIZE );
+                    UART_send( &g_uart_0, _ble_TxBuff_, BLE_TX_BUFF_SIZE );
                     Hm11_.num_packet++;
                     break;
                 case HM11_TX_OFF:

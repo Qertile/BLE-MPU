@@ -12,6 +12,8 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ### Changed
 1. rename `_rx_buffer_` to `_ble_RxBuff_`
 2. rename `_tx_buffer_` to `_ble_TxBuff_`
+3. rename `UART_RX_BUFF_SIZE` to `BLE_RX_BUFF_SIZE`
+3. rename `UART_TX_BUFF_SIZE` to `BLE_TX_BUFF_SIZE`
 ### Removed
 ### Deprecated
 ### Fixed

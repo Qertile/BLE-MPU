@@ -1,6 +1,7 @@
 {
     "editor.fontSize": 18,
     "files.associations": {
-        "m2sxxx.h": "c"
+        "m2sxxx.h": "c",
+        "core_uart_apb.h": "c"
     }
 }
