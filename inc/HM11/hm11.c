@@ -111,16 +111,21 @@ void Hm11_reset(void){
 	uint8_t _mode0[] = "AT+MODE0";
 
     /* lost connection */
+	delay();
 	UART_send(&g_uart_0, _lost, 2);
+	delay();
     
     /* turn notification if connect/disconnect */
 	UART_send(&g_uart_0, _noti, AT_TX_BUFF_SIZE);
+	delay();
 
     /* send HM11 reset command */
 	UART_send(&g_uart_0, _reset, AT_TX_BUFF_SIZE);
+	delay();
 
     /* set HM11 to MODE 0 */
     UART_send(&g_uart_0, _mode0, AT_TX_BUFF_SIZE);
+	delay();
 
 	Hm11_.nrst = 1;
 }
@@ -167,3 +172,8 @@ void SysTick_Handler(void) {
     count++;
 }
 
+void delay(void){
+	/* Just waste some time here */
+    for (int i=0; i<250; i++)
+    	for (int j=0; j<250; j++);
+}

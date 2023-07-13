@@ -84,6 +84,6 @@ void Hm11_reset(void);
 extern void FabricIrq1_IRQHandler(void);
 extern void SysTick_Handler(void);
 
-
+void delay(void);
 
 #endif

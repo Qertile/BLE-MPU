@@ -1,7 +1,6 @@
 #include "../inc/HM11/hm11.h"
 #include "../inc/MPU6050/mpu6050.h"
 
-uint8_t _set_baud_[] = {"AT+BAUD4"};
 int main(void){
 
 	/* Device initialization */
