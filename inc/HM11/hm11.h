@@ -19,7 +19,7 @@
 #define BLE_TX_BUFF_SIZE 20
 #define BLE_RX_BUFF_SIZE 8
 #define AT_TX_BUFF_SIZE 8
-#define AT_RX_BUFF_SIZE 8
+// #define AT_RX_BUFF_SIZE 8
 
 /* ----- Packet Parameters ----- */
 #define HEADER_1    0x41
@@ -32,8 +32,8 @@ UART_instance_t g_uart_0;
 /* ----- Global variables ----- */
 uint8_t *_ble_RxBuff_;
 int8_t *_ble_TxBuff_;
-uint8_t *_at_RxBuff_;
-uint8_t *_at_TxBuff_;
+// uint8_t *_at_RxBuff_;
+// uint8_t *_at_TxBuff_;
 
 /* Custom command for HM11. */
 typedef enum{
@@ -76,6 +76,7 @@ void Hm11_Packet(void);
 void Hm11_Init(void);
 void Hm11_Is_Rx_Full(void);
 void Hm11_Config_By_Cmd(void);
+void Hm11_reset(void);
 
 extern void FabricIrq1_IRQHandler(void);
 extern void SysTick_Handler(void);

@@ -43,38 +43,38 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 SECONDARY_FLASH += \
-BT-Gyro.hex \
+BT-Gyro-SW.hex \
 
 SECONDARY_SIZE += \
-BT-Gyro.siz \
+BT-Gyro-SW.siz \
 
 
 # All Target
-all: BT-Gyro.elf secondary-outputs
+all: BT-Gyro-SW.elf secondary-outputs
 
 # Tool invocations
-BT-Gyro.elf: $(OBJS) $(USER_OBJS)
+BT-Gyro-SW.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Cross ARM C Linker'
-	arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -T "C:\Users\YiHsuan.Chou\Desktop\BLE-Gyro\BT-Gyro\firmware\CMSIS\startup_gcc\debug-in-microsemi-smartfusion2-esram.ld" -Xlinker --gc-sections -Wl,-Map,"BT-Gyro.map" --specs=nano.specs -o "BT-Gyro.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -T "C:\Users\Nathan\Desktop\UADL\Internship\Acromax\BT-Gyro\BT-Gyro-SW\firmware\CMSIS\startup_gcc\debug-in-microsemi-smartfusion2-esram.ld" -Xlinker --gc-sections -Wl,-Map,"BT-Gyro-SW.map" --specs=nano.specs -o "BT-Gyro-SW.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-BT-Gyro.hex: BT-Gyro.elf
+BT-Gyro-SW.hex: BT-Gyro-SW.elf
 	@echo 'Invoking: Cross ARM GNU Create Flash Image'
-	arm-none-eabi-objcopy -O ihex "BT-Gyro.elf"  "BT-Gyro.hex"
+	arm-none-eabi-objcopy -O ihex "BT-Gyro-SW.elf"  "BT-Gyro-SW.hex"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-BT-Gyro.siz: BT-Gyro.elf
+BT-Gyro-SW.siz: BT-Gyro-SW.elf
 	@echo 'Invoking: Cross ARM GNU Print Size'
-	arm-none-eabi-size --format=berkeley "BT-Gyro.elf"
+	arm-none-eabi-size --format=berkeley "BT-Gyro-SW.elf"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(OBJS)$(SECONDARY_FLASH)$(SECONDARY_SIZE)$(ASM_DEPS)$(S_UPPER_DEPS)$(C_DEPS) BT-Gyro.elf
+	-$(RM) $(OBJS)$(SECONDARY_FLASH)$(SECONDARY_SIZE)$(ASM_DEPS)$(S_UPPER_DEPS)$(C_DEPS) BT-Gyro-SW.elf
 	-@echo ' '
 
 secondary-outputs: $(SECONDARY_FLASH) $(SECONDARY_SIZE)

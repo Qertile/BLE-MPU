@@ -5,7 +5,19 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ## To-Do
 
 -----------------------------------
-## Unreleased v2.2.2 (2023.07.13) @master
+## Unreleased v2.2.3 (2023.07.13) @master
+### New
+1. create Hm11_init()
+### Changed
+### Removed
+### Deprecated
+### Fixed
+### Known Issues
+### Notes
+### Reference
+
+-----------------------------------
+## BT-Gyro v2.2.2 (2023.07.13) @master
 ### New
 1. create AT+RESET and AT command in Hm11_init()
 2. create `_at_RxBuff_` and `_at_TxBuff_`
@@ -15,15 +27,10 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 2. rename `_tx_buffer_` to `_ble_TxBuff_`
 3. rename `UART_RX_BUFF_SIZE` to `BLE_RX_BUFF_SIZE`
 4. rename `UART_TX_BUFF_SIZE` to `BLE_TX_BUFF_SIZE`
-### Removed
-### Deprecated
-### Fixed
-### Known Issues
-### Notes
-### Reference
+
 
 -----------------------------------
-## BT_Gyro v2.2.1 (2023.07.13) @master
+## BT-Gyro v2.2.1 (2023.07.13) @master
 ### New
 1. create and set default MODE0 in Hm11_init()
 2. test and set default MODE0 in Hm11_init()

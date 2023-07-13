@@ -2,11 +2,6 @@
 #include "../MPU6050/mpu6050.h"
 
 void Hm11_Init(void){
-	uint8_t _test[]  = "AT";
-	uint8_t _noti[]  = "AT+NOTI1";
-	uint8_t _mode0[] = "AT+MODE0";
-	uint8_t _reset[] = "AT+RESET";
-	uint8_t rx_size;
 
     /* ---------- UART Initialize ---------- */
     /* Initialize CoreUARTapb with its base address, baud value, and line configuration */
@@ -22,21 +17,7 @@ void Hm11_Init(void){
     Hm11_.frequency = HM11_TX_RATE_100;
     Hm11_.num_packet = 0x00;
 
-	UART_send(&g_uart_0, _test, sizeof(_test)-1);
-//	UART_send(&g_uart_0, _noti, sizeof(_noti)-1);
-
-	UART_send(&g_uart_0, _reset, sizeof(_reset)-1);
-	if(_ble_RxBuff_[0] == 'O' && _ble_RxBuff_[1] == 'K' && _ble_RxBuff_[2] == '+'
-	&& _ble_RxBuff_[3] == 'R' && _ble_RxBuff_[4] == 'E' && _ble_RxBuff_[5] == 'S'
-	&& _ble_RxBuff_[6] == 'E' && _ble_RxBuff_[7] == 'T'){
-
-		UART_send(&g_uart_0, _mode0, sizeof(_mode0)-1);
-		if(_ble_RxBuff_[0] == 'O' && _ble_RxBuff_[1] == 'K' && _ble_RxBuff_[2] == '+'
-		&& _ble_RxBuff_[3] == 'M' && _ble_RxBuff_[4] == 'O' && _ble_RxBuff_[5] == 'D'
-		&& _ble_RxBuff_[6] == 'E' && _ble_RxBuff_[7] == '0'){
-			return;
-		}
-	}
+    Hm11_reset();
     return;
 }
 
@@ -118,6 +99,25 @@ void Hm11_Config_By_Cmd(void){
         }   
         memset(Hm11_.last_cmd, 0, BLE_RX_BUFF_SIZE);
     }
+}
+
+void Hm11_reset(void){
+	uint8_t _lost[]  = "AT";
+	uint8_t _noti[]  = "AT+NOTI1";
+	uint8_t _reset[] = "AT+RESET";
+	uint8_t _mode0[] = "AT+MODE0";
+
+    /* lost connection */
+	UART_send(&g_uart_0, _lost, AT_TX_BUFF_SIZE);
+    
+    /* turn notification if connect/disconnect */
+	UART_send(&g_uart_0, _noti, AT_TX_BUFF_SIZE);
+
+    /* send HM11 reset command */
+	UART_send(&g_uart_0, _reset, AT_TX_BUFF_SIZE);
+
+    /* set HM11 to MODE 0 */
+    UART_send(&g_uart_0, _mode0, AT_TX_BUFF_SIZE);
 }
 
 void FabricIrq1_IRQHandler(void){
