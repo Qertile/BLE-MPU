@@ -11,11 +11,13 @@ void Hm11_Init(void){
 
 	_ble_TxBuff_ = (uint8_t*)calloc(0, BLE_TX_BUFF_SIZE);
 	_ble_RxBuff_ = (uint8_t*)calloc(0, BLE_RX_BUFF_SIZE);
+	_at_RxBuff_ = (uint8_t*)calloc(0, AT_RX_BUFF_SIZE);
 	memset(&Hm11_, 0, sizeof(HM11_t));
 
     Hm11_.onoff = HM11_TX_OFF;
     Hm11_.frequency = HM11_TX_RATE_100;
     Hm11_.num_packet = 0x00;
+    Hm11_.nrst = 0x01;
 
     Hm11_reset();
     return;
@@ -124,7 +126,10 @@ void Hm11_reset(void){
 }
 
 void FabricIrq1_IRQHandler(void){
-    if (!Hm11_.nrst) return;
+    if (!Hm11_.nrst) {
+    	UART_get_rx(&g_uart_0, _at_RxBuff_, AT_RX_BUFF_SIZE);
+    	return;
+    }
 
     uint8_t rx_size = 0;
     uint8_t static idx = 0;
