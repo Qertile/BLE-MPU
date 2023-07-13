@@ -2,6 +2,8 @@
 #include "../MPU6050/mpu6050.h"
 
 void Hm11_Init(void){
+	uint8_t _mode0[] = "AT+MODE0";
+
     /* ---------- UART Initialize ---------- */
     /* Initialize CoreUARTapb with its base address, baud value, and line configuration */
     UART_init( &g_uart_0, COREUARTAPB0_BASE_ADDR,
@@ -15,6 +17,8 @@ void Hm11_Init(void){
     Hm11_.onoff = 0x00;
     Hm11_.frequency = HM11_TX_RATE_1;
     Hm11_.num_packet = 0;
+
+    UART_send(&g_uart_0, _mode0, sizeof(_mode0)-1);
     return;
 }
 
