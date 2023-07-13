@@ -103,21 +103,21 @@ void Hm11_Config_By_Cmd(void){
 
 void Hm11_reset(void){
 	uint8_t _lost[]  = "AT";
-	uint8_t _noti[]  = "AT+NOTI1";
+	uint8_t _noti[]  = "AT+NOTI0";
 	uint8_t _reset[] = "AT+RESET";
 	uint8_t _mode0[] = "AT+MODE0";
 
     /* lost connection */
-	UART_send(&g_uart_0, _lost, AT_TX_BUFF_SIZE);
+//	UART_send(&g_uart_0, _lost, 2);
     
     /* turn notification if connect/disconnect */
-	UART_send(&g_uart_0, _noti, AT_TX_BUFF_SIZE);
+//	UART_send(&g_uart_0, _noti, AT_TX_BUFF_SIZE);
 
     /* send HM11 reset command */
-	UART_send(&g_uart_0, _reset, AT_TX_BUFF_SIZE);
+//	UART_send(&g_uart_0, _reset, AT_TX_BUFF_SIZE);
 
     /* set HM11 to MODE 0 */
-    UART_send(&g_uart_0, _mode0, AT_TX_BUFF_SIZE);
+//    UART_send(&g_uart_0, _mode0, AT_TX_BUFF_SIZE);
 }
 
 void FabricIrq1_IRQHandler(void){
