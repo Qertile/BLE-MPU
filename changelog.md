@@ -5,8 +5,9 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ## To-Do
 
 -----------------------------------
-## Unreleased v2.#.# (2023.07.##) @master
+## Unreleased v2.3.2 (2023.07.##) @master
 ### New
+- release into SF2
 ### Changed
 ### Removed
 ### Deprecated

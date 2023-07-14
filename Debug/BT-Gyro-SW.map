@@ -1638,7 +1638,7 @@ END GROUP
                 0x200012f4                Hm11_Is_Rx_Full
  .text.Hm11_Config_By_Cmd
                 0x20001354       0xa4 ./inc/HM11/hm11.o
- .text.Hm11_reset
+ .text.Hm11_Reset
                 0x200013f8       0xa8 ./inc/HM11/hm11.o
  .text.FabricIrq1_IRQHandler
                 0x200014a0       0x74 ./inc/HM11/hm11.o
@@ -1646,7 +1646,7 @@ END GROUP
  .text.SysTick_Handler
                 0x20001514       0x98 ./inc/HM11/hm11.o
                 0x20001514                SysTick_Handler
- .text.delay    0x200015ac       0x34 ./inc/HM11/hm11.o
+ .text.Delay    0x200015ac       0x34 ./inc/HM11/hm11.o
  .text.Crc8     0x200015e0       0x78 ./inc/CRC8/crc8.o
                 0x200015e0                Crc8
  .text          0x20001658        0xe ./firmware/hal/CortexM3/GNU/hal.o
@@ -2252,7 +2252,7 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0xbd1b
+.debug_info     0x00000000     0xbd57
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x663 ./src/main.o
  .debug_info    0x00000663     0x1067 ./inc/MPU6050/mpu6050.o
@@ -2260,22 +2260,22 @@ END GROUP
  .debug_info    0x000016eb      0xaea ./inc/HM11/hm11.o
  .debug_info    0x000021d5       0x21 ./inc/HM11/hm11_ut.o
  .debug_info    0x000021f6      0x102 ./inc/CRC8/crc8.o
- .debug_info    0x000022f8       0x80 ./firmware/hal/CortexM3/GNU/hal.o
- .debug_info    0x00002378       0x8a ./firmware/hal/CortexM3/GNU/hw_reg_access.o
- .debug_info    0x00002402      0x18b ./firmware/hal/CortexM3/cortex_nvic.o
- .debug_info    0x0000258d       0x96 ./firmware/drivers_config/sys_config/sys_config.o
- .debug_info    0x00002623      0xb0d ./firmware/drivers/mss_sys_services/mss_comblk.o
- .debug_info    0x00003130     0x1e16 ./firmware/drivers/mss_sys_services/mss_sys_services.o
- .debug_info    0x00004f46     0x1165 ./firmware/drivers/mss_rtc/mss_rtc.o
- .debug_info    0x000060ab     0x10bd ./firmware/drivers/mss_pdma/mss_pdma.o
- .debug_info    0x00007168     0x1158 ./firmware/drivers/mss_nvm/mss_nvm.o
- .debug_info    0x000082c0     0x1169 ./firmware/drivers/mss_hpdma/mss_hpdma.o
- .debug_info    0x00009429      0x353 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
- .debug_info    0x0000977c      0xc82 ./firmware/drivers/CoreI2C/core_i2c.o
- .debug_info    0x0000a3fe      0x75c ./firmware/drivers/CoreI2C/i2c_interrupt.o
- .debug_info    0x0000ab5a      0x692 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
- .debug_info    0x0000b1ec       0x8c ./firmware/CMSIS/startup_gcc/startup_m2sxxx.o
- .debug_info    0x0000b278      0xaa3 ./firmware/CMSIS/system_m2sxxx.o
+ .debug_info    0x000022f8       0x94 ./firmware/hal/CortexM3/GNU/hal.o
+ .debug_info    0x0000238c       0x9e ./firmware/hal/CortexM3/GNU/hw_reg_access.o
+ .debug_info    0x0000242a      0x18b ./firmware/hal/CortexM3/cortex_nvic.o
+ .debug_info    0x000025b5       0x96 ./firmware/drivers_config/sys_config/sys_config.o
+ .debug_info    0x0000264b      0xb0d ./firmware/drivers/mss_sys_services/mss_comblk.o
+ .debug_info    0x00003158     0x1e16 ./firmware/drivers/mss_sys_services/mss_sys_services.o
+ .debug_info    0x00004f6e     0x1165 ./firmware/drivers/mss_rtc/mss_rtc.o
+ .debug_info    0x000060d3     0x10bd ./firmware/drivers/mss_pdma/mss_pdma.o
+ .debug_info    0x00007190     0x1158 ./firmware/drivers/mss_nvm/mss_nvm.o
+ .debug_info    0x000082e8     0x1169 ./firmware/drivers/mss_hpdma/mss_hpdma.o
+ .debug_info    0x00009451      0x353 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
+ .debug_info    0x000097a4      0xc82 ./firmware/drivers/CoreI2C/core_i2c.o
+ .debug_info    0x0000a426      0x75c ./firmware/drivers/CoreI2C/i2c_interrupt.o
+ .debug_info    0x0000ab82      0x692 ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+ .debug_info    0x0000b214       0xa0 ./firmware/CMSIS/startup_gcc/startup_m2sxxx.o
+ .debug_info    0x0000b2b4      0xaa3 ./firmware/CMSIS/system_m2sxxx.o
 
 .debug_abbrev   0x00000000     0x1c88
  *(.debug_abbrev)
@@ -2389,7 +2389,7 @@ END GROUP
  .debug_frame   0x00002cc8       0x30 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-s_scalbn.o)
  .debug_frame   0x00002cf8       0x20 c:/microsemi/softconsole_v4.0/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libm.a(lib_a-s_copysign.o)
 
-.debug_str      0x00000000    0x17798
+.debug_str      0x00000000    0x17763
  *(.debug_str)
  .debug_str     0x00000000     0xcdce ./src/main.o
                                0xd05b (size before relaxing)
@@ -2403,32 +2403,32 @@ END GROUP
                                0x2478 (size before relaxing)
  .debug_str     0x0000d860       0x1d ./inc/CRC8/crc8.o
                                0x3040 (size before relaxing)
- .debug_str     0x0000d87d      0x1fe ./firmware/hal/CortexM3/cortex_nvic.o
-                               0x3614 (size before relaxing)
- .debug_str     0x0000da7b       0x4d ./firmware/drivers_config/sys_config/sys_config.o
-                               0x8709 (size before relaxing)
- .debug_str     0x0000dac8      0x4eb ./firmware/drivers/mss_sys_services/mss_comblk.o
-                               0x94d1 (size before relaxing)
- .debug_str     0x0000dfb3     0x2b9d ./firmware/drivers/mss_sys_services/mss_sys_services.o
-                               0xd6f3 (size before relaxing)
- .debug_str     0x00010b50      0x83b ./firmware/drivers/mss_rtc/mss_rtc.o
-                               0xbe9d (size before relaxing)
- .debug_str     0x0001138b     0x14a7 ./firmware/drivers/mss_pdma/mss_pdma.o
-                               0xab50 (size before relaxing)
- .debug_str     0x00012832      0xced ./firmware/drivers/mss_nvm/mss_nvm.o
-                               0x9e41 (size before relaxing)
- .debug_str     0x0001351f      0x76b ./firmware/drivers/mss_hpdma/mss_hpdma.o
-                               0x9deb (size before relaxing)
- .debug_str     0x00013c8a      0xe19 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
-                               0x44db (size before relaxing)
- .debug_str     0x00014aa3      0xd65 ./firmware/drivers/CoreI2C/core_i2c.o
+ .debug_str     0x0000d87d      0x1c9 ./firmware/hal/CortexM3/cortex_nvic.o
+                               0x3628 (size before relaxing)
+ .debug_str     0x0000da46       0x4d ./firmware/drivers_config/sys_config/sys_config.o
+                               0x871d (size before relaxing)
+ .debug_str     0x0000da93      0x4eb ./firmware/drivers/mss_sys_services/mss_comblk.o
+                               0x94e5 (size before relaxing)
+ .debug_str     0x0000df7e     0x2b9d ./firmware/drivers/mss_sys_services/mss_sys_services.o
+                               0xd707 (size before relaxing)
+ .debug_str     0x00010b1b      0x83b ./firmware/drivers/mss_rtc/mss_rtc.o
+                               0xbeb1 (size before relaxing)
+ .debug_str     0x00011356     0x14a7 ./firmware/drivers/mss_pdma/mss_pdma.o
+                               0xab64 (size before relaxing)
+ .debug_str     0x000127fd      0xced ./firmware/drivers/mss_nvm/mss_nvm.o
+                               0x9e55 (size before relaxing)
+ .debug_str     0x000134ea      0x76b ./firmware/drivers/mss_hpdma/mss_hpdma.o
+                               0x9dff (size before relaxing)
+ .debug_str     0x00013c55      0xe19 ./firmware/drivers/CoreUARTapb/core_uart_apb.o
+                               0x44ef (size before relaxing)
+ .debug_str     0x00014a6e      0xd65 ./firmware/drivers/CoreI2C/core_i2c.o
                                0x6e62 (size before relaxing)
- .debug_str     0x00015808       0x4b ./firmware/drivers/CoreI2C/i2c_interrupt.o
+ .debug_str     0x000157d3       0x4b ./firmware/drivers/CoreI2C/i2c_interrupt.o
                                0x9a40 (size before relaxing)
- .debug_str     0x00015853     0x1a3e ./firmware/CMSIS/startup_gcc/newlib_stubs.o
-                               0x6a23 (size before relaxing)
- .debug_str     0x00017291      0x507 ./firmware/CMSIS/system_m2sxxx.o
-                               0x93b8 (size before relaxing)
+ .debug_str     0x0001581e     0x1a3e ./firmware/CMSIS/startup_gcc/newlib_stubs.o
+                               0x6a37 (size before relaxing)
+ .debug_str     0x0001725c      0x507 ./firmware/CMSIS/system_m2sxxx.o
+                               0x93cc (size before relaxing)
 
 .debug_loc
  *(.debug_loc)

@@ -172,7 +172,7 @@ void SysTick_Handler(void) {
     count++;
 }
 
-void delay(void){
+void Delay(void){
 	/* Just waste some time here */
     for (int i=0; i<250; i++)
     	for (int j=0; j<250; j++);
