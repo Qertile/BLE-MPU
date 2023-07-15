@@ -5,9 +5,8 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ## To-Do
 
 -----------------------------------
-## Unreleased v2.3.3 (2023.07.##) @master
+## Unreleased v2.3.# (2023.07.##) @master
 ### New
-- add description for functions in hm11.h
 - need check command's CRC8
 ### Changed
 ### Removed
@@ -16,6 +15,13 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ### Known Issues
 ### Notes
 ### Reference
+
+-----------------------------------
+## BT-Gyro v2.3.3 (2023.07.14) @master
+### New
+- add static and inline for functions in hm11.c
+- add description for functions in hm11.h
+
 
 -----------------------------------
 ## BT-Gyro v2.3.2 (2023.07.14) @master

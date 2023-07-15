@@ -23,7 +23,7 @@ void Hm11_Init(void){
     return;
 }
 
-void Hm11_Packet(void){
+static void Hm11_Packet(void){
     uint8_t crc8 = 0;
     MPU6050_Read_All(&Mpu6050_);
     MPU6050_Read_Sens(&Mpu6050_);
@@ -66,7 +66,7 @@ void Hm11_Is_Rx_Full(void){
     return;
 }
 
-void Hm11_Config_By_Cmd(void){
+static void Hm11_Config_By_Cmd(void){
     if (Hm11_.last_cmd[0] == 0x41 && Hm11_.last_cmd[1] == 0x58){
         switch (Hm11_.last_cmd[2]){
             case HM11_RESET:
@@ -104,7 +104,7 @@ void Hm11_Config_By_Cmd(void){
     }
 }
 
-void Hm11_Reset(void){
+static void Hm11_Reset(void){
 	uint8_t _lost[]  = "AT";
 	uint8_t _noti[]  = "AT+NOTI0";
 	uint8_t _reset[] = "AT+RESET";
@@ -172,7 +172,7 @@ void SysTick_Handler(void) {
     count++;
 }
 
-void Delay(void){
+inline static void Delay(void){
 	/* Just waste some time here */
     for (int i=0; i<250; i++)
     	for (int j=0; j<250; j++);
