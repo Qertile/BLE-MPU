@@ -22,6 +22,7 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 - check command's CRC8 at `Hm11_Is_Rx_Full()`
 - create crc_check in HM11_t
 - check CRC8 at `Hm11_Config_By_Cmd()`
+- release into SF2
 
 
 -----------------------------------
