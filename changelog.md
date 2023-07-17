@@ -7,7 +7,6 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 -----------------------------------
 ## Unreleased v2.3.# (2023.07.##) @master
 ### New
-- need check command's CRC8
 ### Changed
 ### Removed
 ### Deprecated
@@ -15,6 +14,14 @@ A project that using SmartFusion2 to control a gyroscope MPU6050 on the GY521 mo
 ### Known Issues
 ### Notes
 ### Reference
+
+-----------------------------------
+## BT-Gyro v2.4.0 (2023.07.17) @master
+### New
+- check command's header at `Hm11_Is_Rx_Full()`
+- check command's CRC8 at `Hm11_Is_Rx_Full()`
+### Changed
+
 
 -----------------------------------
 ## BT-Gyro v2.3.3 (2023.07.14) @master

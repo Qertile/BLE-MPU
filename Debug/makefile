@@ -56,7 +56,7 @@ all: BT-Gyro-SW.elf secondary-outputs
 BT-Gyro-SW.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Cross ARM C Linker'
-	arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -T "C:\Users\Nathan\Desktop\UADL\Internship\Acromax\BT-Gyro\BT-Gyro-SW\firmware\CMSIS\startup_gcc\debug-in-microsemi-smartfusion2-envm.ld" -Xlinker --gc-sections -Wl,-Map,"BT-Gyro-SW.map" --specs=nano.specs -o "BT-Gyro-SW.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -T "C:\Users\Nathan\Desktop\UADL\Internship\Acromax\BT-Gyro\BT-Gyro-SW\firmware\CMSIS\startup_gcc\debug-in-microsemi-smartfusion2-esram.ld" -Xlinker --gc-sections -Wl,-Map,"BT-Gyro-SW.map" --specs=nano.specs -o "BT-Gyro-SW.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 

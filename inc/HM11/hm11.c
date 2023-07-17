@@ -56,22 +56,38 @@ static void Hm11_Packet(void){
 }
 
 void Hm11_Is_Rx_Full(void){
+    /* if rx buffer is full */
     if(_ble_RxBuff_[7]!=0) {
-        for (uint8_t i=0; i<BLE_RX_BUFF_SIZE; i++)
-            Hm11_.last_cmd[i] = _ble_RxBuff_[i];
+        
+        /* if header is correct */
+        if (_ble_RxBuff_[0] == 0x41 && _ble_RxBuff_[1] == 0x58){
+            
+            /* check CRC8 */
+            uint8_t crc_check = 0;
+            crc_check = Crc8(_ble_RxBuff_, 7);
+            if (crc_check == _ble_RxBuff_[7]){
 
-        memset(_ble_RxBuff_, 0, BLE_RX_BUFF_SIZE);
-        UART_send( &g_uart_0, Hm11_.last_cmd, BLE_RX_BUFF_SIZE );
+                /* store as last command */
+                for (uint8_t i=0; i<BLE_RX_BUFF_SIZE; i++)
+                    Hm11_.last_cmd[i] = _ble_RxBuff_[i];
+
+                /* clear rx buffer */
+                memset(_ble_RxBuff_, 0, BLE_RX_BUFF_SIZE);
+
+                /* echo received command */
+                UART_send( &g_uart_0, Hm11_.last_cmd, BLE_RX_BUFF_SIZE );
+            }
+        }
     }
     return;
 }
 
 static void Hm11_Config_By_Cmd(void){
-    if (Hm11_.last_cmd[0] == 0x41 && Hm11_.last_cmd[1] == 0x58){
+    if (_ble_RxBuff_[0] == 0x41 && _ble_RxBuff_[1] == 0x58){
         switch (Hm11_.last_cmd[2]){
             case HM11_RESET:
                 Hm11_.nrst = HM11_RESET;
-            	Hm11_Init();
+                Hm11_Init();
                 break;
             case HM11_TX_ON:
                 Hm11_.onoff = HM11_TX_ON;
@@ -102,6 +118,7 @@ static void Hm11_Config_By_Cmd(void){
         }   
         memset(Hm11_.last_cmd, 0, BLE_RX_BUFF_SIZE);
     }
+    return;
 }
 
 static void Hm11_Reset(void){
@@ -128,6 +145,7 @@ static void Hm11_Reset(void){
 	Delay();
 
 	Hm11_.nrst = 1;
+    return;
 }
 
 void FabricIrq1_IRQHandler(void){
@@ -170,10 +188,12 @@ void SysTick_Handler(void) {
         }
     }
     count++;
+    return;
 }
 
 inline static void Delay(void){
 	/* Just waste some time here */
     for (int i=0; i<250; i++)
     	for (int j=0; j<250; j++);
+    return;
 }
