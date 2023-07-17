@@ -63,9 +63,8 @@ void Hm11_Is_Rx_Full(void){
         if (_ble_RxBuff_[0] == 0x41 && _ble_RxBuff_[1] == 0x58){
             
             /* check CRC8 */
-            uint8_t crc_check = 0;
-            crc_check = Crc8(_ble_RxBuff_, 7);
-            if (crc_check == _ble_RxBuff_[7]){
+            Hm11_.crc_check = Crc8(_ble_RxBuff_, 7);
+            if (Hm11_.crc_check == _ble_RxBuff_[7]){
 
                 /* store as last command */
                 for (uint8_t i=0; i<BLE_RX_BUFF_SIZE; i++)
@@ -83,7 +82,8 @@ void Hm11_Is_Rx_Full(void){
 }
 
 static void Hm11_Config_By_Cmd(void){
-    if (_ble_RxBuff_[0] == 0x41 && _ble_RxBuff_[1] == 0x58){
+    if (Hm11_.last_cmd[0] == 0x41 && Hm11_.last_cmd[1] == 0x58
+    && Hm11_.last_cmd[7] == Hm11_.crc_check){
         switch (Hm11_.last_cmd[2]){
             case HM11_RESET:
                 Hm11_.nrst = HM11_RESET;
@@ -192,7 +192,7 @@ void SysTick_Handler(void) {
 }
 
 inline static void Delay(void){
-	/* Just waste some time here */
+	/* Just waste some time (about 10 ms) here */
     for (int i=0; i<250; i++)
     	for (int j=0; j<250; j++);
     return;

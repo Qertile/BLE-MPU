@@ -75,6 +75,8 @@ typedef struct {
     /* HM11 number of ticks between packet transmissions */
     uint16_t tx_tick;
   
+    /* store the calculate result CRC of received BLE command */
+    uint16_t crc_check;
   
 } HM11_t;
 HM11_t Hm11_;
